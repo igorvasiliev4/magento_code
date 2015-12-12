@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category Mato
+ * @package      MT_Export
+ *
+ * @copyright    Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       ZooExtension.com
+ * @email        magento@cleversoft.co
+ *
+ */
+ -->
+<config>
+    <modules>
+        <MT_Export>
+            <version>2.0.0</version>
+        </MT_Export>
+    </modules>
+    <global>
+        <models>
+            <export>
+                <class>MT_Export_Model</class>
+            </export>
+        </models>
+        <blocks>
+            <export>
+                <class>MT_Export_Block</class>
+            </export>
+        </blocks>
+        <helpers>
+            <export>
+                <class>MT_Export_Helper</class>
+            </export>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <export>
+                <use>standard</use>
+                <args>
+                    <module>MT_Export</module>
+                    <frontName>export</frontName>
+                </args>
+            </export>
+        </routers>
+    </frontend>
+    <admin>
+        <routers>
+            <export>
+                <use>admin</use>
+                <args>
+                    <module>MT_Export</module>
+                    <frontName>export</frontName>
+                </args>
+            </export>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <export>
+                    <file>mt_export.xml</file>
+                </export>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

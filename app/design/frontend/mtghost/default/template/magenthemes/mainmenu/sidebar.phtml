@@ -1,0 +1,37 @@
+<!-- navigation BOF -->
+
+<div class="mt-menu mt-effect-slide">
+    <div class="mt-menu-active">
+        <div class="navbar-header">
+            <div class="navbar-toggle" data-toggle="collapse">
+                <span class="collapsed-icon pull-left">
+                    <span class="sr-only"><?php echo $this->__('Navigation');?></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </span>
+                <span class="title-canvas"><?php echo $this->__('Menu');?></span>
+                <button type="button" class="mt-close-canvas"></button>
+            </div>
+        </div>
+	</div>
+    <div class="sidebar">
+        <ul id="mt_accordionmenu" class="nav-accordion nav-mobile-accordion">
+            <li><a href="<?php echo $this->getBaseUrl(); ?>"><?php echo $this->__('Home'); ?></a></li>
+            <?php echo $this->renderCategoriesMenuHtml(TRUE, TRUE, 0, 'level-top'); ?>
+        </ul>
+        <script type="text/javascript">
+            $mt(document).ready(function() {
+                $mt("#mt_accordionmenu").mtAccordionMenu({
+                    accordion:true,
+                    speed: 400,
+                    closedSign: 'collapse icon_plus',
+                    openedSign: 'expand icon_minus-06',
+                    mouseType: 0,
+                    easing: 'easeInOutQuad'
+                });
+            });
+        </script>
+    </div>
+</div>
+<div class="site-overlay"></div>

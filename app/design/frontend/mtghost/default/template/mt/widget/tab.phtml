@@ -1,0 +1,79 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+/* @var $this MT_Widget_Block_Widget */
+$id         = $this->getConfig('id');
+$title      = $this->getConfig('widget_title');
+$tabs       = $this->getTabs();
+$template   = 'mt/widget/collection.phtml';
+$t          = microtime();
+?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <div class="tabs-collection">
+        <div class="main-heading">
+            <div class="heading-wrapper-title">
+                <?php if ($title): ?>
+                    <h3><span><?php echo $title ?></span></h3>
+                <?php endif ?>
+             </div>
+        </div>
+        <div class="tab-hover">
+            <span class="tab-labe-hover"></span>
+            <ul class="widget-tabs nav nav-tabs">
+                <?php foreach ($tabs as $index => $tab): ?>
+                    <li class="<?php echo $index==0 ? 'active' : '' ?>">
+                        <a href="#<?php echo $id . '-' . $tab['id'] ?>"
+                           data-value="<?php echo $tab['value'] ?>"
+                           data-type="<?php echo $tab['type'] ?>"
+                           data-limit="<?php echo $this->getLimit() ?>"
+                           data-column="<?php echo $this->getConfig('column') ?>"
+                           data-row="<?php echo $this->getConfig('row') ?>"
+                           data-cid="<?php echo $this->getData('category_ids') ?>"
+                           data-template="<?php echo $template ?>"
+                           data-carousel="<?php echo $this->getConfig('scroll') ?>">
+                            <?php echo $tab['label'] ?>
+                        </a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row widget-tab-content tab-content">
+        <?php foreach ($tabs as $index => $tab): ?>
+            <div id="<?php echo $id . '-' . $tab['id'] ?>"
+                 class="tab-pane<?php echo $index==0 ? ' active' : '' ?>">
+                <?php if ($index > 0): ?>
+                    </div>
+                    <?php continue ?>
+                <?php endif ?>
+                <?php echo $this->renderCollection($tab['type'], $tab['value'], $template) ?>
+            </div>
+        <?php endforeach ?>
+    </div>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>mt/widget/frontend.js"></script>
+    <script type="text/javascript">
+        new MT.Widget('<?php echo $id ?>', {
+            animation: <?php echo $this->getConfig('animation') ?>,
+            collectionUrl: '<?php echo $this->getUrl('mtwidget/collection/get') ?>',
+            collectionCallback: function(){},
+            spinnerClass: 'spinner',
+            spinnerImg: '<?php echo $this->getSkinUrl('images/loader.gif') ?>',
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            countdown: <?php echo $this->getConfig('countdown') ?>,
+            countdownConfig: null,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>
+        });
+    </script>
+</div>
+<?php //Mage::log(microtime() - $t) ?>

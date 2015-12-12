@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Extensions
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <modules>
+        <MT_Extensions>
+            <version>1.0</version>
+        </MT_Extensions>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtext>
+                <class>MT_Extensions_Block</class>
+            </mtext>
+            <adminhtml>
+                <rewrite>
+                    <cms_wysiwyg_images_content>MT_Extensions_Block_Adminhtml_Cms_Wysiwyg_Images_Content</cms_wysiwyg_images_content>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <mtext>
+                <class>MT_Extensions_Helper</class>
+            </mtext>
+            <cms>
+                <rewrite>
+                    <wysiwyg_images>MT_Extensions_Helper_Cms_Wysiwyg_Images</wysiwyg_images>
+                </rewrite>
+            </cms>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <mtadmin>
+                <use>admin</use>
+                <args>
+                    <module>MT_Extensions</module>
+                    <frontName>mtadmin</frontName>
+                </args>
+            </mtadmin>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MT_Extensions before="Mage_Adminhtml">MT_Extensions_Adminhtml</MT_Extensions>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

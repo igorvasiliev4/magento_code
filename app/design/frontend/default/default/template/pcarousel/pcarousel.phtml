@@ -1,0 +1,45 @@
+
+<?php $cruid = $this->getPcarouselId(); 
+    $crudata = Mage::getModel('pcarousel/pcarousel')->load($cruid)->getData();
+    $categoryid = $crudata['categories'];
+    $category = new Mage_Catalog_Model_Category();
+    $category->load($categoryid);
+    $collection = $category->getProductCollection();
+    $collection->addAttributeToSelect('*');
+    $count = count($collection); ?>
+        <?php if($crudata['status']==1 && $count>0) { ?>
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+                           <?php foreach ($collection as $_product) {  ?>
+                        <li><a href="<?php echo $_product->getProductUrl() ?>">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" alt="" /></a>
+                        <a href="<?php echo $_product->getProductUrl(); ?>"><?php echo $_product->getName(); ?></a>
+                          
+                        
+                         <?php if($_product->isSaleable()): ?>
+                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->helper('checkout/cart')->getAddUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                   
+                    <ul class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                        <?php endif; ?>
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                    
+                        </li>
+                         <?php }?>
+                    </ul>
+                </div>
+
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+               <?php if($crudata['pagination']==1){ ?> <p class="jcarousel-pagination"></p><?php } ?>
+            </div>
+<?php }?>

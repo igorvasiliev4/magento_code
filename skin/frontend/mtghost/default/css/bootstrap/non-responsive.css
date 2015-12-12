@@ -1,0 +1,175 @@
+/* Non-responsive overrides
+ *
+ * Utilitze the following CSS to disable the responsive-ness of the container,
+ * grid system, and navbar.
+ */
+
+/* Reset the container */
+.container {
+  max-width: none !important;
+  width: 970px;
+}
+.cms-home .megamenu-vertical li.level0 a {
+    margin: 0 10px !important;
+}
+.header-container .header a {
+    font-size: 85%;
+}
+.megamenu-vertical li.level0 {
+    height: 37px !important;
+    line-height: 37px !important;
+}
+.megamenu-vertical li.level0.nav-1 a {
+    background-position: 0 8px !important;
+}
+.megamenu-vertical li.level0.nav-2 a {
+    background-position: 0 -40px !important;
+}
+.megamenu-vertical li.level0.nav-3 a {
+    background-position: 0 -86px !important;
+}
+.megamenu-vertical li.level0.nav-4 a {
+    background-position: 0 -135px !important;
+}
+.megamenu-vertical li.level0.nav-5 a {
+    background-position: 0 -185px !important;
+}
+.megamenu-vertical li.level0.nav-6 a {
+    background-position: 0 -231px  !important;
+}
+.megamenu-vertical li.level0.nav-7 a {
+    background-position: 0 -279px !important;
+}
+.megamenu-vertical li .fa {
+    line-height: 37px !important;
+}
+.main_slide_left .mt-main-menu-vertical div.shown-sub,
+.col-left .mt-main-menu-vertical div.shown-sub { left: 200px !important; }
+
+.megamenu-vertical li.level0 a { padding: 0 20px !important; font-size: 90% ;}
+
+.products-grid .block-category .block-image .category-title-block h3 ,.products-grid .block-category .block-image .category-title-block span{
+    font-size: 100%;
+}
+
+.header-container .header .header-content .header-act .mt-icon { height: 30px ; width: 30px ;}
+.header-container .header .header-content .header-act .mt-icon span {line-height: 28px; font-size: 100% ;}
+.top-compare .mt-maincompare span.mt-icon-compareajax .fa { font-size: 100% ;line-height: 28px;}
+.header-container .header .header-content .header-act .header-static strong ,
+.header-container .header .header-content .header-act .header-static .header-static-text span { font-size: 80% ;}
+.header-container .header .header-top .header-top-left p.welcome-msg{
+     padding: 0 0 0 10px;
+}
+.main-heading h3 {
+    font-size: 208%;
+}
+.main-heading .heading-wrapper-title span {
+    padding: 0 0 10px;
+}
+.tabs-collection .widget-tabs.nav.nav-tabs {
+    top: 12px;
+}
+button.button span { font-size:  80% ;}
+#cboxContent.newsletterbox { width: 680px !important; }
+.header-content-right { width: 54% ;}
+.mt_getcart .mt-cart-label{ font-size: 80% ; }
+.header-content-right .top-seach input#search { width: 220px;}
+.header .logo img {
+    vertical-align: inherit;
+}
+.mt-cart { width: 100px; }
+.header .form-language .sbHolder,
+.header .currency_top .sbHolder{
+     padding: 0 25px 0 0;
+}
+.header-layout-3 .header-top ul.links li a {padding: 0 10px !important; font-size: 80% !important; }
+.header-layout-4 .form-search input#search {
+    width: 264px !important;
+}
+.mt_container .mt_block_left {
+    float: left;
+    width: 635px;
+}
+.mt_container .mt_block_image1 {
+    height: 392px;
+    width: 310px;
+}
+.mt_container .mt_block_image2,
+.mt_container .mt_block_image3{
+     height: 190px;
+    width: 310px;
+}
+.mt_container .mt_block_image4,
+.mt_container .mt_block_image6 {
+    height: 190px;
+    width: 310px;
+}
+.mt_container .mt_block_image5{
+   width: 324px;
+	 height: 192px;
+}
+.mt_container .mt_block_right{
+    width: 290px;
+}
+.mt_container .mt_block_image7{
+     width: 315px;
+	  height: 395px;
+}
+.widget-static-block .custom .title h2{
+     font-size: 190%;
+}
+.block-subscribe .block-title strong span,
+.footer-container .footer-bottom .section-space .collapsible h3,
+.block .block-title strong span{
+      font-size: 15px;
+}
+.block-subscribe .block-content .input-box input.input-text{
+      width: 260px;
+}
+.mt-block-free {
+    font-size: 20px;
+}
+.footer address{
+      font-size: 90%;
+}
+.block-wishlist .block-content li.item .product-details .btn-remove {
+    width: 100% !important;
+}
+.product-view .product-img-box .more-views {
+    width: 233px !important;
+}
+.product-view .product-img-box .more-views li a img {max-width: 90% ;}
+.col2-left-layout .rev_slider_wrapper,.col2-left-layout .rev_slider{
+     width: 940px !important;
+	 height: 500px !important;
+}
+.toolbar .toolbar-top .sorter .view-mode label {display: none !important; }
+.toolbar .toolbar-top .limiter .sbHolder { width: 45px;}
+.toolbar .toolbar-top .sort-by .sbHolder {width: 85px;}
+.footer-container .footer-top {padding: 0 ;}
+.footer-container .footer-top .footer h3 {font-size: 120% ; margin: 0 ;}
+.footer-container .footer-top .footer .box-content-top .icon-style-1 .iconbox-icon .fa {font-size: 120% ;}
+.footer-container .footer-top .footer .box-content-top .icon-style-1 {margin: 0 ;}
+.footer-container .footer-bottom .section-space .info-class .mttron-icon {font-size: 150% ;}
+
+.rtl .header-layout-3 .mt-icon-ajaxcart { padding: 0 ;}
+.header-layout-2 .mt-icon-ajaxcart a.mt-cart-label ,
+.header-layout-4 .mt-icon-ajaxcart a.mt-cart-label {font-size: 70% ;}
+.header-layout-2 .sticky-wrapper #mtnav a {
+    padding: 0 10px;
+}
+#mtnav li.level0.last {border-right: none ; }
+#mtnav a {font-size: 100% !important;}
+.mtmenu-block-bottom .right h3 { font-size: 100% !important; line-height: 20px !important;}
+.mtmenu-block-bottom .right { padding: 11px 15px !important; }
+.mtmenu-block-bottom .left, .mtmenu-block-bottom .right {width: 40% !important;}
+.mtmenu-block-bottom .right p {font-size: 80% !important; line-height: 20px !important;}
+
+
+.cms-home .mt-banner-center.banner-bottom {
+    margin: 19px 0 0;
+}
+.footer address {
+    font-size: 80%;
+}
+.footer-container .footer-top .nav-wrapper {background-position: 40% 0 ;}

@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Soczed
+ * @package    Soczed_Less
+ * @copyright  Copyright (c) 2012 Soczed <magento@soczed.com> (Benoît Leulliette <benoit@soczed.com>)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Soczed_Less>
+            <version>0.1.0</version>
+        </Soczed_Less>
+    </modules>
+    <global>
+        <blocks>
+            <less>
+                <class>Soczed_Less_Block</class>
+            </less>
+        </blocks>
+        <helpers>
+            <less>
+                <class>Soczed_Less_Helper</class>
+            </less>
+        </helpers>
+        <models>
+            <less>
+                <class>Soczed_Less_Model</class>
+                <resourceModel>less_mysql4</resourceModel>
+            </less>
+            <less_mysql4>
+                <class>Soczed_Less_Model_Mysql4</class>
+                <entities>
+                    <file>
+                        <table>sl_less_file</table>
+                    </file>
+                </entities>
+            </less_mysql4>
+        </models>
+        <resources>
+            <less_setup>
+                <setup>
+                    <module>Soczed_Less</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </less_setup>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <less>
+                <use>admin</use>
+                <args>
+                    <module>Soczed_Less</module>
+                    <frontName>less</frontName>
+                </args>
+            </less>
+        </routers>
+    </admin>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <less translate="title" module="less">
+                                            <title>Less</title>
+                                        </less>
+                                    </children>
+                                </config>
+                                <less translate="title" module="less">
+                                    <title>Less Files</title>
+                                    <sort_order>2000</sort_order>
+                                </less>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <less>
+                    <file>soczed/less.xml</file>
+                </less>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Soczed_Less>
+                    <files>
+                        <default>Soczed_Less.csv</default>
+                    </files>
+                </Soczed_Less>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <events>
+            <controller_action_layout_render_before>
+                <observers>
+                    <less>
+                        <type>singleton</type>
+                        <class>less/observer</class>
+                        <method>beforeLayoutRender</method>
+                    </less>
+                </observers>
+            </controller_action_layout_render_before>
+        </events>
+        <translate>
+            <modules>
+                <Soczed_Less>
+                    <files>
+                        <default>Soczed_Less.csv</default>
+                    </files>
+                </Soczed_Less>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <less>
+            <general>
+                <enabled>1</enabled>
+            </general>
+        </less>
+    </default>
+</config>

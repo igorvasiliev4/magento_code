@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Search
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <modules>
+        <MT_Search>
+            <version>0.0.1</version>
+        </MT_Search>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtsearch>
+                <class>MT_Search_Block</class>
+            </mtsearch>
+        </blocks>
+        <helpers>
+            <mtsearch>
+                <class>MT_Search_Helper</class>
+            </mtsearch>
+        </helpers>
+    </global>
+
+    <frontend>
+        <layout>
+            <updates>
+                <mtsearch>
+                    <file>mt_search.xml</file>
+                </mtsearch>
+            </updates>
+        </layout>
+    </frontend>
+</config>

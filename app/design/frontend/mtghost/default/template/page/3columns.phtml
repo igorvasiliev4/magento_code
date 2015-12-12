@@ -1,0 +1,157 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<?php 
+$theme = $this->helper('mtghost');
+$cfgrtl = $theme->getThemeLayoutCfg('responsive/rtl_language');
+$class = $cfgrtl ? 'rtl':'';
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class=" '.$class.' '.$this->getBodyClass().'"':'' ?>>
+<section class="mt-container <?php if($boxedEnable): ?>container<?php endif; ?>">
+    <?php echo $this->getChildHtml('mtsidebar') ?>
+    <section class="mt-wrapper">
+        <?php echo $this->getChildHtml('after_body_start') ?>
+        <?php echo $this->getChildHtml('global_notices') ?>
+        <?php echo $this->getChildHtml('header') ?>
+        <section class="main-container col3-layout">
+		    <div class="parallax">
+                <div class="main">
+                    <div class="row show-grid">
+                            <div class="mt-parallax"><?php echo $this->getChildHtml('parallax') ?></div>
+                    </div>
+                </div>
+            </div>
+		    <div class="show-grid-slide">
+				<div class="mt-revolution-slider">
+					<div class="mt-preface"><?php echo $this->getChildHtml('preface') ?></div>
+				</div>
+			</div>
+            <div class="main-breadcrumbs">
+				<div class="container">
+					 <div class="main">
+						 <div class="row show-grid">
+							<div class="col-lg-12">
+								<?php echo $this->getChildHtml('breadcrumbs') ?>
+							</div>
+						</div>
+					 </div>
+				</div>
+			</div>
+			<div class="main-top">
+				<div class="container">
+					 <div class="main">
+						 <div class="row show-grid">
+							<div class="col-lg-12">
+								<?php echo $this->getChildHtml('main_top') ?>
+							</div>
+						</div>
+					 </div>
+				</div>
+			</div>
+			<div class="container-main">
+				<div class="main-content container">
+                    <div class="row show-grid">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs">
+                            <div class="col-left sidebar">
+                                <?php echo $this->getChildHtml('left_top') ?>
+                                <?php echo $this->getChildHtml('left') ?>
+                                <?php echo $this->getChildHtml('left_bottom') ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-wrapper">
+                                <div class="col-main">
+                                    <?php echo $this->getChildHtml('global_messages') ?>
+                                    <?php echo $this->getChildHtml('content') ?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+                            <div class="col-right sidebar">
+                                <?php echo $this->getChildHtml('right_top') ?>
+                                <?php echo $this->getChildHtml('right') ?>
+                                <?php echo $this->getChildHtml('right_bottom') ?>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>	
+			<div class="main-bottom">
+				<div class="container">
+					 <div class="main">
+						 <div class="row show-grid">
+							<div class="col-lg-12">
+								<?php echo $this->getChildHtml('main_bottom') ?>
+							</div>
+						</div>
+					 </div>
+				</div>
+			</div>
+			<div class="parallax">
+                <div class="main">
+                    <div class="row show-grid">
+                            <div class="mt-parallax"><?php echo $this->getChildHtml('parallax') ?></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-main">
+                <div class="main-content main-brands container">
+                    <div class="main">
+                        <div class="main-content-inner">
+                            <div class="row show-grid">
+                                <?php echo $this->getChildHtml('main_brands') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="container">
+				<div class="main">
+					<div class="row show-grid">
+						<div class="col-lg-12">
+							<div class="mt-postscript"><?php echo $this->getChildHtml('postscript') ?></div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </section>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+    </section>
+</section>
+</body>
+</html>

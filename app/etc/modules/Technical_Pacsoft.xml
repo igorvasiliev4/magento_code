@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Technical_Pacsoft>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Technical_Pacsoft>
+    </modules>
+</config>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Extensions
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <tabs>
+        <mtext translate="label">
+            <label>MT Extensions</label>
+            <sort_order>100</sort_order>
+        </mtext>
+    </tabs>
+</config>

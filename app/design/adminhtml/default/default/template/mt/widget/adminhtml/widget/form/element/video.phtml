@@ -1,0 +1,47 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<tr>
+    <td class="label">
+        <label for="<?php echo $this->getElement()->getHtmlId()?>">
+            <?php echo $this->getElement()->getLabel()?>
+        </label>
+    </td>
+    <td class="value">
+        <input
+            id="<?php echo $this->getElement()->getHtmlId()?>"
+            name="<?php echo $this->getElement()->getName()?>"
+            value="<?php echo $this->getElement()->getValue()?>"
+            title="<?php echo $this->getElement()->getTitle()?>"
+            onclick="<?php echo $this->getElement()->getData('onclick')?>"
+            onchange="<?php echo $this->getElement()->getData('onchange')?>"
+            <?php if ($this->getElement()->getData('readonly') == true):?>readonly<?php endif ?>
+            type="text"
+            class="input-text"
+            style="width:190px !important;vertical-align:top;"/>
+        <?php echo  $this->getChildHtml('getBtn') ?>
+        <?php echo  $this->getChildHtml('delBtn') ?>
+        <span id="videoSearchIndicator" style="display: none">
+            <img src="<?php echo $this->getSkinUrl('images/rule-ajax-loader.gif')?>" style="vertical-align: middle">
+        </span>
+        <?php if ($note = $this->getElement()->getData('note')):?>
+        <p class="note" id="note_delay">
+            <span><?php echo $note?></span>
+        </p>
+        <?php endif?>
+    </td>
+</tr>
+<script type="text/javascript">
+    window['<?php echo $this->getElement()->getHtmlId()?>'] = new FormVideoField(
+        '<?php echo $this->getElement()->getHtmlId()?>',
+        'videoSearchBtn',
+        'videoSearchIndicator'
+    );
+</script>

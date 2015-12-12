@@ -1,0 +1,55 @@
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<?php 
+$faqs= Mage::getModel('faq/faq')->getCollection()->addStoreFilter(Mage::app()->getStore()->getId())->addEnableFilter('1');
+$faqs->getSelect()->order('faq_order ASC');
+
+?>
+
+<header>
+	<h1><?php echo $this->__('FAQ');?></h1>
+</header>
+<section class="cd-faq">
+	
+	<ul class="cd-faq-categories">
+	<?php
+	foreach ($faqs as $faq) {
+	?>
+		<li><a href="#faq-<?php echo $faq["faq_id"]; ?>"><?php echo  strtoupper($faq['faqname']) ?></a></li>
+	<?php
+	}
+	?>
+	</ul> <!-- cd-faq-categories -->
+
+	<div class="cd-faq-items">
+		<?php
+		foreach ($faqs as $faq) {
+		?>
+		<ul id="faq-<?php echo $faq["faq_id"]; ?>" class="cd-faq-group">
+			
+			<li class="cd-faq-title"><h3><?php echo  strtoupper($faq['faqname']) ?></h3></li>
+			<?php 
+			$faq_id= $faq['faq_id'];
+			$faqitems= Mage::getModel('faq/faqitem')->getCollection()
+					->addStoreFilter(Mage::app()->getStore()->getId())
+					->addEnableFilter('1')
+					->addFieldToFilter('faq_id',$faq_id);
+			$faqitems->getSelect()->order('faq_order ASC');
+			foreach ($faqitems as $key=>$faqitem) {
+				if($faqitem['answer']!='')
+				{
+			?>
+					<li>
+						<a class="cd-faq-trigger" href="#0"><?php echo $faqitem['question'];?></a>
+						<div class="cd-faq-content">
+							<p><?php echo $this->getContent($faqitem['answer']); ?></p>
+						</div> <!-- cd-faq-content -->
+					</li>
+			<?php } ?>
+			<?php } ?>
+			
+		</ul> <!-- cd-faq-group -->
+		<?php } ?>
+		
+	</div> <!-- cd-faq-items -->
+	<a href="#0" class="cd-close-panel">Close</a>
+</section> <!-- cd-faq -->

@@ -1,0 +1,32 @@
+div.listpattern{
+    float:left;overflow: hidden;
+}
+div.listpattern span.item {
+    overflow:hidden;
+    width: 50px;
+    float:left;
+    text-align: center;
+    margin:0 6px 6px 0px;
+}
+div.listpattern span.item img{
+    width: 50px;
+    height: 50px;
+}
+div.listpattern span.item .ptnone {
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    display:block;
+    line-height:50px;
+    color:#999;
+}
+
+#row_MTFour_design_page_pattern_upload a {
+    display:none
+}
+#mtmtfour_design_page_patterns,
+#mtmtfour_design_header_patterns,
+#mtmtfour_design_main_patterns,
+#mtmtfour_design_footer_patterns {
+    display:none;
+}

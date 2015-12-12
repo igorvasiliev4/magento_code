@@ -1,0 +1,76 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<tr>
+    <td class="label"></td>
+    <td class="value">
+        <input type="hidden" id="<?php echo $this->getElement()->getHtmlId()?>"/>
+        <div class="animation-preview">
+            <div class="animation-target" title="<?php echo Mage::helper('mtwidget')->__('Animation Preview') ?>"></div>
+            <a href="javascript:void(0)" class="animation-reload" title="<?php echo Mage::helper('mtwidget')->__('Click to restart animation') ?>">
+                <img src="<?php echo $this->getSkinUrl('images/reload.png') ?>"/>
+            </a>
+        </div>
+    </td>
+</tr>
+<style type="text/css">
+    .animation-preview{
+        width: 280px;
+        height: 100px;
+        position: relative;
+    }
+    .animation-target{
+        width: 40px;
+        height: 50px;
+        background-color: #d75f07;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -20px;
+    }
+    .animation-reload img{
+        width: 18px;
+        height: 18px;
+    }
+    .animation-reload{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+</style>
+<script type="text/javascript">
+    document.observe('dom:loaded', function(){
+        initWidgetAnimationPreview();
+    });
+    setTimeout(function(){
+        initWidgetAnimationPreview();
+    });
+    function initWidgetAnimationPreview(){
+        var $select = $$('select[name="parameters[animation]"]')[0];
+        if (!$select || $select.bindPreview) return;
+        $select.bindPreview = true;
+        Event.observe($select, 'change', function(ev){
+            var $select = Event.findElement(ev, 'select'),
+                $target = $$('.animation-target')[0];
+            $target.removeClassName($select.lastClassName);
+            $target.addClassName($select.value);
+            $target.addClassName('active');
+            $select.lastClassName = $select.value;
+        });
+        Event.observe($$('.animation-reload')[0], 'click', function(){
+            var $target = $$('.animation-target')[0];
+            $target.removeClassName('active');
+            $target.offsetWidth = $target.offsetWidth;
+            $target.addClassName('active');
+        });
+        if (fireEvent) fireEvent($select, 'change');
+    }
+</script>

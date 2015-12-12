@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <faq_index_index>
+		 <reference name="head">
+		  <!-- <action method="addJs"><script>magehit_jquery/jquery.js</script></action>
+			<action method="addJs"><script>magehit_jquery/jquery_noconflict.js</script></action> -->
+			<action method="addCss"><stylesheet>css/faq/style.css</stylesheet></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/jquery-2.1.1.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/faq.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/jquery.mobile.custom.min.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/main.js</name></action>
+        </reference>
+      	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+			
+        </reference>
+		<reference name="breadcrumbs">
+			<action method="addCrumb">
+				<crumbname>Home</crumbname>
+				<crumbinfo>
+					<label>Home</label>
+					<title>Go to Home Page</title>
+					<link>/</link>
+				</crumbinfo>
+			</action>
+			<action method="addCrumb">
+				<crumbname>FAQ</crumbname>
+				<crumbinfo>
+					<label>FAQ</label>
+				</crumbinfo>
+			</action>
+		</reference>
+        <reference name="content">
+            <block type="faq/faq" name="faq" template="faq/faq.phtml" />
+        </reference>
+    </faq_index_index>
+    <faq_submit_index>
+    	<reference name="head">
+		  <!-- <action method="addJs"><script>magehit_jquery/jquery.js</script></action>
+			<action method="addJs"><script>magehit_jquery/jquery_noconflict.js</script></action> -->
+			<action method="addCss"><stylesheet>css/faq/style.css</stylesheet></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/jquery-2.1.1.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/faq.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/jquery.mobile.custom.min.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/main.js</name></action>
+        </reference>
+       	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="breadcrumbs">
+			<action method="addCrumb">
+				<crumbname>Home</crumbname>
+				<crumbinfo>
+					<label>Home</label>
+					<title>Go to Home Page</title>
+					<link>/</link>
+				</crumbinfo>
+			</action>
+			<action method="addCrumb">
+				<crumbname>FAQ</crumbname>
+				<crumbinfo>
+					<label>FAQ</label>
+					<title>Go to FAQ Page</title>
+					<link>/faq</link>
+				</crumbinfo>
+			</action>
+			<action method="addCrumb">
+				<crumbname>Submit</crumbname>
+				<crumbinfo>
+					<label>Submit</label>
+				</crumbinfo>
+			</action>
+		</reference>
+        <reference name="content">
+            <block type="faq/faq" name="faq" template="faq/submit.phtml" />
+        </reference>
+        
+    </faq_submit_index>
+    <faq_search_search>
+		<reference name="head">
+		  <!-- <action method="addJs"><script>magehit_jquery/jquery.js</script></action>
+			<action method="addJs"><script>magehit_jquery/jquery_noconflict.js</script></action> -->
+			<action method="addCss"><stylesheet>css/faq/style.css</stylesheet></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/jquery-2.1.1.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/faq.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/jquery.mobile.custom.min.js</name></action>
+			<action method="addItem"><type>skin_js</type><name>js/faq/main.js</name></action>
+        </reference>
+    	<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+		<reference name="breadcrumbs">
+			<action method="addCrumb">
+				<crumbname>Home</crumbname>
+				<crumbinfo>
+					<label>Home</label>
+					<title>Go to Home Page</title>
+					<link>/</link>
+				</crumbinfo>
+			</action>
+			<action method="addCrumb">
+				<crumbname>FAQ</crumbname>
+				<crumbinfo>
+					<label>FAQ</label>
+					<title>Go to FAQ Page</title>
+					<link>/faq</link>
+				</crumbinfo>
+			</action>
+			<action method="addCrumb">
+				<crumbname>Search</crumbname>
+				<crumbinfo>
+					<label>Search</label>
+				</crumbinfo>
+			</action>
+		</reference>
+        <reference name="content">
+            <block type="faq/searchfaq" name="searchfaq" template="faq/searchresult.phtml" />
+        </reference>
+       
+    </faq_search_search>
+</layout> 

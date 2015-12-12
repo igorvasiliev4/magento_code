@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Search
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<layout>
+    <default>
+        <reference name="header">
+            <action method="unsetChild"><block>topSearch</block></action>
+            <block type="mtsearch/widget" name="top.search" as="topSearch"/>
+        </reference>
+    </default>
+</layout>

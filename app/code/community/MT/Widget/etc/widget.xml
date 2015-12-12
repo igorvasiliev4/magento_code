@@ -1,0 +1,807 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<widgets>
+    <mtwidget type="mtwidget/widget" translate="name description">
+        <name>MT Widgets</name>
+        <description>Show products, photos, blocks in widget</description>
+        <parameters>
+            <widget_title translate="label">
+                <label>Widget Title</label>
+                <visible>1</visible>
+                <type>text</type>
+            </widget_title>
+            <cache translate="label description">
+                <label>Cache Lifetime</label>
+                <visible>1</visible>
+                <value>86400</value>
+                <type>text</type>
+                <description>If set, caching this widget (in seconds)</description>
+            </cache>
+            <classes translate="label description">
+                <label>Widget Classes</label>
+                <visible>1</visible>
+                <type>text</type>
+                <description>Custom classes</description>
+            </classes>
+            <widget_type translate="label description">
+                <label>Widget Type</label>
+                <visible>1</visible>
+                <type>select</type>
+                <required>1</required>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_form_field_column</type>
+                </helper_block>
+                <source_model>mtwidget/widget_source_type</source_model>
+                <description>Select widget content</description>
+            </widget_type>
+            <block_ids translate="label description">
+                <label>Blocks</label>
+                <visible>1</visible>
+                <type>multiselect</type>
+                <required>1</required>
+                <source_model>mtwidget/widget_source_block</source_model>
+                <depends>
+                    <widget_type>
+                        <value>block</value>
+                    </widget_type>
+                </depends>
+                <description>Choose blocks to show</description>
+            </block_ids>
+            <block_lg>
+                <type>hidden</type>
+            </block_lg>
+            <block_md>
+                <type>hidden</type>
+            </block_md>
+            <block_sm>
+                <type>hidden</type>
+            </block_sm>
+            <block_xs>
+                <type>hidden</type>
+            </block_xs>
+            <widget_tab translate="label description">
+                <label>Enable Tabs</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_tab</source_model>
+                <depends>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                </depends>
+                <description>Enable tab on widget</description>
+            </widget_tab>
+            <mode translate="label description">
+                <label>Product Collection</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_mode</source_model>
+                <depends>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                    <widget_tab>
+                        <value>none</value>
+                    </widget_tab>
+                </depends>
+                <description>The product collection</description>
+            </mode>
+            <countdown translate="label description">
+                <label>Enable Countdown</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                    <widget_tab>
+                        <values>
+                            <none>none</none>
+                            <collections>collections</collections>
+                        </values>
+                    </widget_tab>
+                </depends>
+                <description>Enable countdown on product if available</description>
+            </countdown>
+            <product_ids translate="label description">
+                <label>Products</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>mtwidget/adminhtml_widget_renderer_product</type>
+                <depends>
+                    <mode>
+                        <value>id</value>
+                    </mode>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                    <widget_tab>
+                        <value>none</value>
+                    </widget_tab>
+                </depends>
+                <description>Specific product ids here</description>
+            </product_ids>
+            <collections translate="label description">
+                <label>Product Collections</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_collection</type>
+                <source_model>mtwidget/widget_source_tab_mode</source_model>
+                <depends>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                    <widget_tab>
+                        <value>collections</value>
+                    </widget_tab>
+                </depends>
+                <description><![CDATA[The product collections for tabs. Drag & drop for order of collections]]></description>
+            </collections>
+            <category_ids translate="label description">
+                <label>Categories</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_renderer_category</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <product>product</product>
+                            <category>category</category>
+                        </values>
+                    </widget_type>
+                </depends>
+                <description>If category is selected, the product collection will be filtered by this categories</description>
+            </category_ids>
+            <blog_cat_ids translate="label description">
+                <label>Category</label>
+                <visible>1</visible>
+                <type>multiselect</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <required>1</required>
+                <source_model>mtwidget/widget_source_blog</source_model>
+                <description>Choose category to show blog</description>
+            </blog_cat_ids>
+            <attribute translate="label description">
+                <label>Attribute</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_attribute</source_model>
+                <depends>
+                    <widget_type>
+                        <value>attribute</value>
+                    </widget_type>
+                </depends>
+                <description>Select attribute to show</description>
+            </attribute>
+            <attribute_options translate="label description">
+                <label>Attribute Options</label>
+                <visible>1</visible>
+                <type>multiselect</type>
+                <depends>
+                    <widget_type>
+                        <value>attribute</value>
+                    </widget_type>
+                </depends>
+                <description>Select attribute options to show</description>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_renderer_attribute_option</type>
+                    <data>
+                        <target>attribute</target>
+                    </data>
+                </helper_block>
+            </attribute_options>
+            <attribute_link translate="label description">
+                <label>Enable Search Link</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <widget_type>
+                        <value>attribute</value>
+                    </widget_type>
+                </depends>
+                <description>Enable link to search result page for attribute option value</description>
+            </attribute_link>
+            <template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_listtemplate</source_model>
+            </template>
+            <labels translate="label">
+                <label>Custom Labels</label>
+                <visible>1</visible>
+                <type>text</type>
+                <depends>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                    <widget_tab>
+                        <values>
+                            <categories>categories</categories>
+                            <collections>collections</collections>
+                        </values>
+                    </widget_tab>
+                </depends>
+                <description>Separator by: ||</description>
+            </labels>
+            <limit translate="label">
+                <label>Limit</label>
+                <visible>1</visible>
+                <value>10</value>
+                <type>text</type>
+                <required>1</required>
+                <depends>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                </depends>
+                <description>Limit number of products show on widget or tab</description>
+            </limit>
+            <scroll translate="label">
+                <label>Enable Carousel</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_form_field_column</type>
+                </helper_block>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <description>Enable Carousel</description>
+            </scroll>
+            <count translate="label">
+                <label>Count</label>
+                <visible>1</visible>
+                <value>5</value>
+                <type>text</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <description>The number of articles display</description>
+            </count>
+            <order translate="label">
+                <label>Order</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>mtwidget/widget_source_sorter</source_model>
+            </order>
+            <showtitle translate="label">
+                <label>Show Module Title</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </showtitle>
+            <showauthor translate="label">
+                <label>Show Author</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </showauthor>
+            <showcomment translate="label">
+                <label>Show Comment</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </showcomment>
+            <showintro translate="label">
+                <label>Show Short Content</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </showintro>
+            <showdate translate="label">
+                <label>Show DateTime</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </showdate>
+            <showreadmore translate="label">
+                <label>Show Read More</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <blog>blog</blog>
+                        </values>
+                    </widget_type>
+                </depends>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </showreadmore>
+            <autoplay translate="label">
+                <label>Slideshow</label>
+                <visible>1</visible>
+                <type>text</type>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                </depends>
+                <description>Change to any integrer for example 5000 to play every 5 seconds. Leave empty to disable autoplay.</description>
+            </autoplay>
+            <paging translate="label">
+                <label>Show Paging</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                </depends>
+                <description>Show pagination</description>
+            </paging>
+            <navigation translate="label">
+                <label>Show Navigation</label>
+                <visible>1</visible>
+                <value>0</value>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                </depends>
+                <description>Show navigation</description>
+            </navigation>
+            <navigation_prev translate="label">
+                <label>Prev Navigation</label>
+                <visible>1</visible>
+                <type>text</type>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                    <navigation>
+                        <value>1</value>
+                    </navigation>
+                </depends>
+                <description>Prev navigation text</description>
+            </navigation_prev>
+            <navigation_next translate="label">
+                <label>Next Navigation</label>
+                <visible>1</visible>
+                <type>text</type>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                    <navigation>
+                        <value>1</value>
+                    </navigation>
+                </depends>
+                <description>Next navigation text</description>
+            </navigation_next>
+            <row translate="label description">
+                <label>Rows</label>
+                <class>validate-number</class>
+                <visible>1</visible>
+                <value>1</value>
+                <type>text</type>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                    <widget_type>
+                        <value>product</value>
+                    </widget_type>
+                </depends>
+                <description>Limit number of rows on widget</description>
+            </row>
+            <rowblog translate="label description">
+                <label>Rows</label>
+                <class>validate-number</class>
+                <visible>1</visible>
+                <value>1</value>
+                <type>text</type>
+                <depends>
+                    <scroll>
+                        <value>1</value>
+                    </scroll>
+                    <widget_type>
+                        <value>blog</value>
+                    </widget_type>
+                </depends>
+            </rowblog>
+            <column translate="label description">
+                <label>Columns</label>
+                <class>validate-number</class>
+                <visible>1</visible>
+                <value>4</value>
+                <type>text</type>
+                <description>Limit number of items on row</description>
+            </column>
+            <preview_lg translate="label">
+                <label>Layout Large Devices (≥1200px)</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_renderer_preview</type>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_renderer_layout</type>
+                    <data>
+                        <target>lg</target>
+                    </data>
+                </helper_block>
+                <depends>
+                    <scroll>
+                        <value>0</value>
+                    </scroll>
+                    <widget_type>
+                        <value>block</value>
+                    </widget_type>
+                </depends>
+            </preview_lg>
+            <preview_md translate="label">
+                <label>Layout Medium Devices (≥992px)</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_renderer_preview</type>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_renderer_layout</type>
+                    <data>
+                        <target>md</target>
+                    </data>
+                </helper_block>
+                <depends>
+                    <scroll>
+                        <value>0</value>
+                    </scroll>
+                    <widget_type>
+                        <value>block</value>
+                    </widget_type>
+                </depends>
+            </preview_md>
+            <preview_sm translate="label">
+                <label>Layout Small Devices (≥768px)</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_renderer_preview</type>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_renderer_layout</type>
+                    <data>
+                        <target>sm</target>
+                    </data>
+                </helper_block>
+                <depends>
+                    <scroll>
+                        <value>0</value>
+                    </scroll>
+                    <widget_type>
+                        <value>block</value>
+                    </widget_type>
+                </depends>
+            </preview_sm>
+            <preview_xs translate="label">
+                <label><![CDATA[Layout Extra Small Devices (<768px)]]></label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_renderer_preview</type>
+                <helper_block>
+                    <type>mtwidget/adminhtml_widget_renderer_layout</type>
+                    <data>
+                        <target>xs</target>
+                    </data>
+                </helper_block>
+                <depends>
+                    <scroll>
+                        <value>0</value>
+                    </scroll>
+                    <widget_type>
+                        <value>block</value>
+                    </widget_type>
+                </depends>
+            </preview_xs>
+            <animate translate="label">
+                <label>Animate</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <description>Browser support: IE 10+, Chrome 4+, Firefox 16+, Safari 4+, Opera 12+</description>
+            </animate>
+            <animation_preview translate="label">
+                <label>Animation Preview</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_renderer_animation_preview</type>
+                <depends>
+                    <animate>
+                        <value>1</value>
+                    </animate>
+                </depends>
+            </animation_preview>
+            <animation translate="label">
+                <label>Animation</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_animate_type</source_model>
+                <depends>
+                    <animate>
+                        <value>1</value>
+                    </animate>
+                </depends>
+            </animation>
+            <animation_delay translate="label">
+                <label>Animation Delay</label>
+                <visible>1</visible>
+                <type>text</type>
+                <value>200</value>
+                <depends>
+                    <animate>
+                        <value>1</value>
+                    </animate>
+                </depends>
+            </animation_delay>
+            <animate_item_selector translate="label">
+                <label>Animate Item Selector</label>
+                <visible>1</visible>
+                <type>text</type>
+                <value>.item</value>
+                <depends>
+                    <animate>
+                        <value>1</value>
+                    </animate>
+                    <scroll>
+                        <value>0</value>
+                    </scroll>
+                </depends>
+            </animate_item_selector>
+            <background translate="label">
+                <label>Background</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_background</source_model>
+            </background>
+            <parallax_type translate="label">
+                <label>Parallax Background Type</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_parallax_type</source_model>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                </depends>
+            </parallax_type>
+            <parallax_video_src translate="label">
+                <label>Parallax Video Source</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_video</type>
+                <description>Ex: http://www.youtube.com/watch?v=UVOpiKiCEeY or http://vimeo.com/81979871</description>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>video</value>
+                    </parallax_type>
+                </depends>
+            </parallax_video_src>
+           
+            <parallax_video_layout_width translate="label">
+                <label>Parallax Video Layout Width</label>
+                <visible>1</visible>
+                <type>text</type>
+                <depends>
+                    <parallax_video_layout>
+                        <value>custom</value>
+                    </parallax_video_layout>
+                </depends>
+            </parallax_video_layout_width>
+            <parallax_video_layout_height translate="label">
+                <label>Parallax Video Layout Height</label>
+                <visible>1</visible>
+                <type>text</type>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>file</value>
+                    </parallax_type>
+                </depends>
+            </parallax_video_layout_height>
+            <parallax_video_poster translate="label">
+                <label>Parallax Video Poster</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_browser</type>
+                <description>Video Poster (shown while the video is downloading)</description>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>file</value>
+                    </parallax_type>
+                </depends>
+            </parallax_video_poster>
+            <parallax_video_mp4 translate="label">
+                <label>Parallax Video MP4</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_file</type>
+                <description><![CDATA[Select MP4 video format. <a href="http://www.w3schools.com/html/html5_video.asp" target="_blank">More info</a>]]></description>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>file</value>
+                    </parallax_type>
+                </depends>
+            </parallax_video_mp4>
+            <parallax_video_webm translate="label">
+                <label>Parallax Video WebM</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_file</type>
+                <description><![CDATA[Select WebM video format. <a href="http://www.w3schools.com/html/html5_video.asp" target="_blank">More info</a>]]></description>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>file</value>
+                    </parallax_type>
+                </depends>
+            </parallax_video_webm>
+            <parallax_video_volume translate="label">
+                <label>Parallax Video Volume</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <values>
+                            <video>video</video>
+                            <file>file</file>
+                        </values>
+                    </parallax_type>
+                </depends>
+            </parallax_video_volume>
+            <parallax_image_src translate="label">
+                <label>Parallax Background Source</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_browser</type>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>image</value>
+                    </parallax_type>
+                </depends>
+            </parallax_image_src>
+            <parallax_image_fit translate="label">
+                <label>Parallax Background Size</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_parallax_image_size</source_model>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>image</value>
+                    </parallax_type>
+                </depends>
+            </parallax_image_fit>
+            <parallax_image_repeat translate="label">
+                <label>Parallax Background Repeat</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_parallax_image_repeat</source_model>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>image</value>
+                    </parallax_type>
+                </depends>
+            </parallax_image_repeat>
+            <!--parallax_velocity translate="label">
+                <label>Parallax Velocity</label>
+                <visible>1</visible>
+                <value>0.2</value>
+                <type>text</type>
+                <description>Speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling</description>
+                <depends>
+                    <background>
+                        <value>parallax</value>
+                    </background>
+                    <parallax_type>
+                        <value>image</value>
+                    </parallax_type>
+                </depends>
+            </parallax_velocity-->
+            <kenburns_images translate="label">
+                <label>Ken Burns Images</label>
+                <visible>1</visible>
+                <type>mtwidget/adminhtml_widget_form_element_images</type>
+                <depends>
+                    <background>
+                        <value>kenburns</value>
+                    </background>
+                </depends>
+            </kenburns_images>
+            <background_overlay translate="label">
+                <label>Background Overlay</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_background_overlay</source_model>
+                <depends>
+                    <background>
+                        <values>
+                            <parallax>parallax</parallax>
+                            <kenburn>kenburns</kenburn>
+                        </values>
+                    </background>
+                </depends>
+            </background_overlay>
+        </parameters>
+    </mtwidget>
+</widgets>

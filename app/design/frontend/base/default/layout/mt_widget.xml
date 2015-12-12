@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<layout version="0.1.0">
+    <default>
+		<reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mt/extensions/jquery/plugins/owl-carousel/owl.carousel.css</name>
+            </action>
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mt/extensions/jquery/plugins/owl-carousel/owl.theme.css</name>
+            </action>
+            <!--action method="addItem">
+                <type>js_css</type>
+                <name>mt/extensions/jquery/plugins/owl-carousel/owl.transitions.css</name>
+            </action-->
+            <action method="addItem">
+                <type>js_css</type>
+                <name>mt/extensions/jquery/plugins/owl-carousel/effects.css</name>
+            </action>
+            <block type="core/template" name="mtwidget_js_cookies" template="mt/widget/js.phtml"/>
+		</reference>
+    </default>
+</layout>

@@ -1,0 +1,53 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Filter
+ * @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<div id="<?php echo $this->getHash()?>" class="price-slider">
+    <div id="<?php echo $this->getHash('-min')?>" class="price-slider-handle min"></div>
+    <div id="<?php echo $this->getHash('-max')?>" class="price-slider-handle max"></div>
+    <div id="<?php echo $this->getHash('-span')?>" class="price-slider-span"></div>
+</div>
+<div class="layer-price">
+    <?php echo $this->getCurrencySymbol()?><span id="layer-price-min"></span>&nbsp;&nbsp;-&nbsp;&nbsp;<?php echo $this->getCurrencySymbol()?><span id="layer-price-max"></span>
+</div>
+<style type="text/css">
+    .price-slider{
+        height: 1px;
+        width: 100%;
+        background: #29d;
+        position: relative;
+        margin: 10px 0;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .price-slider .price-slider-handle{
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        top: -4px;
+        cursor: pointer;
+    }
+    .price-slider-handle.min{
+        background: green;
+    }
+    .price-slider-handle.max{
+        background: red;
+    }
+    .layer-price{
+        text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    if (!window.mtFilter) window.mtFilter = new MTFilter('mtFilter', {enable:false});
+    window.mtFilter.initPriceFilter(<?php echo $this->getConfig()?>);
+</script>

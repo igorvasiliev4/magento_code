@@ -1,0 +1,163 @@
+<root><blocks><cms_block><title>Footer Links</title><identifier>footer_links</identifier><content><![CDATA[
+<ul>
+    <li><a href="{{store direct_url="about-magento-demo-store"}}">About Us</a></li>
+    <li><a href="{{store direct_url="customer-service"}}">Customer Service</a></li>
+<li class="last privacy"><a href="{{store direct_url="privacy-policy-cookie-restriction-mode"}}">Privacy Policy</a></li>
+</ul>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Footer Links Company</title><identifier>footer_links_company</identifier><content><![CDATA[<div class="links">
+<div class="block-title"><strong><span>Company</span></strong></div>
+<ul>
+<li><a href="{{store url=""}}about-magento-demo-store/">About Us</a></li>
+<li><a href="{{store url=""}}contacts/">Contact Us</a></li>
+<li><a href="{{store url=""}}customer-service/">Customer Service</a></li>
+<li><a href="{{store url=""}}privacy-policy-cookie-restriction-mode/">Privacy Policy</a></li>
+</ul>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Cookie restriction notice</title><identifier>cookie_restriction_notice_block</identifier><content><![CDATA[<p>This website requires cookies to provide all of its features. For more information on what data is contained in the cookies, please see our <a href="{{store direct_url="privacy-policy-cookie-restriction-mode"}}">Privacy Policy page</a>. To accept cookies from this site, please click the Allow button below.</p>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Top slider item 1</title><identifier>slider-item-1</identifier><content><![CDATA[<div class="mt-slider right">
+<div class="img-wrap">
+<p class="img-bird-wrapper et-in-viewport-check et-in-viewport-floating_special"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/item-slide-1.jpg"}}" /></p>
+</div>
+
+<div class="mt-slider-wrap">
+<h2 class="mt-slider-head">Monster Beats High Resolution In-Ear</h2>
+<div class="price-item-slide">347$</div>
+<span class="hidden-sm hidden-xs mt-slider-text">The perfect mix of sound and style.<br /> Beats Solo HD headphones are made to be a lighter, on-ear version of studios.</span>
+<div class="mt-slider-view-more"><a href="#">shop now</a></div>
+
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Top slider item 2</title><identifier>slider-item-2</identifier><content><![CDATA[<div class="mt-slider left">
+<div class="img-wrap">
+<p class="img-bird-wrapper et-in-viewport-check et-in-viewport-floating_special"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/item-slide-3.jpg"}}" /></p>
+</div>
+<div class="mt-slider-wrap">
+<h2 class="mt-slider-head">Top-Handle Bags</h2>
+<div class="price-item-slide">153$</div>
+<span class="hidden-sm hidden-xs mt-slider-text">You&rsquo;ve just kitted yourself out in your gorgeous, new, well cut suit for work, <br />and you pick up your laptop in it&rsquo;s dull, black canvas bag.</span>
+<div class="mt-slider-view-more"><a href="#">shop now</a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Features Collection</title><identifier>features-product</identifier><content><![CDATA[<div class="row feature-wrap-content">
+<div class="row">
+<div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 features-left">
+<div class="features-view-all"><a href="#">View all collection</a></div>
+<div class="features-item features-item-1"><a title="" href="#"><img alt="" src="{{media url="wysiwyg/features-1.jpg"}}" /></a>
+<div class="features-hover">
+<h3>Style&rsquo;s Girls</h3>
+<a href="#">View more</a></div>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12 feature-description"><span>Ghost bring collections awesome ! Its was researched and designed by fashion designer reputation on the world. A style so cool for you. </span></div>
+</div>
+<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+<div class="features-item features-item-3"><a title="" href="#"><img alt="" src="{{media url="wysiwyg/features-2.jpg"}}" /></a>
+<div class="features-hover">
+<h3>Style&rsquo;s couple</h3>
+<a href="#">View more</a></div>
+</div>
+<div class="row">
+<div class="col-md-8">
+<div class="features-item features-item-4"><a title="" href="#"><img alt="" src="{{media url="wysiwyg/features-3.jpg"}}" /></a>
+<div class="features-hover">
+<h3>Style&rsquo;s Boys</h3>
+<a href="#">View more</a></div>
+</div>
+</div>
+<div class="col-md-4 ">
+<div class="features-item features-item-5"><a title="" href="#"><img alt="" src="{{media url="wysiwyg/features-4.jpg"}}" /></a>
+<div class="features-hover">
+<h3>accessories</h3>
+<a href="#">View more</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Partner 1</title><identifier>partner-1</identifier><content><![CDATA[<img src="{{media url="wysiwyg/partner-1.png"}}" alt="" />]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Partner 2</title><identifier>partner-2</identifier><content><![CDATA[<img src="{{media url="wysiwyg/partner-2.png"}}" alt="" />]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Partner 3</title><identifier>partner-3</identifier><content><![CDATA[<img src="{{media url="wysiwyg/partner-3.png"}}" alt="" />]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Partner 4</title><identifier>partner-4</identifier><content><![CDATA[<img src="{{media url="wysiwyg/partner-4.png"}}" alt="" />]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Partner 5</title><identifier>partner-5</identifier><content><![CDATA[<img src="{{media url="wysiwyg/partner-5.png"}}" alt="" />]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Partner 6</title><identifier>partner-6</identifier><content><![CDATA[<img src="{{media url="wysiwyg/partner-6.png"}}" alt="" />]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Features</title><identifier>features-menu</identifier><content><![CDATA[<div class="col-md-12">
+    <div class="col-md-4">
+        <div class="feature-nav-item">
+            <h4 class="feature-head">Product types</h4>
+            <ul class="feature-body">
+                <li><a href="#" title="">Product Simple</a></li>
+                <li><a href="#" title="">Product Configurable</a></li>
+                <li><a href="#" title="">Product Tier pricing</a></li>
+                <li><a href="#" title="">Product Groupped</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-nav-item">
+            <h4 class="feature-head">Product types</h4>
+            <ul class="feature-body">
+                <li><a title="Category - catalog" href="#">Category - catalog</a></li>
+                <li><a title="Category - left sider 2 gridt" href="#">Category - left sider 2 grid</a></li>
+                <li><a title="category - left sider 3 grid" href="#">Category - left sider 3 grid</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="feature-nav-item feature-nav-img">
+        <div class="feature-body text-right"><img alt="" src="{{media url="wysiwyg/features.png"}}" /></div>
+    </div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Top slider item 3</title><identifier>slider-item-3</identifier><content><![CDATA[<div class="mt-slider right">
+<div class="img-wrap">
+<p class="img-bird-wrapper et-in-viewport-check et-in-viewport-floating_special"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/item-slide-2.jpg"}}" /></p>
+</div>
+<div class="mt-slider-wrap">
+<h2 class="mt-slider-head">Green Lemon Fruit</h2>
+<div class="price-item-slide">6$</div>
+<span class="hidden-sm hidden-xs mt-slider-text">Make your statement. These large lemons make for <br /> an easy decorative accent with a truly realistic look</span>
+<div class="mt-slider-view-more"><a href="#">shop now</a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Categories Banner</title><identifier>cate-banner</identifier><content><![CDATA[<div class="cate-banner-wrap">
+<img alt="" src="{{media url="wysiwyg/banner-cate.jpg"}}" />
+<div class="cate-text">
+<h4>Image Banner</h4>
+<p>Hey Guys !Your image category banner Here.</p>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Product detail slide</title><identifier>product-right-slide</identifier><content><![CDATA[<div class="product-detail-slide">
+<p><img alt="" src="{{media url="wysiwyg/partner-sale.png"}}" /></p>
+<p><img alt="" src="{{media url="wysiwyg/sale.jpg"}}" /></p>
+<p class="pr-text-slider">We'll stop the world and mesh with you. And lace, for that matter. Our Mesh and Lace Romper has a nude mesh bodice with lash lace shell overlay, back cutout, and black trim. the whole year.</p>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Footer Copyright</title><identifier>footer-copyright</identifier><content><![CDATA[<div class="content-copyright col-lg-6 col-md-6 col-xs-12 col-sm-6">&copy; 2015 Made width <a href="http://www.zooextension.com/magento-themes/"><i class="icon_heart">&nbsp;</i>Magento Theme</a>. All rights reserved</div>
+<div class="social-footer col-lg-6 col-md-6 col-xs-12 col-sm-6">
+<ul class="social-icons small light">
+<li class="facebook"><a href="http://www.facebook.com/" target="_blank"><i class="fa fa-facebook"><span>&nbsp;</span></i></a></li>
+<li class="twitter"><a href="http://www.twitter.com/" target="_blank"><i class="fa fa-twitter"><span>&nbsp;</span></i></a></li>
+<li class="pinterest"><a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest-p"><span>&nbsp;</span></i></a></li>
+<li class="gplus"><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"><span>&nbsp;</span></i></a></li>
+</ul>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Homepage Widget 1</title><identifier>homepage-widget-1</identifier><content><![CDATA[<div class="no-padding effect-product col-lg-6  col-md-6  col-sm-6  col-xs-12">
+
+<a href="#"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/row1-item-01.jpg"}}" /></a>
+<div class="info-product-effect">
+<h4><a href="#">Cool girl</a></h4>
+<p class="price-product-effect">120$</p>
+<a class="button" href="#">shop now</a></div>
+</div>
+<div class="no-padding col-lg-6  col-md-6  col-sm-6  col-xs-12">
+<div class="no-padding col-lg-12  col-md-12  col-sm-12  col-xs-12">
+<div class="no-padding effect-product col-lg-6  col-md-6  col-sm-6  col-xs-12"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/row1-item-2.jpg"}}" />
+<div class="info-product-effect">
+<h4><a href="#">the watch</a></h4>
+<p class="price-product-effect">155$</p>
+<a class="button" href="#">shop now</a></div>
+</div>
+<div class="no-padding effect-product col-lg-6  col-md-6  col-sm-6  col-xs-12"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/row1-item-3.jpg"}}" />
+<div class="info-product-effect">
+<h4><a href="#">shirt women</a></h4>
+<p class="price-product-effect">75$</p>
+<a class="button" href="#">shop now</a></div>
+</div>
+</div>
+<div class="no-padding effect-product col-lg-12  col-md-12  col-sm-12  col-xs-12"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/row1-item-4.jpg"}}" />
+<div class="info-product-effect">
+<h4><a href="#">bag</a></h4>
+<p class="price-product-effect">125$</p>
+<a class="button" href="#">shop now</a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title>Top slider item 4</title><identifier>top-slider-item-4</identifier><content><![CDATA[<div class="mt-slider left">
+<div class="img-wrap">
+<p class="img-bird-wrapper et-in-viewport-check et-in-viewport-floating_special"><img class="img-responsive" alt="" src="{{media url="wysiwyg/magenthemes/item-slide-4.jpg"}}" /></p>
+</div>
+<div class="mt-slider-wrap">
+<h2 class="mt-slider-head">Ball Chair</h2>
+<div class="price-item-slide">127$</div>
+<span class="hidden-sm hidden-xs mt-slider-text">The Ball Chair, crafted out of fiberglass, creates a personal bio-sphere <br />emphasis on sphere - right in the midst of your own household.</span>
+<div class="mt-slider-view-more"><a href="#">shop now</a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block></blocks></root>

@@ -1,0 +1,133 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$_collectionSize = count($this->getItemCollection()->getItems());
+?>
+<?php if($_collectionSize): ?>
+<?php
+$theme = $this->helper('mtghost');
+if($theme->getCfg('product_page/upsell_hover_slider')):
+    $hoverPause = 'true';
+else:
+    $hoverPause = 'false';
+endif;
+$showItem = $theme->getCfg('product_page/upsell_count');
+$helpImg = $this->helper('mttheme/image');
+$imgWidth = $theme->getCfg('category/image_width') ? $theme->getCfg('category/image_width') : 295;
+$imgHeight = $theme->getCfg('category/image_height') ? $theme->getCfg('category/image_height') : 295;
+if($theme->getCfg('category/aspect_ratio')){
+    $imgHeight = 0;
+}
+$cfaltimage = $theme->getCfg('category/alt_image');
+if($cfaltimage != 0){
+    $hoveraltClass = ($cfaltimage == 1) ? 'alt-image' : '';
+}
+?>
+<div class="box-collateral box-up-sell">
+    <div id="mt-upsell-slide">
+	   <div class="box-heading">
+			    <div class="also">
+				     <h3><?php echo $this->__('You may also be interested in the following product(s)'); ?></h3>
+				</div>
+				
+		</div>
+		<div class="nav-wrapper"></div>
+        <div class="itemslider itemslider-responsive itemslider-horizontal">
+            <ul class="slides products-grid">
+                <?php foreach($this->getItemCollection()->getItems() as $_product): //$_link replaced with $_product ?>
+                    <li class="item <?php echo 'show-'.$showItem.'-item'; ?>">
+					   <div class="product-itemslider">
+					        <div class="product-image-hover">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+									<?php echo $this->helper('mtghost')->getLabel($_product);  ?>
+									<div class="front margin-image <?php echo $hoveraltClass;?>">
+									      <img class="img-responsive" src="<?php echo $helpImg->getImg($_product, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+									</div>
+									<div class="product-img-additional back margin-image">
+										<?php if ($theme->getCfg('category/alt_image')): ?>
+											<?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+										<?php endif; ?>
+									</div>
+								</a>
+							</div>
+							<div class="product-details">
+								<h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h3>
+								
+								<?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+								<?php echo $this->getPriceHtml($_product, true, '-upsell') ?>
+							</div>
+						</div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <script type="text/javascript">
+            decorateTable('upsell-product-table');
+            jQuery(function($){
+                var i = 0;
+                $("#product_tabs_upsell_products").on("click",function(){
+                    i = i+1;
+                    if(i==1){
+						var RW = 220,
+							RM = 5,
+							itemsCount = getFlexSliderItemWidth('mt-upsell-slide', {"type":"width","data":RW,"margin":RM}, 'column');
+                        $('#mt-upsell-slide .itemslider').flexslider({
+                            namespace: "",
+                            animation: "slide",
+                            //easing: "easeInQuart",
+                            <?php if($timeout = intval($theme->getCfg('product_slider/timeout'))): ?>
+                            slideshowSpeed: <?php echo $timeout; ?>,
+                            animationLoop: true,
+                            <?php else: ?>
+                            slideshow: false,
+                            animationLoop: false,
+                            <?php endif; ?>
+                            <?php if($speed = intval($theme->getCfg('product_slider/speed'))): ?>
+                            animationSpeed: <?php echo $speed; ?>,
+                            <?php endif; ?>
+                            pauseOnHover: <?php echo $hoverPause;?>,
+                            controlNav: false,
+                            controlsContainer: "#mt-upsell-slide .nav-wrapper",
+                            itemWidth: getFlexSliderItemWidth('mt-upsell-slide', {"type":"width","data":RW,"margin":RM}, 'width'),
+							itemMargin:RM,
+                            <?php $maxItems = intval($theme->getCfg('product_page/upsell_count'));?>
+                            minItems: itemsCount,
+                            maxItems: itemsCount,
+                            selector: '.slides > .item',
+							onResize: function(slider){
+								var itemsCount = getFlexSliderItemWidth('mt-upsell-slide', {"type":"width","data":RW,"margin":RM}, 'column');
+								slider.vars.minItems = itemsCount;
+								slider.vars.maxItems = itemsCount;
+							}
+                        });
+                    }
+                });
+            });
+        </script>
+    </div>
+</div>
+<?php endif ?>

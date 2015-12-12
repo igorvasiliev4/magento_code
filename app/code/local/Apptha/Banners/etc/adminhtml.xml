@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Apptha
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://www.apptha.com/LICENSE.txt
+*
+* ==============================================================
+*                 MAGENTO EDITION USAGE NOTICE
+* ==============================================================
+* This package designed for Magento COMMUNITY edition
+* Apptha does not guarantee correct work of this extension
+* on any other Magento edition except Magento COMMUNITY edition.
+* Apptha does not provide extension support in case of
+* incorrect edition usage.
+* ==============================================================
+*
+* @category    Apptha
+* @package     Apptha_Banners
+* @version     0.1.0
+* @author      Apptha Team <developers@contus.in>
+* @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+* @license     http://www.apptha.com/LICENSE.txt
+*
+*/
+-->
+<config>
+    <menu>
+        <banners module="banners" translate="title">
+            <title>Apptha Banner</title>
+            <sort_order>71</sort_order>               
+            <children>
+                <banners module="banners" translate="title">
+                    <title>Manage Sliders</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/banners</action>
+                </banners>
+            </children>
+        </banners>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <banners module="banners" translate="title">
+                                        <title>Banners</title>
+                                        <sort_order>71</sort_order>									
+                                    </banners>								
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <banners module="banners" translate="title">
+                        <title>Bannerslider</title>
+                        <sort_order>71</sort_order>               
+                        <children>
+                            <banners module="banners" translate="title">
+                                <title>Manage Sliders</title>
+                                <sort_order>0</sort_order>
+                            </banners>
+                        </children>
+                    </banners>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

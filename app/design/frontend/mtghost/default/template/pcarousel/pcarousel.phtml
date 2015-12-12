@@ -1,0 +1,69 @@
+
+<?php         $storeId = (int) Mage::app()->getStore()->getId();
+ 
+        // Date
+        $date = new Zend_Date();
+        $toDate = $date->setDay(1)->getDate()->get('Y-MM-dd');
+        $fromDate = $date->subMonth(1)->getDate()->get('Y-MM-dd');
+ 
+        $collection = Mage::getResourceModel('catalog/product_collection')
+            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+            ->addStoreFilter()
+            ->addPriceData()
+            ->addTaxPercents()
+            ->addUrlRewrite()
+            ->setPageSize(6);
+ 
+        $collection->getSelect()
+            ->joinLeft(
+                array('aggregation' => $collection->getResource()->getTable('sales/bestsellers_aggregated_monthly')),
+                "e.entity_id = aggregation.product_id AND aggregation.store_id={$storeId} AND aggregation.period BETWEEN '{$fromDate}' AND '{$toDate}'",
+                array('SUM(aggregation.qty_ordered) AS sold_quantity')
+            )
+            ->group('e.entity_id')
+            ->order(array('sold_quantity DESC', 'e.created_at'));
+ 
+        Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($collection);
+        Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($collection);
+ 
+ 
+    $count = count($collection);
+	?>
+        <?php if($count>0) { ?>
+            <div class="jcarousel-wrapper">
+                <div id="pcar" class="jcarousel">
+                    <ul id="pcarusel-w">
+                           <?php foreach ($collection as $_product) {  ?>
+                        <li><a href="<?php echo $_product->getProductUrl() ?>">
+                        <img width="300px"   src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(270, 270); ?>" alt="" /></a>
+                       <p class="product-name"> <a href="<?php echo $_product->getProductUrl(); ?>"><?php echo $_product->getName(); ?></a></p>
+                          
+                        
+                         <?php if($_product->isSaleable()): ?>
+                        
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?>
+                   <?php $formattedPrice = Mage::helper('core')->currency($_product->getPrice(), true, false);  ?>
+				   <p class="price"><?php echo $formattedPrice; ?></p>
+				   
+				   
+				   
+                    <ul class="add-to-links">
+                 
+                        <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                        <?php endif; ?>
+                    </ul>
+                    
+                        </li>
+                         <?php }?>
+                    </ul>
+                </div>
+
+                <a href="#" class="pcar-prev jcarousel-control-prev"><img src="http://148.251.126.204/~grotto/media/wysiwyg/a_left.png" /></a>
+                <a href="#" class="pcar-next jcarousel-control-next"><img src="http://148.251.126.204/~grotto/media/wysiwyg/a_right.png" /></a>
+
+               <?php if($crudata['pagination']==1){ ?> <p class="jcarousel-pagination"></p><?php } ?>
+            </div>
+<?php }?>

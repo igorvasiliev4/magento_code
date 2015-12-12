@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <faq_admin_adminhtml_faq_index>
+        <reference name="content">
+            <block type="faq/adminhtml_faq" name="faq" />
+        </reference>
+    </faq_admin_adminhtml_faq_index>
+    <faq_admin_adminhtml_faqitem_index>
+        <reference name="content">
+            <block type="faq/adminhtml_faqitem" name="faqitem" />
+        </reference>
+    </faq_admin_adminhtml_faqitem_index>
+	
+	<faq_admin_adminhtml_faqitem_edit>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="faq/adminhtml_faqitem_edit" name="adminhtml_faqitem_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="faq/adminhtml_faqitem_edit_tabs" name="adminhtml_faqitem_edit_tabs">
+                <block type="faq/adminhtml_faqitem_edit_tab_form" name="adminhtml_faqitem_edit_tab_form" />
+                <block type="faq/adminhtml_faqitem_edit_tab_content" name="adminhtml_faqitem_edit_tab_content" />
+                <action method="addTab"><name>form_section</name><block>adminhtml_faqitem_edit_tab_form</block></action>
+                <action method="addTab"><name>content_section</name><block>adminhtml_faqitem_edit_tab_content</block></action>
+            </block>
+        </reference>
+    </faq_admin_adminhtml_faqitem_edit>
+    
+    <faq_admin_widget_index>
+        <block name="wysiwyg_widget" type="widget/adminhtml_widget" output="toHtml" />
+    </faq_admin_widget_index>
+    <faq_admin_widget_loadoptions>
+        <block name="wysiwyg_widget.options" type="widget/adminhtml_widget_options" output="toHtml" />
+    </faq_admin_widget_loadoptions>
+    
+</layout>

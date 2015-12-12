@@ -1,0 +1,78 @@
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+.layout-preview{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 600px;
+    border: 1px dashed #aaa;
+    padding: 5px 5px 0 5px;
+    background: #FFF;
+}
+.layout-preview .flex-grid.hidden{
+    background: #ccc;
+}
+.layout-preview .flex-grid{
+    position: relative;
+    height: 50px;
+    display: inline-block;
+    margin-right: 0;
+    margin-bottom: 5px;
+    vertical-align: top;
+    cursor: move;
+    background: #09c;
+}
+.layout-preview .flex-grid a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #FFF;
+    line-height: 70px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+.layout-preview .flex-grid .ui-resizable-e{
+    border-right: 5px solid #9933CC;
+    right: 0;
+}
+.layout-preview .flex-grid .flex-grid-name{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #FFF;
+    overflow: hidden;
+    white-space: nowrap;
+}
+span.flex-grid-result{
+    color: #000;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+span.flex-grid-result span.ok{
+    background: url(../../images/ico_success.gif) no-repeat right center;
+    padding-right: 20px;
+    color: green;
+}
+span.flex-grid-hide{
+    background: url(../../images/btn_show-hide_icon.gif) no-repeat center;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 8px;
+    cursor: pointer;
+}

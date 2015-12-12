@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+Supported layout update handles (action):
+- catalog_product_gallery
+- catalog_product_compare_index
+Supported layout update handles (special):
+- default
+- catalog_category_default
+- catalog_category_layered
+- catalog_product_view
+-->
+<layout version="0.1.0">
+    
+    <!-- USE THE SAME UPDATE TO LOAD THE JQUERY FILES -->
+    <catalog_category_default>
+        <update handle="ajaxlist_head_files" />
+    </catalog_category_default>
+    
+    <catalog_category_layered>
+        <update handle="ajaxlist_head_files" />
+        <reference name="catalog.leftnav">
+                <action method="setTemplate"><template>ajaxlayerednavigation/catalog/layer/view.phtml</template></action>
+        </reference>
+    </catalog_category_layered>    
+    <catalogsearch_result_index>
+        <update handle="ajaxlist_head_files" />
+        <reference name="catalogsearch.leftnav">
+                <action method="setTemplate"><template>ajaxlayerednavigation/catalog/layer/view.phtml</template></action>
+        </reference>
+    </catalogsearch_result_index>
+            
+    <catalogsearch_advanced_result>
+        <update handle="ajaxlist_head_files" />       
+    </catalogsearch_advanced_result>
+    
+    
+    <ajaxlist_head_files>
+        <reference name="head">
+            <action method="addItem" ifconfig="ajaxlist/ajaxlist/jquery">
+                <type>skin_js</type>
+                <name>jqueryfiles/jquery-1.10.2.js</name>
+            </action>
+			<action method="addItem" ifconfig="ajaxlist/ajaxlist/jquery">
+                <type>skin_js</type>
+                <name>jqueryfiles/jquery-migrate-1.2.1.min.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>jqueryfiles/jquery-ui-1.11.4.custom/jquery-ui.min.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>jqueryfiles/jquery-ui-1.11.4.custom/jquery-ui.min.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>jqueryfiles/jquery.ui.touch-punch.min.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>jqueryfiles/jQuery-noconflict.js</name>
+            </action>
+            <action method="addItem" ifconfig="ajaxlist/ajaxlist/after_reload_js">
+                <type>skin_js</type>
+                <name>ajaxlist/after_reload.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>ajaxlist/navigation.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>ajaxlist/loader.css</name>
+            </action>
+            
+            <!-- js settings are placed here -->
+            <block type="core/template" name="priceslider_settings" as="priceslider_settings" template="ajaxlayerednavigation/page/html/head-scripts.phtml" />
+        </reference>
+    </ajaxlist_head_files>
+    <!-- REMOVE ALL THE BLOCKS FROM THE AJAX OUTPUT, LEAVE ONLY THE CONTENT -->    
+    <AJAXLIST_PAGE_HANDLER>
+        <label>Ajaxlist page handler</label>
+        <reference name="root">
+            <action method="setTemplate"><template>ajaxlayerednavigation/page/output.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action>
+            <block type="core/text_list" name="ajax_layered_navigation_left" as="ajax_layered_navigation_left" translate="label">
+                <label>Layered Navigation Container</label>
+            </block>
+        </reference>
+        <remove name="header" />
+        <remove name="global_notices" />
+        <remove name="breadcrumbs" />
+        <!-- to avoid conflict with extensions processing the head section -->
+        <reference name="head">
+            <action method="setTemplate"><template>page/html/empty-block.phtml</template></action>
+        </reference>
+        <remove name="footer" />
+        <remove name="left" />
+        <remove name="right" />
+        <remove name="after_body_start"/>
+        <remove name="before_body_end"/>
+    </AJAXLIST_PAGE_HANDLER>
+    
+    <!-- PLACE THE LAYERED NAVIGATION BLOCK ON THE TEMPLATE OUTPUT -->    
+    <AJAXLIST_CATEGORY_LAYERED_HANDLER>
+        <remove name="catalog.leftnav"></remove>
+        <reference name="ajax_layered_navigation_left">
+            <block type="catalog/layer_view" name="catalog.leftnav.ajax" template="ajaxlayerednavigation/catalog/layer/view.phtml">
+                <block type="core/text_list" name="catalog.leftnav.state.renderers" as="state_renderers" />
+            </block>
+        </reference>
+    </AJAXLIST_CATEGORY_LAYERED_HANDLER>
+    
+    <!-- PLACE THE LAYERED NAVIGATION BLOCK ON THE TEMPLATE OUTPUT -->    
+    <AJAXLIST_SEARCH_RESULT_HANDLER>
+        <remove name="catalogsearch.leftnav"></remove>
+        <reference name="ajax_layered_navigation_left">
+            <block type="catalogsearch/layer" name="catalog.leftnav.ajax" template="ajaxlayerednavigation/catalog/layer/view.phtml">
+                <block type="core/text_list" name="catalog.leftnav.state.renderers" as="state_renderers" />
+            </block>
+        </reference>
+    </AJAXLIST_SEARCH_RESULT_HANDLER>
+    
+    <AJAXLIST_PAGE_HANDLER_HORIZONTAL>
+        <!-- we don't need the layered navigation here because it is already used in list.phtml -->
+        <remove name="ajax_layered_navigation_left"></remove>
+    </AJAXLIST_PAGE_HANDLER_HORIZONTAL>
+    
+    
+</layout>

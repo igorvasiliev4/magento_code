@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Attribute
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <sections>
+        <mtattribute translate="label">
+            <label>MT Attribute</label>
+            <tab>mtext</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show translate="label comment">
+                            <label>Show on Detail</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mtattribute/system_config_source_show</source_model>
+                            <comment>How to show attribute's image on Product Detail</comment>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show>
+                        <width translate="label comment">
+                            <label>Image Width on Detail</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>In pixel, height should auto-scale</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show separator=",">2,3</show>
+                            </depends>
+                        </width>
+                    </fields>
+                </general>
+            </groups>
+        </mtattribute>
+    </sections>
+</config>

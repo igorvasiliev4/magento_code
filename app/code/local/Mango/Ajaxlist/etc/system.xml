@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category   Mage
+ * @package    Mango_Ajaxlist
+ * @copyright  Copyright (c) 2004-2007 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <tabs>
+        <ajaxlist translate="label" module="ajaxlist">
+            <label>Ajax Layered Navigation</label>
+            <sort_order>200</sort_order>
+        </ajaxlist>
+    </tabs>
+    <sections>
+        <ajaxlist translate="label" module="ajaxlist">
+            <class>separator-top</class>
+            <label>Settings</label>
+            <tab>ajaxlist</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <ajaxlist translate="label">
+                    <label>Price Slider Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        
+                        <jquery translate="label">
+                            <label>Include jQuery</label>
+                            <comment><![CDATA[If your theme or another extension already includes jQuery, set to <b>No</b>.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jquery>
+                        
+                        <after_reload_js translate="label">
+                            <label>Include afterReload.js</label>
+                            <comment><![CDATA[ Use this function to execute scripts after the ajax load, for example: to recreate the expand/collapse function used in the rwd theme layered navigation because it needs to be recreated each time the ajax is loaded.<br/>You need to edit the file <b>skin/frontend/base/default/ajaxlist/afterReload.js</b> or create your own copy on your theme skin folder: <b>skin/frontend/PACKAGE/THEME/ajaxlist/afterReload.js</b> (Recommended) ]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </after_reload_js>
+                        
+                        <!--ajaxmode translate="label">
+                            <label>Ajax mode</label>
+                            <comment>Append hash or not  </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxmode-->
+                        
+                        <show_no_count translate="label">
+                            <label>Show filters no-count</label>
+                            <comment>Show filter options even when count=0.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_no_count>
+                        
+                        <use_priceslider translate="label">
+                            <label>Use Price Slider</label>
+                            <comment>Display price slider instead of price ranges</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_priceslider>
+                        
+                        <step translate="label">
+                            <label>Round Step Value</label>
+                            <comment>Round prices to a multiple of X.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </step>
+                        
+                        <use_category_price_step translate="label">
+                            <label>Use category price slider step</label>
+                            <comment>Use category attribute: Display Settings > Layered Navigation Price Step</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_category_price_step>
+                        
+                    </fields>
+                </ajaxlist>
+                
+                <ajaxcompare>
+                    <label>Add to Compare</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>18</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable</label>
+                            <comment>Use AJAX to add and remove products to the compare list sidebar.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable>
+                        <reload_block translate="label">
+                            <label>Reload block</label>
+                            <comment>Sidebar block name in layout. Default: catalog.compare.sidebar</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reload_block>
+
+                    </fields>
+                </ajaxcompare>
+                
+                <frontend translate="label">
+                    <label>Output Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <hide_state translate="label">
+                            <label>Hide State Block</label>
+                            <comment>Hide the list of selected values that appears before the filters</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hide_state>
+                        <collapse translate="label">
+                            <label>Expand-Collapse Filters</label>
+                            <comment>Users should click on the filter title to expand. If a filter item is active it will be expanded when the page loads.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </collapse>
+                        <expand_filters translate="label">
+                            <label>Expand by default</label>
+                            <comment><![CDATA[These attributes expanded by default on the layered navigation block. e.g.:  color,price,size ]]></comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>ajaxlist/system_config_source_attributes</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </expand_filters>
+                        
+                        <list_max_height translate="label">
+                            <label>List max height ( in pixels ).</label>
+                            <comment>If the list is taller than X, a vertical scrollbar will appear.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </list_max_height>
+                        
+                        
+                        <horizontal_mode>
+                            <label>Horizontal Filters</label>
+                            <comment>Show selected filters above the products list and keep the left layered navigation.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </horizontal_mode>
+                        
+                       
+                        <horizontal_filters translate="label">
+                            <label>Filters on horizontal layered navigation block</label>
+                            <comment><![CDATA[These attributes will appear above the products list and will be removed from the left layered navigation block ]]></comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>ajaxlist/system_config_source_attributes</source_model>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </horizontal_filters>
+                       
+                       
+                       
+                        <horizontal_only>
+                            <label>Horizontal Layered Navigation</label>
+                            <comment>Show filters above the products list only and remove the left layered navigation.</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>85</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </horizontal_only>
+                       
+                       
+                    </fields>
+                </frontend>
+                
+            </groups>
+        </ajaxlist>
+    </sections>
+</config>

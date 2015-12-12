@@ -1,0 +1,50 @@
+<?php
+/**
+* Apptha
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://www.apptha.com/LICENSE.txt
+*
+* ==============================================================
+*                 MAGENTO EDITION USAGE NOTICE
+* ==============================================================
+* This package designed for Magento COMMUNITY edition
+* Apptha does not guarantee correct work of this extension
+* on any other Magento edition except Magento COMMUNITY edition.
+* Apptha does not provide extension support in case of
+* incorrect edition usage.
+* ==============================================================
+*
+* @category    Apptha
+* @package     Apptha_Banners
+* @version     0.1.0
+* @author      Apptha Team <developers@contus.in>
+* @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+* @license     http://www.apptha.com/LICENSE.txt
+*
+*/
+?>
+<?php $slide = $this->getSilde(); ?>
+<textarea id="banner-code" rows="10" cols="50" readonly="readonly">
+&lt;reference name="content"&gt;
+  &lt;block type="banners/view" 
+    name="apptha_banners.<?php echo $slide->getSlideCode() ?>" 
+    as="<?php echo $slide->getSlideCode() ?>"&gt;
+    &lt;
+    action method="setSlideCode"&gt;&lt;code&gt;
+    <?php echo $slide->getSlideCode() ?>&lt;/code&gt;&lt;/action&gt;
+  &lt;/block&gt;
+&lt;/reference&gt;
+</textarea>
+<br/>
+<textarea id="banner-code-cms" rows="10" cols="50" readonly="readonly">
+        {
+         { block type="banners/view" slide_code="<?php echo $slide->getSlideCode() ?>"
+           name="apptha_banners.<?php echo $slide->getSlideCode() ?>" 
+           as="<?php echo $slide->getSlideCode() ?>" }
+           }
+</textarea>

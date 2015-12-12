@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+?>
+<?php
+$_product = $this->getProduct();
+$_helper = $this->helper('catalog/output');
+$margin = (int)Mage::getStoreConfig('mtghost/product_page/zoom_margin');
+?>
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage() && Mage::getStoreConfig('mtghost/product_page/zoom_enable')): ?>
+    <p class="product-image">
+        <a class="cloud-zoom" id="zoomID" rel="<?php echo Mage::helper('mtghost')->getCloudZoomConfig(true)?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image')?>">
+            <img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image')->resize(400,527)?>">
+        </a>
+    </p>
+<?php else: ?>
+    <p class="product-image">
+        <?php
+        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(400,527).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        echo $_helper->productAttribute($_product, $_img, 'image');
+        ?>
+    </p>
+<?php endif; ?>
+<?php if (count($this->getGalleryImages()) > 0): ?>
+    <div class="more-views" id="moreViews">
+        <!--<h2><?php //echo $this->__('More Views') ?></h2>-->
+        <ul class="slides">
+            <?php foreach ($this->getGalleryImages() as $_image): ?>
+                <li>
+                    <a href="<?php echo $_image->getUrl()?>" title="<?php echo $this->htmlEscape($_image->getLabel())?>" class="cloud-zoom-gallery" rel="useZoom:'zoomID',smallImage:'<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize(350,460)?>'">
+                        <img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(70, 80)?>" width="70" height="80" alt="<?php echo $this->htmlEscape($_image->getLabel())?>" />
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php if(Mage::getStoreConfig('mtghost/product_page/zoom_enable')):?>
+        <script type="text/javascript">
+            $mt(document).ready(function(){
+                $mt('#moreViews .slides').owlCarousel({
+                    items : 3,
+                    lazyLoad : true,
+                    slideSpeed : 500,
+                    pagination : false,
+                    navigation : true,
+                    itemsCustom : [[0, 3],[450, 3]]
+                });
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,37 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<tr>
+    <td class="label">
+        <label><?php echo $this->getElement()->getLabel()?></label>
+    </td>
+    <td class="value">
+        <ul id="<?php echo $this->getElement()->getHtmlId()?>" class="sortable">
+            <?php foreach ($this->getOptions() as $option): ?>
+                <li>
+                    <input type="checkbox"
+                        name="<?php echo $this->getElement()->getName() ?>[]"
+                        value="<?php echo $option['value'] ?>"
+                        <?php if ($option['selected']): ?>checked<?php endif ?>/>
+                    <span>&nbsp;<?php echo $option['label'] ?></span>
+                </li>
+            <?php endforeach ?>
+        </ul>
+        <p class="note" id="note_delay">
+            <span><?php echo $this->getElement()->getData('note') ?></span>
+        </p>
+    </td>
+</tr>
+<style type="text/css">
+    ul.sortable li{cursor: move;}
+</style>
+<script type="text/javascript">
+    Sortable.create('<?php echo $this->getElement()->getHtmlId()?>');
+</script>

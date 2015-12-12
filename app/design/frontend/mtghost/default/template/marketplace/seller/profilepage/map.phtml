@@ -1,0 +1,365 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.6
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ * 
+ */?>
+ 
+<?php 
+
+/**
+ * get seller id
+ */
+$id = $this->getRequest()->getParam('id');
+
+/**
+ * display product collection
+ */
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+$countryData = str_replace(" ", "+",$sellerPage->getCountry());
+$stateData = str_replace(" ", "+",$sellerPage->getState());
+$urlData = 'http://maps.google.com/maps/api/geocode/json?address="'.$stateData.'"&sensor=false&region="'.$countryData.'"';
+$response = file_get_contents($urlData);
+$response = json_decode($response, true);
+$lat = $long = '';
+$countries = array
+(
+    'AF' => 'Afghanistan',
+    'AX' => 'Aland Islands',
+    'AL' => 'Albania',
+    'DZ' => 'Algeria',
+    'AS' => 'American Samoa',
+    'AD' => 'Andorra',
+    'AO' => 'Angola',
+    'AI' => 'Anguilla',
+    'AQ' => 'Antarctica',
+    'AG' => 'Antigua And Barbuda',
+    'AR' => 'Argentina',
+    'AM' => 'Armenia',
+    'AW' => 'Aruba',
+    'AU' => 'Australia',
+    'AT' => 'Austria',
+    'AZ' => 'Azerbaijan',
+    'BS' => 'Bahamas',
+    'BH' => 'Bahrain',
+    'BD' => 'Bangladesh',
+    'BB' => 'Barbados',
+    'BY' => 'Belarus',
+    'BE' => 'Belgium',
+    'BZ' => 'Belize',
+    'BJ' => 'Benin',
+    'BM' => 'Bermuda',
+    'BT' => 'Bhutan',
+    'BO' => 'Bolivia',
+    'BA' => 'Bosnia And Herzegovina',
+    'BW' => 'Botswana',
+    'BV' => 'Bouvet Island',
+    'BR' => 'Brazil',
+    'IO' => 'British Indian Ocean Territory',
+    'BN' => 'Brunei Darussalam',
+    'BG' => 'Bulgaria',
+    'BF' => 'Burkina Faso',
+    'BI' => 'Burundi',
+    'KH' => 'Cambodia',
+    'CM' => 'Cameroon',
+    'CA' => 'Canada',
+    'CV' => 'Cape Verde',
+    'KY' => 'Cayman Islands',
+    'CF' => 'Central African Republic',
+    'TD' => 'Chad',
+    'CL' => 'Chile',
+    'CN' => 'China',
+    'CX' => 'Christmas Island',
+    'CC' => 'Cocos (Keeling) Islands',
+    'CO' => 'Colombia',
+    'KM' => 'Comoros',
+    'CG' => 'Congo',
+    'CD' => 'Congo, Democratic Republic',
+    'CK' => 'Cook Islands',
+    'CR' => 'Costa Rica',
+    'CI' => 'Cote D\'Ivoire',
+    'HR' => 'Croatia',
+    'CU' => 'Cuba',
+    'CY' => 'Cyprus',
+    'CZ' => 'Czech Republic',
+    'DK' => 'Denmark',
+    'DJ' => 'Djibouti',
+    'DM' => 'Dominica',
+    'DO' => 'Dominican Republic',
+    'EC' => 'Ecuador',
+    'EG' => 'Egypt',
+    'SV' => 'El Salvador',
+    'GQ' => 'Equatorial Guinea',
+    'ER' => 'Eritrea',
+    'EE' => 'Estonia',
+    'ET' => 'Ethiopia',
+    'FK' => 'Falkland Islands (Malvinas)',
+    'FO' => 'Faroe Islands',
+    'FJ' => 'Fiji',
+    'FI' => 'Finland',
+    'FR' => 'France',
+    'GF' => 'French Guiana',
+    'PF' => 'French Polynesia',
+    'TF' => 'French Southern Territories',
+    'GA' => 'Gabon',
+    'GM' => 'Gambia',
+    'GE' => 'Georgia',
+    'DE' => 'Germany',
+    'GH' => 'Ghana',
+    'GI' => 'Gibraltar',
+    'GR' => 'Greece',
+    'GL' => 'Greenland',
+    'GD' => 'Grenada',
+    'GP' => 'Guadeloupe',
+    'GU' => 'Guam',
+    'GT' => 'Guatemala',
+    'GG' => 'Guernsey',
+    'GN' => 'Guinea',
+    'GW' => 'Guinea-Bissau',
+    'GY' => 'Guyana',
+    'HT' => 'Haiti',
+    'HM' => 'Heard Island & Mcdonald Islands',
+    'VA' => 'Holy See (Vatican City State)',
+    'HN' => 'Honduras',
+    'HK' => 'Hong Kong',
+    'HU' => 'Hungary',
+    'IS' => 'Iceland',
+    'IN' => 'India',
+    'ID' => 'Indonesia',
+    'IR' => 'Iran, Islamic Republic Of',
+    'IQ' => 'Iraq',
+    'IE' => 'Ireland',
+    'IM' => 'Isle Of Man',
+    'IL' => 'Israel',
+    'IT' => 'Italy',
+    'JM' => 'Jamaica',
+    'JP' => 'Japan',
+    'JE' => 'Jersey',
+    'JO' => 'Jordan',
+    'KZ' => 'Kazakhstan',
+    'KE' => 'Kenya',
+    'KI' => 'Kiribati',
+    'KR' => 'Korea',
+    'KW' => 'Kuwait',
+    'KG' => 'Kyrgyzstan',
+    'LA' => 'Lao People\'s Democratic Republic',
+    'LV' => 'Latvia',
+    'LB' => 'Lebanon',
+    'LS' => 'Lesotho',
+    'LR' => 'Liberia',
+    'LY' => 'Libyan Arab Jamahiriya',
+    'LI' => 'Liechtenstein',
+    'LT' => 'Lithuania',
+    'LU' => 'Luxembourg',
+    'MO' => 'Macao',
+    'MK' => 'Macedonia',
+    'MG' => 'Madagascar',
+    'MW' => 'Malawi',
+    'MY' => 'Malaysia',
+    'MV' => 'Maldives',
+    'ML' => 'Mali',
+    'MT' => 'Malta',
+    'MH' => 'Marshall Islands',
+    'MQ' => 'Martinique',
+    'MR' => 'Mauritania',
+    'MU' => 'Mauritius',
+    'YT' => 'Mayotte',
+    'MX' => 'Mexico',
+    'FM' => 'Micronesia, Federated States Of',
+    'MD' => 'Moldova',
+    'MC' => 'Monaco',
+    'MN' => 'Mongolia',
+    'ME' => 'Montenegro',
+    'MS' => 'Montserrat',
+    'MA' => 'Morocco',
+    'MZ' => 'Mozambique',
+    'MM' => 'Myanmar',
+    'NA' => 'Namibia',
+    'NR' => 'Nauru',
+    'NP' => 'Nepal',
+    'NL' => 'Netherlands',
+    'AN' => 'Netherlands Antilles',
+    'NC' => 'New Caledonia',
+    'NZ' => 'New Zealand',
+    'NI' => 'Nicaragua',
+    'NE' => 'Niger',
+    'NG' => 'Nigeria',
+    'NU' => 'Niue',
+    'NF' => 'Norfolk Island',
+    'MP' => 'Northern Mariana Islands',
+    'NO' => 'Norway',
+    'OM' => 'Oman',
+    'PK' => 'Pakistan',
+    'PW' => 'Palau',
+    'PS' => 'Palestinian Territory, Occupied',
+    'PA' => 'Panama',
+    'PG' => 'Papua New Guinea',
+    'PY' => 'Paraguay',
+    'PE' => 'Peru',
+    'PH' => 'Philippines',
+    'PN' => 'Pitcairn',
+    'PL' => 'Poland',
+    'PT' => 'Portugal',
+    'PR' => 'Puerto Rico',
+    'QA' => 'Qatar',
+    'RE' => 'Reunion',
+    'RO' => 'Romania',
+    'RU' => 'Russia',
+    'RW' => 'Rwanda',
+    'BL' => 'Saint Barthelemy',
+    'SH' => 'Saint Helena',
+    'KN' => 'Saint Kitts And Nevis',
+    'LC' => 'Saint Lucia',
+    'MF' => 'Saint Martin',
+    'PM' => 'Saint Pierre And Miquelon',
+    'VC' => 'Saint Vincent And Grenadines',
+    'WS' => 'Samoa',
+    'SM' => 'San Marino',
+    'ST' => 'Sao Tome And Principe',
+    'SA' => 'Saudi Arabia',
+    'SN' => 'Senegal',
+    'RS' => 'Serbia',
+    'SC' => 'Seychelles',
+    'SL' => 'Sierra Leone',
+    'SG' => 'Singapore',
+    'SK' => 'Slovakia',
+    'SI' => 'Slovenia',
+    'SB' => 'Solomon Islands',
+    'SO' => 'Somalia',
+    'ZA' => 'South Africa',
+    'GS' => 'South Georgia And Sandwich Isl.',
+    'ES' => 'Spain',
+    'LK' => 'Sri Lanka',
+    'SD' => 'Sudan',
+    'SR' => 'Suriname',
+    'SJ' => 'Svalbard And Jan Mayen',
+    'SZ' => 'Swaziland',
+    'SE' => 'Sweden',
+    'CH' => 'Switzerland',
+    'SY' => 'Syrian Arab Republic',
+    'TW' => 'Taiwan',
+    'TJ' => 'Tajikistan',
+    'TZ' => 'Tanzania',
+    'TH' => 'Thailand',
+    'TL' => 'Timor-Leste',
+    'TG' => 'Togo',
+    'TK' => 'Tokelau',
+    'TO' => 'Tonga',
+    'TT' => 'Trinidad And Tobago',
+    'TN' => 'Tunisia',
+    'TR' => 'Turkey',
+    'TM' => 'Turkmenistan',
+    'TC' => 'Turks And Caicos Islands',
+    'TV' => 'Tuvalu',
+    'UG' => 'Uganda',
+    'UA' => 'Ukraine',
+    'AE' => 'United Arab Emirates',
+    'GB' => 'United Kingdom',
+    'US' => 'United States',
+    'UM' => 'United States Outlying Islands',
+    'UY' => 'Uruguay',
+    'UZ' => 'Uzbekistan',
+    'VU' => 'Vanuatu',
+    'VE' => 'Venezuela',
+    'VN' => 'Viet Nam',
+    'VG' => 'Virgin Islands, British',
+    'VI' => 'Virgin Islands, U.S.',
+    'WF' => 'Wallis And Futuna',
+    'EH' => 'Western Sahara',
+    'YE' => 'Yemen',
+    'ZM' => 'Zambia',
+    'ZW' => 'Zimbabwe',
+);
+$sellCountry = $sellerPage->getCountry();
+$sellState = $sellerPage->getState();
+
+if(isset($response['results'][0]['geometry']['location']['lng'])){
+    $long = $response['results'][0]['geometry']['location']['lng'];
+}
+if(isset($response['results'][0]['geometry']['location']['lat'])){
+$lat = $response['results'][0]['geometry']['location']['lat'];
+}
+if(!empty($lat) && !empty($long)){
+
+
+?> 
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map_canvas');
+        var mapOptions = {
+          center: new google.maps.LatLng(<?php echo $lat;?>, <?php
+           echo $long;?>),
+          zoom: 6,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+<!--<div class="block">
+<div class="block-title"><strong><span><?php /*echo $this->__('Store Location');*/?></span></strong></div>
+<div class="block-content"><div id="map_canvas"  style="width:235px;height:235px"></div></div>
+</div>-->
+    <div class="m-map-cont">
+        <div class="col-md-4 map-cont-left">
+            <h1 class="map-location">Location</h1>
+            <h3 class="map-store"><?php if(!empty($sellState)): ?><span><?php echo $sellState;?></span>, <?php endif;?><span><?php echo $countries[$sellCountry];?></span></h3>
+            <p class="map-brande">You are shopping directly from the design studio of <?php echo $sellerPage->getStoreTitle();?></p>
+            <div class="soc-media-wrapper">
+                <?php
+                /**
+                 * Check the id is not empty of the social sharings like
+                 * linked in
+                 * Facebook
+                 * Twitter
+                 * Google Plus
+                 * if they are not empty display their title with links
+                 */
+                if($sellerPage->getLinkedId() != ''){?>
+                    <a href="<?php echo $sellerPage->getLinkedId(); ?>" target="_blank" title="<?php
+                    echo $this->__('Instagram') ?>" class="instagram"><img src="http://148.251.126.204/~grotto/media/wysiwyg/instagram_circle.png" /></a>
+                <?php } ?>
+                <?php if($sellerPage->getFacebookId() != ''){?>
+                    <a href="<?php echo $sellerPage->getFacebookId(); ?>" target="_blank" title="<?php
+                    echo $this->__('Facebook') ?>" class="facebook">&nbsp;</a>
+                <?php } ?>
+                <?php if($sellerPage->getTwitterId() != ''){?>
+                    <a href="<?php echo $sellerPage->getTwitterId();?>" target="_blank" title="<?php
+                    echo $this->__('twitter') ?>" class="twitter">&nbsp;</a>
+                <?php } ?>
+                <?php if($sellerPage->getGoogleId() != ''){?>
+                    <a href="<?php echo $sellerPage->getGoogleId();?>" target="_blank" title="<?php
+                    echo $this->__('Pinterest') ?>" class="pinterest"><img src="http://148.251.126.204/~grotto/media/wysiwyg/pinterest-cir.png" /></a>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="col-md-8 map-cont-right">
+            <div id="map_canvas"  style="width:100%;height: 400px"></div>
+        </div>
+    </div>
+<?php } ?>
+

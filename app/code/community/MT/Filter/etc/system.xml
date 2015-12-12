@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Filter
+@copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author ZooExtension.com
+@email       magento@cleversoft.co
+-->
+<config>
+    <sections>
+        <mtfilter translate="label">
+            <label>MT Filter</label>
+            <tab>mtext</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>2</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <bar translate="label comment">
+                            <label>Show Loading Bar</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Show a nice loading bar on top of page</comment>
+                        </bar>
+                        <bar_color translate="label comment">
+                            <label>Loading Bar Color</label>
+                            <validate>color</validate>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>That bar should look like</comment>
+                            <depends>
+                                <bar>1</bar>
+                            </depends>
+                        </bar_color>
+                    </fields>
+                </general>
+                <catalog translate="label">
+                    <label>Catalog</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <price translate="label comment">
+                            <label>Enable Price Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>0</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Replace price filter by a slider</comment>
+                        </price>
+                        <enable translate="label comment">
+                            <label>Enable Ajax Filter</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Replace all filters with AJAX request</comment>
+                        </enable>
+                        <main_selector translate="label comment">
+                            <label>Main DOM Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: .col-main</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </main_selector>
+                        <layer_selector translate="label comment">
+                            <label>Layer DOM Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: .block-layered-nav</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </layer_selector>
+                    </fields>
+                </catalog>
+                <catalogsearch translate="label">
+                    <label>Catalog Search</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <price translate="label comment">
+                            <label>Enable Price Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>0</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Replace price filter by a slider</comment>
+                        </price>
+                        <enable translate="label comment">
+                            <label>Enable Ajax Filter</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Replace all filters with AJAX request</comment>
+                        </enable>
+                        <main_selector translate="label comment">
+                            <label>Main DOM Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: .col-main</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </main_selector>
+                        <layer_selector translate="label comment">
+                            <label>Layer DOM Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: .block-layered-nav</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </layer_selector>
+                    </fields>
+                </catalogsearch>
+                <discount translate="label">
+                    <label>Discount Filter</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label comment">
+                            <label>Enable Discount Filter</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Add discount filter to catalog layer navigation</comment>
+                        </enable>
+                        <show_empty translate="label comment">
+                            <label>Filter with results</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Only show if has results</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </show_empty>
+                    </fields>
+                </discount>
+            </groups>
+        </mtfilter>
+    </sections>
+</config>

@@ -1,0 +1,155 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+$theme = $this->helper('mtghost');
+$helpImg = $this->helper('mtghost/image');
+$imgWidth = $theme->getCfg('category/image_width') ? $theme->getCfg('category/image_width') : 270;
+$imgHeight = $theme->getCfg('category/image_height') ? $theme->getCfg('category/image_height') : 356;
+if($theme->getCfg('category/aspect_ratio')){
+    $imgHeight = 0;
+}
+/* @var $this MT_Widget_Block_Widget_Collection */
+$productCollection  = $this->getData('collection');
+$count              = $productCollection ? $productCollection->count() : 0;
+$carousel           = $this->getData('carousel');
+$row                = $this->getData('row');
+$column             = $carousel == 1 && $row == 1 ? $count : ($carousel == 1 && $row > 1 ? $row : $this->getData('column'));
+
+/* @var $helper Mage_Catalog_Helper_Image */
+$helper             = Mage::helper('catalog/image');
+$cfaltimage = $theme->getCfg('category/alt_image');
+$hoveraltClass = ($cfaltimage == 1) ? 'front-img' : '';
+$_helper            = $this->helper('catalog/output');
+
+?>
+<?php if (!$count): ?>
+    <p class="note-msg">
+        <?php echo $this->__('There are no products matching the selection.') ?>
+    </p>
+<?php else: ?>
+    <?php $i = 0;
+    foreach ($productCollection as $_product): ?>
+        <?php /* @var $_product Mage_Catalog_Model_Product */ ?>
+        <?php if ($carousel == 1 && $row > 1 && $i == 0): ?>
+            <div class="owl-carousel">
+            <?php endif ?>
+            <?php if ($i % $column == 0 || ($row > 1 && $i % $row == 0)): ?>
+            <ul class="products-grid <?php echo $carousel && $row == 1 ? ' owl-carousel' : '' ?>">
+            <?php endif ?>
+            <?php $i++ ?>
+            <li class="item">
+                <div class="item-inner">
+                    <div class="product-item">
+                        <div class="content products-list">
+                            <div class="product-hover">
+                                <a href="<?php echo $_product->getProductUrl() ?>"
+                                   title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
+                                   class="product-image">
+                                    <?php echo $this->helper('mtghost')->getLabel($_product);  ?>
+                                    <span class="front margin-image">
+                                        <img class="lazyOwl img-responsive"
+                                             data-srcX2="<?php echo $helpImg->getImg($_product, $imgWidth*2, $imgHeight*2, 'small_image'); ?>"
+                                             data-src="<?php echo $helper->init($_product, 'small_image')->resize(270, 356) ?>"
+                                             alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    </span>
+                                    <?php if ($theme->getCfg('category/alt_image')): ?>
+                                        <span class="product-img-additional back margin-image">
+                                             <?php echo $theme->getAltImgHtml($_product, $imgWidth, $imgHeight); ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </a>
+                                <div class="product-hover-box">
+                                    <div class="confix-produclist">
+                                        <div class="add-to-links">
+                                            <div class="wishlist">
+                                                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                                    <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>"
+                                                       data-id="<?php echo $_product->getId(); ?>" title="<?php echo $this->__('Wishlist') ?>"
+                                                       data-placement="top" class="link-wishlist mt-tooltip">
+                                                        <i class="icon_heart"></i><?php //echo $this->__('Add to Wishlist') ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="main-quickview hidden-xs">
+                                                <button type="button" data-placement="top"
+                                                        title="<?php echo $this->__('Quick view') ?>"
+                                                        class="button btn-cart show-quickview mt-tooltip"
+                                                        data-id="<?php echo $_product->getId(); ?>">
+                                                        <span><i class="arrow_expand_alt"></i></span>
+                                                </button>
+                                                <a class="product-quickview"
+                                                   href="<?php echo $this->getUrl('ajaxcart/index/options/product_id/' . $_product->getId()); ?>"
+                                                   data-id='quickview-<?php echo $_product->getId() ?>'
+                                                   style='display:none'><i class="arrow_expand_alt"></i></a>
+                                            </div>
+                                            <div class="compare">
+                                                <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                                    <a href="<?php echo $_compareUrl ?>" data-id="<?php echo $_product->getId(); ?>"
+                                                       title="<?php echo $this->__('Compare') ?>"
+                                                       data-placement="top" class="link-compare  mt-tooltip">
+                                                        <i class="icon_piechart"></i><?php //echo $this->__('Add to Compare') ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="top-actions-inner">
+                            <h3 class="product-name">
+                                <a href="<?php echo $_product->getProductUrl() ?>"
+                                   title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a>
+                            </h3>
+                            <div class="table">
+                                <?php echo $this->getPriceHtml($_product, true) ?>
+                                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                            </div>
+                        </div>
+                        <div class="mt-actions clearfix">
+                            <div class="addtocart">
+                                <?php if($_product->isSaleable()): ?>
+                                    <?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) || $oType == true ) { ?>
+                                        <button type="button" title="<?php echo $this->__('Add To Cart') ?>"
+                                                class="button btn-cart <?php if($oType == true) echo 'option-file';?>"
+                                                onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')">
+                                                 <span><i class="icon_plus"></i><?php echo $this->__('Add To Cart') ?></span>
+                                        </button>
+                                    <?php } else { ?>
+                                        <?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) : ?>
+                                            <a style="display: none;" href='<?php echo $this->getUrl('ajaxcart/index/options',array('product_id'=>$_product->getId()));?>' class='options-cart' data-id='options-cart-<?php echo $_product->getId()?>'><?php echo $this->__('Option cart')?></a>
+                                        <?php endif; ?>
+
+                                        <button type="button" title="<?php echo $this->__('Add To Cart') ?>" class="button btn-cart show-options" data-id="<?php echo $_product->getId(); ?>"
+                                            <?php if (!Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart')) { ?>
+                                                onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"
+                                            <?php }?> data-submit='<?php echo $this->getAddToCartUrl($_product) ?>'>
+                                           <span><i class="icon_plus"></i><?php echo $this->__('Add To Cart') ?></span>
+                                        </button>
+
+                                    <?php }  ?>
+                                <?php else: ?>
+                                    <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <?php if ($i == $count || $i % $column == 0 || ($row > 1 && $i % $row == 0)): ?>
+            </ul>
+        <?php endif ?>
+        <?php if ($carousel == 1 && $row > 1 && $i == $count): ?>
+            </div>
+        <?php endif ?>
+    <?php endforeach ?>
+<?php endif ?>

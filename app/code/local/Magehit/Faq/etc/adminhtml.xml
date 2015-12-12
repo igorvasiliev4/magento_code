@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+    <adminhtml>
+		<menu>
+			
+			<faq module="faq">
+				<title>Easy FAQ</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<faqitem module="faq">
+						<title>Manage FAQ Item</title>
+						<sort_order>0</sort_order>
+						<action>faq_admin/adminhtml_faqitem</action>
+					</faqitem>
+				</children>
+				<children>
+					<items module="faq">
+						<title>Manage FAQ Categories</title>
+						<sort_order>0</sort_order>
+						<action>faq_admin/adminhtml_faq</action>
+					</items>
+				</children>
+			</faq>
+		</menu>
+		
+		<acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <faq module="faq">
+                            <title>Easy FAQ</title>
+                            <sort_order>71</sort_order>               
+                            <children>
+                                <items module="faq">
+                                    <title>Manage FAQ Categories</title>
+                                    <sort_order>0</sort_order>
+                                </items>
+                            </children>
+                            <children>
+                                <faqitem module="faq">
+                                    <title>Manage FAQ Item</title>
+                                    <sort_order>10</sort_order>
+                                </faqitem>
+                            </children>
+                        </faq>
+                        <system>
+                        	<children>
+                        		<config>
+                        			<children>
+	                        			<magehit_faq module="faq" translate="title">
+	                        				<title>Faq Settings</title>
+	                        			</magehit_faq>
+                        			</children>
+                        		</config>
+                        	</children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+		
+		
+		<layout>
+			<updates>
+				<faq>
+					<file>faq.xml</file>
+				</faq>
+			</updates>
+		</layout>
+    </adminhtml>  

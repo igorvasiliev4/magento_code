@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category Mato
+ * @package      MT_AjaxCart
+ *
+ * @copyright    Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       ZooExtension.com
+ * @email        magento@cleversoft.co
+ *
+ */
+-->
+<config>
+    <tabs>
+	<mtext translate="label">
+	    <label>MT EXTENSIONS</label>
+	    <sort_order>150</sort_order>
+	</mtext>
+    </tabs>
+    <sections>
+    <ajaxcart translate="label" module="ajaxcart">
+	    <label>Ajax Cart</label>
+	    <tab>mtext</tab>
+	    <sort_order>130</sort_order>
+	    <show_in_default>1</show_in_default>
+	    <show_in_website>1</show_in_website>
+	    <show_in_store>1</show_in_store>
+	    <groups>
+			<ajaxcart_config translate="label">
+			    <label>General</label>
+			    <frontend_type>text</frontend_type>
+			    <sort_order>1</sort_order>
+			    <show_in_default>1</show_in_default>
+			    <show_in_website>1</show_in_website>
+			    <show_in_store>1</show_in_store>
+			    <fields>
+					<enable_ajaxcart translate="label">
+                        <label>Enable Ajax Cart: </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>2</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </enable_ajaxcart>
+                    <enable_ajaxcompare translate="label">
+                        <label>Enable Ajax Compare: </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </enable_ajaxcompare>
+					<enable_ajaxwishlist translate="label">
+                        <label>Enable Ajax Wishlist: </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </enable_ajaxwishlist>
+                    <enable_popupcart translate="label">
+                        <label>Enable Popup Cart: </label>
+                        <frontend_type>select</frontend_type>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <sort_order>40</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </enable_popupcart>
+                </fields>
+			</ajaxcart_config>
+			<info translate="label">
+				<label>Theme Information</label>
+				<frontend_type>text</frontend_type>
+				<frontend_model>ajaxcart/about_information</frontend_model>
+				<sort_order>150</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>   
+				<p_link>http://9magentothemes.com</p_link>
+		    	<y_link>http://9magentothemes.com</y_link>
+			</info>	
+	    </groups>
+	</ajaxcart>
+    </sections>
+</config>

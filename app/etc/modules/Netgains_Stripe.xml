@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Netgains_Stripe>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </Netgains_Stripe>
+  </modules>
+</config>

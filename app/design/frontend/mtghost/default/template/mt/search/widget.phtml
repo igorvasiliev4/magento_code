@@ -1,0 +1,83 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Search
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php /* @var $this MT_Search_Block_Widget */ ?>
+<?php
+$catalogSearchHelper =  $this->helper('catalogsearch');
+$currentCategory = $this->getCurrentCategory();
+$categoryMap = $this->getCategories();
+?>
+<form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+    <div class="input-group top-search">
+        <input type="hidden" name="cat" value="<?php echo $currentCategory ?>"/>
+        <input id="search"
+               type="search"
+               name="<?php echo $catalogSearchHelper->getQueryParamName() ?>"
+               value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>"
+               class="input-text required-entry"
+               maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength() ?>"
+               placeholder="<?php echo $this->__('Search entire store here...') ?>" />
+	     <div class="input-group-btn category-filter">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="category-label">
+                    <?php echo isset($categoryMap[$currentCategory]) ? $categoryMap[$currentCategory] : $this->__('All Categories') ?>
+                </span>&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="javascript:void(0)" data-value=""><?php echo $this->__('All') ?></a></li>
+                <?php foreach ($categoryMap as $categoryId => $categoryName): ?>
+                    <li><a href="javascript:void(0)" data-value="<?php echo $categoryId ?>"><?php echo $categoryName ?></a></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+        <button type="submit" title="<?php echo $this->__('Search') ?>" class="button search-button">
+            <span><span><i class="fa fa-search"></i><?php //echo $this->__('Search') ?></span></span>
+        </button>
+    </div>
+    <div id="search_autocomplete" class="search-autocomplete" style="display: none"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+        var MTSearch = Class.create(Varien.searchForm, {
+            initAutocomplete: function(url, destinationElement){
+                new Ajax.Autocompleter(this.field, destinationElement, url, {
+                    paramName: this.field.name,
+                    method: 'get',
+                    minChars: 2,
+                    updateElement: this._selectAutocompleteItem.bind(this),
+                    onShow: function(element, update) {
+                        if(!update.style.position || update.style.position=='absolute') {
+                            update.style.position = 'absolute';
+                            Position.clone(element, update, {
+                                setHeight: false,
+                                offsetTop: element.offsetHeight
+                            });
+                        }
+                        Effect.Appear(update, {duration: 0});
+                    }
+                });
+            },
+            initSearchFilter: function(field, target){
+                var fieldElm = this.form.down('input[name="' + field + '"]');
+                if (!fieldElm) return;
+                var targetElm = this.form.down(target);
+                this.form.select('.dropdown-menu a').each(function(item){
+                    Event.observe(item, 'click', function(){
+                        fieldElm.value = item.readAttribute('data-value');
+                        if (targetElm) targetElm.update(item.innerHTML);
+                    });
+                });
+            }
+        });
+        var searchForm = new MTSearch('search_mini_form', 'search', '');
+        searchForm.initAutocomplete('<?php echo $catalogSearchHelper->getSuggestUrl() ?>', 'search_autocomplete');
+        searchForm.initSearchFilter('cat', '.category-label');
+    //]]>
+    </script>
+</form>

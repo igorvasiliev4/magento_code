@@ -1,0 +1,58 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Extensions
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php $element = $this->getElement()?>
+<div id="slider_<?php echo $element->getHtmlId()?>" class=control-slider>
+    <div class="handle">
+        <div class="tip"></div>
+    </div>
+</div>
+<style>
+    .control-slider{
+        width: 280px;
+        margin: 10px 0;
+        background-color: #ccc;
+        height: 4px;
+        position: relative;
+    }
+    .control-slider .handle{
+        width: 10px;
+        height: 15px;
+        background-color: #2d444f;
+        cursor: move;
+        position: absolute;
+        top: -5px;
+    }
+    .control-slider .handle .tip{
+        position: absolute;
+        padding: 0 4px;
+        line-height: 20px;
+        height: 20px;
+        top: -22px;
+        background-color: #ccc;
+    }
+</style>
+<script>
+    (function(){
+        var slider = $('slider_<?php echo $element->getHtmlId()?>');
+        new Control.Slider(slider.down('.handle'), slider, {
+            range: $R(<?php echo $element->getRange()?>),
+            sliderValue: 0,
+            onSlide: function(value){
+                var tip = slider.down('.tip');
+                tip.innerHTML = value.toFixed(2);
+
+            },
+            onChange: function(value){
+
+            }
+        });
+    })();
+</script>

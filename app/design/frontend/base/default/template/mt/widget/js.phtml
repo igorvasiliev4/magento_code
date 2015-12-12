@@ -1,0 +1,28 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<script type="text/javascript">
+    var MT = MT || {};
+    MT.FORM_KEY = '<?php echo Mage::getSingleton('core/session')->getFormKey() ?>';
+
+    function setLocationWidget(url){
+        if (url.indexOf('form_key/') !== -1){
+            var part = url.split('form_key/')[1],
+                formKey = part.split('/')[0];
+
+            if (!formKey) return;
+
+            var newUrl = url.replace(formKey, MT.FORM_KEY || '');
+
+            if (setLocation) setLocation(newUrl);
+            else window.location.href = newUrl;
+        }
+    }
+</script>

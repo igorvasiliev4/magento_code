@@ -1,0 +1,156 @@
+/*related product css 1100px slider*/
+
+.block-related {
+  clear: right;
+  float: right;
+  width: 1100px;
+  padding-left:0px !important;
+}
+
+
+.block-title {
+  border-top: 1px solid rgb(204, 204, 204);
+  margin-bottom: 5px;
+  padding: 10px 0 0;
+  position: relative;
+}
+.block-related .block-title h2 {
+  color: rgb(99, 99, 99);
+  font-family: "Raleway","Helvetica Neue",Verdana,Arial,sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+  text-rendering: optimizelegibility;
+  text-transform: uppercase;
+}
+.block-related .block-content {
+  margin-top: 10px;
+}
+.block-related .bx-wrapper {
+  margin: 0 auto;
+  max-width: 980px !important;
+}
+.block-related .crsl-item {
+  border: 2px solid rgb(220, 220, 220);
+  margin: 0 10px !important;
+  text-align: center;
+  width: 223px !important;
+}
+.block-related .product {
+  margin: 0 !important;
+  position: relative;
+}
+.product-image > img {
+  margin: 0 auto;
+  width: auto;
+}
+.block-related .product-details {
+  margin-left: 0;
+}
+.block-related .product-name {
+  margin-bottom: 3px;
+}
+.block-related .product-details .price-box {
+  margin: 2px 0 3px;
+}
+.price-box {
+  font-family: "Helvetica Neue",Verdana,Arial,sans-serif;
+  margin: 7px 0;
+}
+.block-related .regular-price {
+  width: 100%;
+}
+.block-related .price {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+.price-box .price {
+  color: rgb(51, 153, 204);
+  font-size: 16px;
+}
+.block .actions {
+  margin: 10px 0 0;
+}   
+.block-related .button.btn-cart {
+  float: none;
+}
+ .block-related .button {
+  background: none repeat scroll 0 0 rgb(51, 153, 204);
+  border: 0 none;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  font-family: "Raleway","Helvetica Neue",Verdana,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 19px;
+  padding: 7px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.block-related .add-to-links {
+  clear: both;
+  float: none;
+  margin-top: 0;
+  margin-right: 0px;    
+}
+.block-related .add-to-links li {
+  float: none;
+}
+.block-related li {
+  margin-bottom: 7px;
+}
+.add-to-links .separator {
+  display: none;
+}
+.product-view .add-to-links li:last-child a {
+  border-right: 0 none;
+}
+.block-related .actions a {
+  float: none;
+}
+.product-view .add-to-links a {
+  padding: 2px 7px 2px 7px;
+}
+.bx-controls {
+  position: relative;
+  right: 28px;
+  top: -134px;
+}
+.bx-pager.bx-default-pager {
+  display: none;
+}
+.bx-controls {
+  position: relative;
+  right: 29px;
+  top: -122px;
+}
+.bx-prev {
+ background: url("../images/next.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+height: 85px;
+left: -30px;
+position: absolute;
+top: -12px;
+width: 52px;
+}
+.bx-next {
+  background: url("../images/prvi.png") no-repeat scroll 8px 0 rgba(0, 0, 0, 0);
+height: 85px;
+position: absolute;
+right: -81px;
+top: -3px;
+width: 57px;
+}
+.block.block-related {
+  width: 100% !important;
+}
+.checkbox.related-checkbox {
+  display: none !important;
+}
+.block-related .block-subtitle {
+  display: none;
+}

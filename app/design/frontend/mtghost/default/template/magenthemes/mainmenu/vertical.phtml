@@ -1,0 +1,55 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category Mato
+ * @package Mato Framework
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       ZooExtension.com
+ * @email        magento@cleversoft.co
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<!-- navigation BOF -->
+<?php 
+$megaeffect = Mage::getStoreConfig('mtghost/menu/menuleft_effect');
+$_menu = $this->renderCategoriesMenuHtml(FALSE, FALSE, 0, 'level-top', 'sub-wrapper', TRUE );
+$routeName = Mage::app()->getRequest()->getRouteName();
+$identifier = Mage::getSingleton('cms/page')->getIdentifier(); 
+ 
+?>
+<?php if($_menu): ?>
+<div class="mt-navigation-vertical block hidden-xs">
+    <div class="block-title">
+        <strong>
+             <span class="fa fa-list"></span>
+            <span><?php echo $this->__('Categories'); ?></span>
+        </strong>
+    </div>
+	<div class="mt-main-menu-vertical">
+		<ul class="megamenu-vertical">
+			<!--<?php if(Mage::getStoreConfig('mtghost/menu/home')){?>
+			<li class="level0 home level-top<?php if($routeName == 'cms' && $identifier == 'home') {echo " active";}?> m-dropdown parent">
+				<a href="<?php echo $this->getBaseUrl(); ?>" class="level-top"><span><?php echo $this->__('Home'); ?></span></a>
+			</li> 
+			<?php }?>-->
+			<?php
+			echo $_menu;
+			?>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+    $mt(function(){
+        $mt(".megamenu-vertical").vmegamenu({
+            'animation':'<?php echo $megaeffect;?>',
+            'direction': 'vertical',
+            'mm_timeout': 50
+	    });
+    });
+</script>
+<?php endif ?>
+<!-- navigation EOF -->

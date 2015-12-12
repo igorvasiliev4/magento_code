@@ -1,0 +1,606 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.4
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2014 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ * 
+ */
+
+    $active = Mage::getStoreConfig('marketplace/admin_approval_seller_registration/displayproductpage');
+    /**
+     *  Check the admin approval seller registration is equal to 1
+     */
+    if ($active == 1) { 
+    $productId = Mage::registry('current_product')->getEntityId();
+    /**
+     *  Get the seller id
+     */
+        $sellerId      = Mage::registry('current_product')->getSellerId();
+        /**
+         *  Get the seller data
+         */
+        $sellerData    = $this->sellerdisplay($sellerId);
+        /**
+         *  Get the seller profile display status
+         */
+        $showProfile   = $this->sellerprofiledisplay($sellerId);
+        /**
+         *  Check the seller profile show is enabled
+         */
+        $countries = array
+        (
+    'AF' => 'Afghanistan',
+    'AX' => 'Aland Islands',
+    'AL' => 'Albania',
+    'DZ' => 'Algeria',
+    'AS' => 'American Samoa',
+    'AD' => 'Andorra',
+    'AO' => 'Angola',
+    'AI' => 'Anguilla',
+    'AQ' => 'Antarctica',
+    'AG' => 'Antigua And Barbuda',
+    'AR' => 'Argentina',
+    'AM' => 'Armenia',
+    'AW' => 'Aruba',
+    'AU' => 'Australia',
+    'AT' => 'Austria',
+    'AZ' => 'Azerbaijan',
+    'BS' => 'Bahamas',
+    'BH' => 'Bahrain',
+    'BD' => 'Bangladesh',
+    'BB' => 'Barbados',
+    'BY' => 'Belarus',
+    'BE' => 'Belgium',
+    'BZ' => 'Belize',
+    'BJ' => 'Benin',
+    'BM' => 'Bermuda',
+    'BT' => 'Bhutan',
+    'BO' => 'Bolivia',
+    'BA' => 'Bosnia And Herzegovina',
+    'BW' => 'Botswana',
+    'BV' => 'Bouvet Island',
+    'BR' => 'Brazil',
+    'IO' => 'British Indian Ocean Territory',
+    'BN' => 'Brunei Darussalam',
+    'BG' => 'Bulgaria',
+    'BF' => 'Burkina Faso',
+    'BI' => 'Burundi',
+    'KH' => 'Cambodia',
+    'CM' => 'Cameroon',
+    'CA' => 'Canada',
+    'CV' => 'Cape Verde',
+    'KY' => 'Cayman Islands',
+    'CF' => 'Central African Republic',
+    'TD' => 'Chad',
+    'CL' => 'Chile',
+    'CN' => 'China',
+    'CX' => 'Christmas Island',
+    'CC' => 'Cocos (Keeling) Islands',
+    'CO' => 'Colombia',
+    'KM' => 'Comoros',
+    'CG' => 'Congo',
+    'CD' => 'Congo, Democratic Republic',
+    'CK' => 'Cook Islands',
+    'CR' => 'Costa Rica',
+    'CI' => 'Cote D\'Ivoire',
+    'HR' => 'Croatia',
+    'CU' => 'Cuba',
+    'CY' => 'Cyprus',
+    'CZ' => 'Czech Republic',
+    'DK' => 'Denmark',
+    'DJ' => 'Djibouti',
+    'DM' => 'Dominica',
+    'DO' => 'Dominican Republic',
+    'EC' => 'Ecuador',
+    'EG' => 'Egypt',
+    'SV' => 'El Salvador',
+    'GQ' => 'Equatorial Guinea',
+    'ER' => 'Eritrea',
+    'EE' => 'Estonia',
+    'ET' => 'Ethiopia',
+    'FK' => 'Falkland Islands (Malvinas)',
+    'FO' => 'Faroe Islands',
+    'FJ' => 'Fiji',
+    'FI' => 'Finland',
+    'FR' => 'France',
+    'GF' => 'French Guiana',
+    'PF' => 'French Polynesia',
+    'TF' => 'French Southern Territories',
+    'GA' => 'Gabon',
+    'GM' => 'Gambia',
+    'GE' => 'Georgia',
+    'DE' => 'Germany',
+    'GH' => 'Ghana',
+    'GI' => 'Gibraltar',
+    'GR' => 'Greece',
+    'GL' => 'Greenland',
+    'GD' => 'Grenada',
+    'GP' => 'Guadeloupe',
+    'GU' => 'Guam',
+    'GT' => 'Guatemala',
+    'GG' => 'Guernsey',
+    'GN' => 'Guinea',
+    'GW' => 'Guinea-Bissau',
+    'GY' => 'Guyana',
+    'HT' => 'Haiti',
+    'HM' => 'Heard Island & Mcdonald Islands',
+    'VA' => 'Holy See (Vatican City State)',
+    'HN' => 'Honduras',
+    'HK' => 'Hong Kong',
+    'HU' => 'Hungary',
+    'IS' => 'Iceland',
+    'IN' => 'India',
+    'ID' => 'Indonesia',
+    'IR' => 'Iran, Islamic Republic Of',
+    'IQ' => 'Iraq',
+    'IE' => 'Ireland',
+    'IM' => 'Isle Of Man',
+    'IL' => 'Israel',
+    'IT' => 'Italy',
+    'JM' => 'Jamaica',
+    'JP' => 'Japan',
+    'JE' => 'Jersey',
+    'JO' => 'Jordan',
+    'KZ' => 'Kazakhstan',
+    'KE' => 'Kenya',
+    'KI' => 'Kiribati',
+    'KR' => 'Korea',
+    'KW' => 'Kuwait',
+    'KG' => 'Kyrgyzstan',
+    'LA' => 'Lao People\'s Democratic Republic',
+    'LV' => 'Latvia',
+    'LB' => 'Lebanon',
+    'LS' => 'Lesotho',
+    'LR' => 'Liberia',
+    'LY' => 'Libyan Arab Jamahiriya',
+    'LI' => 'Liechtenstein',
+    'LT' => 'Lithuania',
+    'LU' => 'Luxembourg',
+    'MO' => 'Macao',
+    'MK' => 'Macedonia',
+    'MG' => 'Madagascar',
+    'MW' => 'Malawi',
+    'MY' => 'Malaysia',
+    'MV' => 'Maldives',
+    'ML' => 'Mali',
+    'MT' => 'Malta',
+    'MH' => 'Marshall Islands',
+    'MQ' => 'Martinique',
+    'MR' => 'Mauritania',
+    'MU' => 'Mauritius',
+    'YT' => 'Mayotte',
+    'MX' => 'Mexico',
+    'FM' => 'Micronesia, Federated States Of',
+    'MD' => 'Moldova',
+    'MC' => 'Monaco',
+    'MN' => 'Mongolia',
+    'ME' => 'Montenegro',
+    'MS' => 'Montserrat',
+    'MA' => 'Morocco',
+    'MZ' => 'Mozambique',
+    'MM' => 'Myanmar',
+    'NA' => 'Namibia',
+    'NR' => 'Nauru',
+    'NP' => 'Nepal',
+    'NL' => 'Netherlands',
+    'AN' => 'Netherlands Antilles',
+    'NC' => 'New Caledonia',
+    'NZ' => 'New Zealand',
+    'NI' => 'Nicaragua',
+    'NE' => 'Niger',
+    'NG' => 'Nigeria',
+    'NU' => 'Niue',
+    'NF' => 'Norfolk Island',
+    'MP' => 'Northern Mariana Islands',
+    'NO' => 'Norway',
+    'OM' => 'Oman',
+    'PK' => 'Pakistan',
+    'PW' => 'Palau',
+    'PS' => 'Palestinian Territory, Occupied',
+    'PA' => 'Panama',
+    'PG' => 'Papua New Guinea',
+    'PY' => 'Paraguay',
+    'PE' => 'Peru',
+    'PH' => 'Philippines',
+    'PN' => 'Pitcairn',
+    'PL' => 'Poland',
+    'PT' => 'Portugal',
+    'PR' => 'Puerto Rico',
+    'QA' => 'Qatar',
+    'RE' => 'Reunion',
+    'RO' => 'Romania',
+    'RU' => 'Russia',
+    'RW' => 'Rwanda',
+    'BL' => 'Saint Barthelemy',
+    'SH' => 'Saint Helena',
+    'KN' => 'Saint Kitts And Nevis',
+    'LC' => 'Saint Lucia',
+    'MF' => 'Saint Martin',
+    'PM' => 'Saint Pierre And Miquelon',
+    'VC' => 'Saint Vincent And Grenadines',
+    'WS' => 'Samoa',
+    'SM' => 'San Marino',
+    'ST' => 'Sao Tome And Principe',
+    'SA' => 'Saudi Arabia',
+    'SN' => 'Senegal',
+    'RS' => 'Serbia',
+    'SC' => 'Seychelles',
+    'SL' => 'Sierra Leone',
+    'SG' => 'Singapore',
+    'SK' => 'Slovakia',
+    'SI' => 'Slovenia',
+    'SB' => 'Solomon Islands',
+    'SO' => 'Somalia',
+    'ZA' => 'South Africa',
+    'GS' => 'South Georgia And Sandwich Isl.',
+    'ES' => 'Spain',
+    'LK' => 'Sri Lanka',
+    'SD' => 'Sudan',
+    'SR' => 'Suriname',
+    'SJ' => 'Svalbard And Jan Mayen',
+    'SZ' => 'Swaziland',
+    'SE' => 'Sweden',
+    'CH' => 'Switzerland',
+    'SY' => 'Syrian Arab Republic',
+    'TW' => 'Taiwan',
+    'TJ' => 'Tajikistan',
+    'TZ' => 'Tanzania',
+    'TH' => 'Thailand',
+    'TL' => 'Timor-Leste',
+    'TG' => 'Togo',
+    'TK' => 'Tokelau',
+    'TO' => 'Tonga',
+    'TT' => 'Trinidad And Tobago',
+    'TN' => 'Tunisia',
+    'TR' => 'Turkey',
+    'TM' => 'Turkmenistan',
+    'TC' => 'Turks And Caicos Islands',
+    'TV' => 'Tuvalu',
+    'UG' => 'Uganda',
+    'UA' => 'Ukraine',
+    'AE' => 'United Arab Emirates',
+    'GB' => 'United Kingdom',
+    'US' => 'United States',
+    'UM' => 'United States Outlying Islands',
+    'UY' => 'Uruguay',
+    'UZ' => 'Uzbekistan',
+    'VU' => 'Vanuatu',
+    'VE' => 'Venezuela',
+    'VN' => 'Viet Nam',
+    'VG' => 'Virgin Islands, British',
+    'VI' => 'Virgin Islands, U.S.',
+    'WF' => 'Wallis And Futuna',
+    'EH' => 'Western Sahara',
+    'YE' => 'Yemen',
+    'ZM' => 'Zambia',
+    'ZW' => 'Zimbabwe',
+);
+        if ($showProfile == 1) { 
+            $targetPath = 'marketplace/seller/displayseller/id/' . $sellerId;
+            $mainUrlRewrite     = Mage::getModel('core/url_rewrite')->load($targetPath, 'target_path');
+            $getRequestPath     = $mainUrlRewrite->getRequestPath();
+            $getRequestPath    = Mage::getUrl($getRequestPath);
+            ?>
+             <div  class="linker_seller row">
+                <div class="col-md-12">
+                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 brand-about-cont brand-cont-left">
+                         <h2 class="title_seller"><?php echo $this->__('About'); ?>
+                            <?php echo $sellerData['store_title']; ?>
+                         </h2>
+                        <address class="address_seller"><?php  $_countries = Mage::getResourceModel('directory/country_collection')->loadData()->toOptionArray(false); ?>
+                        <?php foreach ($_countries as $_country) {?>
+                            <?php if($sellerData['country'] == $_country['value']){?>
+                            <?php $sellerCountry = $_country['label'];?>
+                            <?php } ?>
+                        <?php } ?>
+                        <?php echo $sellerData['state'].','.$sellerCountry;?></address>
+                        <p class="description_seller">
+                            <?php $description = strip_tags($sellerData['description']);
+                        $newLengthDescription = strlen( $description);
+                        $newSubDescription = substr($description, 0, 500);
+                        if ($newLengthDescription >= 500) {
+                            $newDescriptionFix = $newSubDescription . "...";
+                        } else {
+                            $newDescriptionFix = $description;
+                        }
+                        echo $newDescriptionFix; ?>
+                        <a href="<?php echo $getRequestPath; ?>">
+                        <?php
+                        /**
+                         *  Display read more option
+                         */
+                        echo $this->__('More >'); ?></a></p>
+                   </div>
+                   <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 brand-about-cont">
+                       <?php if (strpos($sellerData->getStoreBanner(), '.')) { ?>
+                           <img src="<?php echo Mage::getBaseUrl('media') . "marketplace/resized/" . $sellerData->getStoreBanner(); ?>" alt="store banner" class="market_place_store_img_banner" width="100%" height="100%" />
+                       <?php } ?>
+                   </div>
+             </div>
+                <div class="col-md-12" style="margin-top:50px;">
+                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                            <?php
+                            $country = str_replace(" ", "+",$sellerData->getCountry());
+                            $state = str_replace(" ", "+",$sellerData->getState());
+                            $url = 'http://maps.google.com/maps/api/geocode/json?address="'.$state.'"&sensor=false&region="'.$country.'"';
+                            $response = file_get_contents($url);
+                            $response = json_decode($response, true);
+                            /**
+                             *  initialising latitude and longitude as empty
+                             */
+                            $lat = $long = '';
+                            /**
+                             *  Checking latitude is there in the response data
+                             *  if so assign the value to a variable
+                             */
+                            if(isset($response['results'][0]['geometry']['location']['lat'])){
+                            $lat = $response['results'][0]['geometry']['location']['lat'];
+                            }
+                            /**
+                             *  Checking longitude is there in the response data
+                             *  if so assign the longitude value to a variable
+                             */
+                            if(isset($response['results'][0]['geometry']['location']['lng'])){
+                            $long = $response['results'][0]['geometry']['location']['lng'];
+                            }
+                            /**
+                             * Checking latitude is not empty
+                             * and longitude is not empty
+                             */
+                            if(!empty($lat) && !empty($long)){
+                            ?>
+                           <script
+                src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+                </script>
+                    <script>
+                    var myCenter=new google.maps.LatLng(<?php echo $lat; ?>,<?php
+                     echo $long;?>);
+
+                    function initialize()
+                    {
+                    var mapProp = {
+                      center:myCenter,
+                      zoom:5,
+                      mapTypeId:google.maps.MapTypeId.ROADMAP
+                      };
+
+                    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+                    var marker=new google.maps.Marker({
+                      position:myCenter,
+                      });
+
+                    marker.setMap(map);
+                    }
+
+                    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+                    </script>
+                            <div id="googleMap"   style="width:100%;height: 400px"></div>
+
+                      <?php }
+
+                      /**
+                       * Ends map functionality
+                       */
+                            $sellCountry = $sellerData->getCountry();
+                            $sellState = $sellerData->getState();
+                       ?>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 map-cont-left">
+                        <h1 class="map-location">DESIGN STUDIO LOCATION</h1>
+                        <h3 class="map-store"><?php if(!empty($sellState)): ?><span><?php echo $sellState;?></span>, <?php endif;?><span><?php echo $countries[$sellCountry];?></span></h3>
+                        <p class="map-brande">You are shopping directly from <br> the design studio of <?php echo $sellerData->getStoreTitle();?></p>
+                        <div class="soc-media-wrapper">
+                            <?php
+                            /**
+                             * Check the id is not empty of the social sharings like
+                             * linked in
+                             * Facebook
+                             * Twitter
+                             * Google Plus
+                             * if they are not empty display their title with links
+                             */
+                            if($sellerData->getLinkedId() != ''){?>
+                                <a href="<?php echo $sellerData->getLinkedId(); ?>" target="_blank" title="<?php
+                                echo $this->__('Instagram') ?>" class="instagram"><img src="http://148.251.126.204/~grotto/media/wysiwyg/instagram_circle.png" /></a>
+                            <?php } ?>
+                            <?php if($sellerData->getFacebookId() != ''){?>
+                                <a href="<?php echo $sellerData->getFacebookId(); ?>" target="_blank" title="<?php
+                                echo $this->__('Facebook') ?>" class="facebook">&nbsp;</a>
+                            <?php } ?>
+                            <?php if($sellerData->getTwitterId() != ''){?>
+                                <a href="<?php echo $sellerData->getTwitterId();?>" target="_blank" title="<?php
+                                echo $this->__('twitter') ?>" class="twitter">&nbsp;</a>
+                            <?php } ?>
+                            <?php if($sellerData->getGoogleId() != ''){?>
+                                <a href="<?php echo $sellerData->getGoogleId();?>" target="_blank" title="<?php
+                                echo $this->__('Pinterest') ?>" class="pinterest"><img src="http://148.251.126.204/~grotto/media/wysiwyg/pinterest-cir.png" /></a>
+                            <?php } ?>
+                </div>
+         </div>
+                <div class="col-md-12">
+                    <?php
+
+                $displaySeller  = Mage::getModel('marketplace/sellerreview')->displayReview($sellerId);
+                $firstStar     = $secondStar = $thirdStar = $fourthStar = $fifthStar = $advancedTotal = $ratingbar_color = 0;
+
+                /**
+                 * ITERATING ALL RATINGS
+                 */
+                $advancedTotal=0;
+                foreach ($displaySeller as $individualStar) {
+                    $advancedTotal = $advancedTotal + 1;
+                    /**
+                     *  Check the individual rating is equal to 1
+                     *  if so increment the first star value by 1
+                     */
+                    if ($individualStar['rating'] == 1) {
+                        $firstStar = $firstStar + 1;
+                    }
+                    /**
+                     *  Check the individual rating is equal to 2
+                     *  if so increment the second star value by 1
+                     */
+                    elseif ($individualStar['rating'] == 2) {
+                        $secondStar = $secondStar + 1;
+                    }
+                    /**
+                     *  Check the individual rating is equal to 3
+                     *  if so increment the third star value by 1
+                     */
+                    elseif ($individualStar['rating'] == 3) {
+                        $thirdStar = $thirdStar + 1;
+                    }
+                    /**
+                     *  Check the individual rating is equal to 4
+                     *  if so increment the fourth star value by 1
+                     */
+                    elseif ($individualStar['rating'] == 4) {
+                        $fourthStar = $fourthStar + 1;
+                    }
+                    /**
+                     *  Check the individual rating is equal to 5
+                     *  if so increment the fifth star value by 1
+                     */
+                    else{
+                    if($individualStar['rating'] == 5) {
+                        $fifthStar = $fifthStar + 1;
+                    }
+                    }
+                }
+
+                /**
+                 *  CALCULATING INDIVIDUAL RATINGS
+                 */
+                /**
+                 *  Intialising 0 value to variables like
+                 *  advanced one
+                 *  advanced two
+                 *  advanced three
+                 *  advanced four
+                 *  advanced five
+                 */
+                $advancedOne = $advancedTwo = $advancedThree = $advancedFour = $advancedFive = 0;
+                /**
+                 *  Check advanced total is greater than or equal to 1
+                 */
+                if($advancedTotal >= 1){
+                $advancedOne   = ($firstStar / $advancedTotal) * 100;
+                $advancedTwo   = ($secondStar / $advancedTotal) * 100;
+                $advancedThree = ($thirdStar / $advancedTotal) * 100;
+                $advancedFour  = ($fourthStar / $advancedTotal) * 100;
+                $advancedFive  = ($fifthStar / $advancedTotal) * 100;
+                }
+
+                $positiveFeedBack = ($advancedFour + $advancedFive)/2;
+                $totalRatings = $firstStar + $secondStar + $thirdStar + $fourthStar + $fifthStar;
+                /**
+                 *  Check the total ratings is not equal to empty
+                 *  if so display total ratings
+                 */
+                if($totalRatings != ''){
+                  echo round($positiveFeedBack,1);
+                   echo $this->__('% positive feedback. (');
+                    echo number_format($totalRatings).' ';
+                    echo $this->__('ratings )');
+                }
+                ?>
+                </div>
+                <div class="col-md-12">
+                   <h3 class="title-sp"><?php $sellerProducts = $this->sellerproduct($sellerId);
+                   $sellerProducts->addFieldToFilter('entity_id',array('neq' => $productId))->addUrlRewrite();
+                   //$sellerProducts->getSelect()->limit(4);
+                   ?>
+                    <?php
+                    /**
+                     *  Check seller products count greater than or equal to 1
+                     */
+                    if(count($sellerProducts) >= 1){ ?>
+                    <?php echo $this->__('YOU MIGHT ALSO LIKE');
+                       ?>
+
+                   </h3>
+                    <?php if(count($sellerProducts) >4){ ?>
+                    <div class="slider4">
+                    <?php foreach($sellerProducts as $_sellerProducts){ ?>
+                    <?php
+                    /**
+                     *  Check the current product id is not equal to seller products entity id
+                     */
+                    if($productId != $_sellerProducts['entity_id']){
+                            $productInfo = Mage::helper('marketplace/marketplace')->getProductInfo($_sellerProducts['entity_id']);
+                        ?>
+
+
+                        <div class="slide">
+                            <a href="<?php echo $_sellerProducts->getProductUrl(); ?>">
+                                <img src="<?php echo Mage::helper('catalog/image')->init($productInfo, 'thumbnail')->resize(300); ?>" width="300" />
+
+                            </a>
+                            <h2 class="product-name-s">
+                                <?php echo $productInfo['name']; ?>
+                            </h2>
+                            <?php $formattedPrice = Mage::helper('core')->currency($productInfo['price'], true, false);  ?>
+                            <p class="price price-prd"><?php echo $formattedPrice; ?></p>
+                        </div>
+                    <?php }
+                    } ?>
+                    </div>
+                    <script>
+
+                        $j(document).ready(function($){
+                            $('.slider4').bxSlider({
+                                slideWidth: 250,
+                                minSlides: 2,
+                                maxSlides: 4,
+                                moveSlides: 1,
+                                slideMargin: 10
+                            });
+                        });
+                    </script>
+               <!-- <a href='<?php /*echo $getRequestPath; */?>' class="btn_more">-->
+              <!--  <?php /*echo $this->__('More')*/?></a>-->
+                   <?php  } ?>
+                </div>
+                    <?php  } else {?>
+                        <?php foreach($sellerProducts as $_sellerProducts){ ?>
+                            <?php
+                            /**
+                             *  Check the current product id is not equal to seller products entity id
+                             */
+                            if($productId != $_sellerProducts['entity_id']){
+                                $productInfo = Mage::helper('marketplace/marketplace')->getProductInfo($_sellerProducts['entity_id']);
+                                ?>
+                                    <img src="<?php echo Mage::helper('catalog/image')->init($productInfo, 'thumbnail')->resize(300); ?>" width="300" />
+                            <?php }
+                        } ?>                    <?php  }?>
+                </div>
+<?php } ?>
+
+<?php } ?>
+  
+

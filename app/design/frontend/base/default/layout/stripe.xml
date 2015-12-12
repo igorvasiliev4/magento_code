@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <stripe_index_index>
+    	 <reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" template="stripe/form/stripe.phtml" />
+        </reference>
+    </stripe_index_index>
+</layout> 

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Attribute
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <modules>
+        <MT_Attribute>
+            <version>1.0</version>
+        </MT_Attribute>
+    </modules>
+
+    <global>
+        <helpers>
+            <mtattribute>
+                <class>MT_Attribute_Helper</class>
+            </mtattribute>
+        </helpers>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_attribute_edit_tab_options>MT_Attribute_Block_Adminhtml_Catalog_Product_Attribute_Edit_Tab_Options</catalog_product_attribute_edit_tab_options>
+                </rewrite>
+            </adminhtml>
+            <catalog>
+                <rewrite>
+                    <product_view_type_configurable>MT_Attribute_Block_Catalog_Product_View_Type_Configurable</product_view_type_configurable>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <resources>
+            <mtattribute_setup>
+                <setup>
+                    <module>MT_Attribute</module>
+                </setup>
+            </mtattribute_setup>
+        </resources>
+        <models>
+            <mtattribute>
+                <class>MT_Attribute_Model</class>
+            </mtattribute>
+            <catalog_resource>
+                <rewrite>
+                    <attribute>MT_Attribute_Model_Resource_Attribute</attribute>
+                </rewrite>
+            </catalog_resource>
+            <!--catalog>
+                <rewrite>
+                    <layer_filter_attribute>MT_Attribute_Model_Catalog_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog-->
+        </models>
+    </global>
+
+    <adminhtml>
+        <events>
+            <controller_action_layout_render_before_adminhtml_catalog_product_attribute_edit>
+                <observers>
+                    <mtattribute>
+                        <class>MT_Attribute_Model_Observer</class>
+                        <method>updateLayout</method>
+                    </mtattribute>
+                </observers>
+            </controller_action_layout_render_before_adminhtml_catalog_product_attribute_edit>
+        </events>
+    </adminhtml>
+
+    <frontend>
+        <layout>
+            <updates>
+                <mtattribute>
+                    <file>mt_attribute.xml</file>
+                </mtattribute>
+            </updates>
+        </layout>
+    </frontend>
+
+    <default>
+        <mtattribute>
+            <general>
+                <show>0</show>
+            </general>
+        </mtattribute>
+    </default>
+</config>

@@ -1,0 +1,175 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$theme = $this->helper('mtghost');
+$relatedCheckbox = $theme->getCfg('magento_blocks/related_products_checkbox');
+if($theme->getCfg('product_page/related_hover_slider')):
+    $hoverPause = 'true';
+else:
+    $hoverPause = 'false';
+endif;
+$showItem = $theme->getCfg('product_page/related_count');
+if($this->getItems()->getSize() && $theme->getCfg('product_page/related_count')): 
+$helpImg = $this->helper('mttheme/image');
+$imgWidth = $theme->getCfg('category/image_width') ? $theme->getCfg('category/image_width') : 295;
+$imgHeight = $theme->getCfg('category/image_height') ? $theme->getCfg('category/image_height') : 295;
+if($theme->getCfg('category/aspect_ratio')){
+    $imgHeight = 0;
+}
+$cfaltimage = $theme->getCfg('category/alt_image');
+if($cfaltimage != 0){
+    $hoveraltClass = ($cfaltimage == 1) ? 'alt-image' : '';
+}
+?>
+<div class="block block-related">
+	<div class="main-heading">
+	   <div class="heading-line">&nbsp;</div>
+	   <div class="heading-wrapper-title block-title">
+			<strong><span><?php echo $this->__('Related Products') ?></span></strong>
+		</div>
+   </div>
+   <div class="nav-wrapper pull-right" id="nav-wrapper-related"></div>
+    <div class="block-content products-grid">
+	    <?php if($relatedCheckbox):?>
+        <p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+        <?php endif;?>
+		<div id="mt-related-slide" class="itemslider itemslider-responsive">
+            <ul class="slides mini-products-list" id="block-related">
+                <?php foreach($this->getItems() as $_item): ?>
+                    <li class="items-slider <?php echo 'show-'.$showItem.'-item'; ?>">
+                        
+                        <div class="product">
+						    <div class="product-image-hover">
+								<a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" class="product-image">
+									<?php echo $this->helper('mtghost')->getLabel($_item);  ?>
+									<div class="front margin-image <?php echo $hoveraltClass;?>">
+									      <img class="img-responsive" src="<?php echo $helpImg->getImg($_item, $imgWidth, $imgHeight, 'small_image'); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" />
+									</div>
+									<div class="product-img-additional back margin-image">
+										<?php if ($theme->getCfg('category/alt_image')): ?>
+											<?php echo $theme->getAltImgHtml($_item, $imgWidth, $imgHeight); ?>
+										<?php endif; ?>
+									</div>
+								</a>
+							</div>
+                            <div class="product-details">
+                                <h3 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
+                                <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                    <!--<a href="<?php //echo $this->getAddToWishlistUrl($_item) ?>" class="link-wishlist"><?php //echo $this->__('Add to Wishlist') ?></a>-->
+                                <?php endif; ?>
+								<?php if(!$_item->isComposite() && $_item->isSaleable() && $relatedCheckbox): ?>
+									<?php if (!$_item->getRequiredOptions()): ?>
+										<input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
+									<?php endif; ?>
+								<?php endif; ?>
+									<!--Other-->
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+    </div>
+   <script type="text/javascript">
+    //<![CDATA[
+    jQuery(function($){
+		var RW = 200,
+			RM = 5,
+			itemsCount = getFlexSliderItemWidth('mt-related-slide', {"type":"width","data":RW,"margin":RM}, 'column');
+			
+        $('#mt-related-slide').flexslider({
+            namespace: "",
+            animation: "slide",
+            //easing: "easeInQuart",
+            <?php if($timeout = intval($theme->getCfg('product_slider/timeout'))): ?>
+            slideshowSpeed: <?php echo $timeout; ?>,
+            animationLoop: true,
+            <?php else: ?>
+            slideshow: false,
+            animationLoop: false,
+            <?php endif; ?>
+            <?php if($speed = intval($theme->getCfg('product_slider/speed'))): ?>
+            animationSpeed: <?php echo $speed; ?>,
+            <?php endif; ?>
+            pauseOnHover: <?php echo $hoverPause;?>,
+            controlNav: false,
+            controlsContainer: "#nav-wrapper-related",
+            //itemWidth: 220,
+			itemWidth: getFlexSliderItemWidth('mt-related-slide', {"type":"width","data":RW,"margin":RM}, 'width'),
+			itemMargin: RM,
+            <?php $maxItems = intval($theme->getCfg('product_page/related_count'));?>
+            minItems:  itemsCount,//<?php echo $maxItems;?>,
+            maxItems: itemsCount,//<?php echo $maxItems;?>,
+            //move: <?php echo intval($theme->getCfg('product_slider/move_items')); ?>
+			selector: '.slides > .items-slider',
+			onResize: function(slider){
+				var itemsCount = getFlexSliderItemWidth('mt-related-slide', {"type":"width","data":RW,"margin":RM}, 'column');
+				slider.vars.minItems = itemsCount;
+				slider.vars.maxItems = itemsCount;
+			}
+        });
+    });
+    <?php if($relatedCheckbox):?>
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    <?php endif;?>
+    //]]>
+    </script>
+</div>
+<?php endif ?>

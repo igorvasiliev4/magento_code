@@ -1,0 +1,47 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<tr>
+    <td class="label">
+        <label>
+            <?php echo $this->getElement()->getLabel()?>
+            <?php if ($this->getElement()->getRequired()):?><span class="required">*</span><?php endif ?>
+        </label>
+    </td>
+    <td class="value">
+        <input type="text" class="entities <?php if ($this->getElement()->getRequired()):?>required-entry<?php endif ?>" name="<?php echo $this->getElement()->getName()?>" readonly id="<?php echo $this->getElement()->getHtmlId()?>" value="<?php echo $this->getElement()->getValue() ?>">
+        <a class="n-underline" href="javascript:void(0)" onclick="mtWidgetProduct.displayEntityChooser('<?php echo $this->getId() ?>')" title="<?php echo Mage::helper('mtwidget')->__('Open Chooser')?>">
+            <img class="v-middle" src="<?php echo $this->getSkinUrl('images/rule_chooser_trigger.gif')?>"/>
+        </a>
+        <a class="n-underline" href="javascript:void(0)" onclick="mtWidgetProduct.hideEntityChooser('<?php echo $this->getId() ?>')" title="<?php echo Mage::helper('mtwidget')->__('Apply')?>">
+            <img class="v-middle" src="<?php echo $this->getSkinUrl('images/rule_component_apply.gif')?>"/>
+        </a>
+        <!--a class="n-underline" href="javascript:void(0)" onclick="mtWidgetProduct.clearEntityValue('<?php echo $this->getId() ?>')" title="<?php echo Mage::helper('mtwidget')->__('Clear value')?>">
+            <img class="v-middle" src="<?php echo $this->getSkinUrl('images/cancel_icon.gif')?>"/>
+        </a-->
+        <p class="note">
+            <span><?php echo $this->getElement()->getNote()?></span>
+        </p>
+        <div id="<?php echo $this->getId()?>" class="grid-container"></div>
+    </td>
+</tr>
+<style type="text/css">
+    a.n-underline{text-decoration: none}
+    .fieldset-wide .form-list td.value input.page{width: 2em !important;}
+    #loading-mask{z-index: 2000}
+</style>
+<script type="text/javascript">
+    window.mtWidgetProduct = new MTWidgetChooser('<?php echo $this->getProductsChooserUrl()?>');
+    Ext.onReady(function(){
+        Event.observe(document, 'productNode:changed', function(event){
+            window.mtWidgetProduct.checkProduct(event);
+        });
+    });
+</script>

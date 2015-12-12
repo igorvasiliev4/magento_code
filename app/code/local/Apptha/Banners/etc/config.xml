@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Apptha
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://www.apptha.com/LICENSE.txt
+*
+* ==============================================================
+*                 MAGENTO EDITION USAGE NOTICE
+* ==============================================================
+* This package designed for Magento COMMUNITY edition
+* Apptha does not guarantee correct work of this extension
+* on any other Magento edition except Magento COMMUNITY edition.
+* Apptha does not provide extension support in case of
+* incorrect edition usage.
+* ==============================================================
+*
+* @category    Apptha
+* @package     Apptha_Banners
+* @version     0.1.0
+* @author      Apptha Team <developers@contus.in>
+* @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+* @license     http://www.apptha.com/LICENSE.txt
+*
+*/
+-->
+<config>
+	<modules>
+		<Apptha_Banners>
+			<version>0.1.0</version>
+		</Apptha_Banners>
+	</modules>
+	<global>
+		<helpers>
+			<banners>
+				<class>Apptha_Banners_Helper</class>
+			</banners>
+		</helpers>
+		<blocks>
+			<banners>
+				<class>Apptha_Banners_Block</class>
+			</banners>
+		</blocks>
+		 <models>
+            <banners>
+                <class>Apptha_Banners_Model</class>
+                <resourceModel>banners_resource</resourceModel>
+            </banners>
+            <banners_resource>
+                <class>Apptha_Banners_Model_Resource</class>
+                <deprecatedNode>banners_resource_eav_mysql4</deprecatedNode>
+                <entities>
+                    <slides>
+                        <table>apptha_slides_details</table>
+                    </slides>
+                    <banner>
+                        <table>apptha_banners_details</table>
+                    </banner>
+                    <bannerSlide>
+                        <table>apptha_slide_banner</table>
+                    </bannerSlide>                  
+                </entities>
+            </banners_resource>
+        </models>
+        <resources>
+            <banners_setup>
+                <setup>
+                    <module>Apptha_Banners</module>
+                    <class>Apptha_Banners_Model_Resource_Setup</class>
+                </setup>
+            </banners_setup>
+        </resources>
+        <events>
+	        <banners_controller_banner_added>
+		        <observers>
+		            <banners_added>
+			            <class>banners/observer</class>
+			            <method>addBannerToSlider</method>
+		            </banners_added>
+		        </observers>
+	        </banners_controller_banner_added>
+	    </events>
+	</global>
+	<frontend>
+		<layout>
+			<updates>
+				<banners>
+					<file>apptha_banners.xml</file>
+				</banners>
+			</updates>
+		</layout>
+	</frontend>
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<banners>Apptha_Banners_Adminhtml</banners>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	<adminhtml>
+		<layout>
+			<updates>
+				<banners>
+					<file>apptha_banners.xml</file>
+				</banners>
+			</updates>
+		</layout>
+	</adminhtml>
+	<default>
+		<banners>
+			<settings>
+				<enabled>1</enabled>
+			</settings>
+		</banners>
+	</default>
+</config>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Filter
+@copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author ZooExtension.com
+@email       magento@cleversoft.co
+-->
+<layout>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addJs">
+                <script>jscolor/jscolor.js</script>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+</layout>

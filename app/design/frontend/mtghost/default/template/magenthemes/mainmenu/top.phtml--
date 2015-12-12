@@ -1,0 +1,106 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category Mato
+ * @package Mato Framework
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       ZooExtension.com
+ * @email        magento@cleversoft.co
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<!-- navigation BOF -->
+<?php
+$theme = $this->helper('mtghost');
+$megaeffect = Mage::getStoreConfig('mtghost/menu/effect');
+$_menu = $this->renderCategoriesMenuHtml(FALSE, FALSE, 0, 'level-top', 'sub-wrapper', False);
+$routeName = Mage::app()->getRequest()->getRouteName();
+$identifier = Mage::getSingleton('cms/page')->getIdentifier();
+
+?>
+<?php /*
+<div class="navbar visible-xs">
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse">
+                    <span class="sr-only"><?php //echo $this->__('Navigation');?></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+*/ ?>
+<?php if ($_menu): ?>
+    <div class="mt-navigation hidden-xs">
+
+        <div class="mt-main-menu">
+            <ul id="mtnav" class="megamenu">
+                <?php if (Mage::getStoreConfig('mtghost/menu/home')) { ?>
+                    <li class="level0 home level-top <?php if ($routeName == 'cms' && $identifier == 'home') {
+                        echo " active";
+                    } ?> m-dropdown parent">
+                        <a href="<?php echo $this->getBaseUrl(); ?>"
+                           class="level-top"><span><?php echo $this->__('Home'); ?></span></a>
+                    </li>
+                <?php } ?>
+                <?php
+                echo $_menu;
+                if (Mage::getStoreConfig('mtghost/menu/enable_custom')) {
+                    $getidentifier = Mage::getStoreConfig('mtghost/menu/static_identifier');
+                    $arrayidentifier = explode(";", $getidentifier);
+                    foreach ($arrayidentifier as $mcustom) {
+                        $static_block = explode(':', $mcustom);
+                        $custom_menu = Mage::getModel('cms/block')->load($static_block[0]);
+                        if ($static_block[1]) $class = 'menu-item-' . $static_block[1];
+                        if ($custom_menu->getIsActive()) {
+                            echo '
+                                <li class="level0 level-top parent custom-block ' . $class . '">
+                                  <a href="#" class="level-top">
+                                    <span>' . $custom_menu->getTitle() . '</span>
+                                  </a>
+                                  <div class="sub-wrapper">' . $this->getLayout()->createBlock('cms/block')->setBlockId($static_block[0])->toHtml() . '</div>
+                                </li>';
+                        }
+                    }
+                    $urlkey = Mage::getStoreConfig('mtghost/menu/url_key');
+                    $arrayUrlKey = explode(";", $urlkey);
+                    foreach ($arrayUrlKey as $url) {
+                        $condition = explode(':', $url);
+                        $page = Mage::getModel('cms/page')->load($condition[0], 'identifier');
+                        if (isset($condition[1])) $class = 'menu-item-' . $condition[1];
+                        if ($page->getIsActive()) {
+                            ?>
+                            <li class="level0 level-top parent custom-block <?php if ($routeName == 'cms' && $identifier == $page->getIdentifier()) {
+                                echo " active";
+                            } ?> <?php echo $class; ?>">
+                                <a href="<?php echo Mage::helper('cms/page')->getPageUrl($condition[0]); ?>"
+                                   class="level-top">
+                                    <span><?php echo $page->getTitle(); ?></span>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $mt(function () {
+            $mt(".megamenu").megamenu({
+                'animation': '<?php echo $megaeffect;?>',
+                'mm_timeout': 150
+            });
+        });
+    </script>
+<?php endif ?>
+<!-- navigation EOF -->

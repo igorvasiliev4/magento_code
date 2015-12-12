@@ -1,0 +1,40 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+/* @var $this MT_Widget_Block_Widget */
+$categories = $this->getCategories();
+$id         = $this->getConfig('id');
+$scroll     = $this->getConfig('scroll');
+$title      = $this->getConfig('widget_title');
+?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <?php if ($title): ?>
+        <h2><?php echo $title ?></h2>
+    <?php endif ?>
+    <div class="<?php echo $scroll==1 ? 'owl-carousel ' : '' ?>">
+        <?php foreach ($categories as $category): ?>
+            <div style="<?php if ($category['image']): ?>background-image: url(<?php echo $category['image'] ?>)<?php endif ?>">
+                <a href="<?php echo $category['url'] ?>"><span><?php echo $this->escapeHtml($category['label']) ?></span></a>
+                <span><?php echo $category['count'] ?>&nbsp;<?php echo $this->__('product(s)') ?></span>
+            </div>
+        <?php endforeach ?>
+    </div>
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>mt/widget/frontend.js"></script>
+    <script type="text/javascript">
+        new MT.Widget('<?php echo $id ?>', {
+            animation: <?php echo $this->getConfig('animation') ?>,
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>
+        });
+    </script>
+</div>

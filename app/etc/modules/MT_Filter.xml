@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Filter
+@copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author ZooExtension.com
+@email       magento@cleversoft.co
+-->
+<config>
+    <modules>
+        <MT_Filter>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <MT_Extensions/>
+            </depends>
+        </MT_Filter>
+    </modules>
+</config>

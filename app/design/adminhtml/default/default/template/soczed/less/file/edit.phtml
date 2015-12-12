@@ -1,0 +1,56 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Soczed
+ * @package    Soczed_Less
+ * @copyright  Copyright (c) 2012 Soczed <magento@soczed.com> (Benoît Leulliette <benoit@soczed.com>)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<div class="content-header">
+    <h3 class="icon-head"><?php echo $this->getHeader() ?></h3>
+    <p class="content-buttons form-buttons"><?php echo $this->getBackButtonHtml() ?>
+    <?php echo $this->getCancelButtonHtml() ?>
+    <?php echo $this->getDeleteButtonHtml() ?>
+    <?php echo $this->getSaveButtonHtml() ?>
+    <?php echo $this->getSaveAndEditButtonHtml() ?>
+    </p>
+</div>
+<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="less_file_edit_form" enctype="multipart/form-data">
+    <?php echo $this->getBlockHtml('formkey') ?>
+    <div style="display:none;"></div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var lessFileTemplateSyntax = /(^|.|\r|\n)({{(\w+)}})/;
+    var lessFileForm = new varienForm('less_file_edit_form');
+    
+    function saveAndContinueEdit(urlTemplate)
+    {
+        var template = new Template(urlTemplate, lessFileTemplateSyntax);
+        var url = template.evaluate({tab_id: less_file_info_tabsJsTabs.activeTab.id});
+        lesFileForm.submit(url);
+    }
+    
+    function setSettings(urlTemplate, typeElement)
+    {
+        var template = new Template(urlTemplate, lessFileTemplateSyntax);
+        setLocation(template.evaluate({type: $F(typeElement)}));
+    }
+    
+    Event.observe(window, 'load', function(){
+        var objName = '<?php echo $this->getSelectedTabId() ?>';
+        if (objName) {
+            obj = $(objName);
+            less_file_info_tabsJsTabs.setSkipDisplayFirstTab();
+            less_file_info_tabsJsTabs.showTabContent(obj);
+        }
+    });
+//]]>
+</script>

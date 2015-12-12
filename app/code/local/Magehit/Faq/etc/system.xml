@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<config>
+    <tabs>
+        <magehit translate="label" module="faq">
+            <label>MAGE HIT</label>
+            <sort_order>0</sort_order>
+        </magehit>
+    </tabs>    
+    <sections>
+        <magehit_faq>
+            <label>FAQ Settings</label>
+            <tab>magehit</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>3</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <general translate="label" module="faq">
+                    <label>Meta data Settings</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+					    <page_title translate="label">
+                            <label>Page Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </page_title>
+						<faq_description translate="label">
+                            <label>Meta Description</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </faq_description>
+                        <faq_keyword translate="label">
+                            <label>Meta Keywords</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order></sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </faq_keyword>   
+                        <faq_robots translate="label">
+                            <label>Meta Robots</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_design_robots</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </faq_robots>
+                        <include_google_sitemap>
+                            <label>Include in Google Sitemap</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                        </include_google_sitemap>
+                        <priority translate="label comment">
+                            <label>Priority in Sitemap</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_sitemap</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Valid values range from 0.0 to 1.0</comment>
+                        </priority>
+                    </fields>
+                </general>
+            </groups>
+        </magehit_faq>	
+	 </sections>
+</config>

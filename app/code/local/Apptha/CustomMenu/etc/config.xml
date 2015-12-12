@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.2.3
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2014 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ * 
+ */
+/**
+* Custom Menu Module configuration file
+*/
+-->
+<config>
+    <modules>
+        <Apptha_CustomMenu>
+            <version>1.0</version>
+        </Apptha_CustomMenu>
+    </modules>
+    <frontend>
+        <routers>
+            <custommenu>
+                <use>standard</use>
+                <args>
+                    <frontName>custommenu</frontName>
+                    <module>Apptha_CustomMenu</module>
+                </args>
+            </custommenu>
+        </routers>
+        <layout>
+            <updates>
+                <custommenu>
+                    <file>custommenu.xml</file>
+                </custommenu>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <custom_menu translate="title" module="custommenu">
+                                            <title><![CDATA[Custom Menu]]></title>
+                                            <sort_order>2000</sort_order>
+                                        </custom_menu>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+    <global>
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <navigation>Apptha_CustomMenu_Block_Navigation</navigation><!-- v1.4-1.6 -->
+                </rewrite>
+            </catalog>
+            <page>
+                <rewrite>
+                    <html_topmenu>Apptha_CustomMenu_Block_Topmenu</html_topmenu><!-- v1.7 -->
+                </rewrite>
+            </page>
+            <custommenu>
+                <class>Apptha_CustomMenu_Block</class>
+            </custommenu>
+        </blocks>
+        <helpers>
+            <custommenu>
+                <class>Apptha_CustomMenu_Helper</class>
+            </custommenu>
+        </helpers>
+    </global>
+    <default>
+        <custom_menu>
+            <general>
+                <enabled>1</enabled>
+                <ajax_load_content>1</ajax_load_content>
+                <mobile_menu>1</mobile_menu>
+                <display_empty_categories>1</display_empty_categories>
+                <max_level>3</max_level>
+                <show_home_link>1</show_home_link>
+                <non_breaking_space>0</non_breaking_space>
+                <rtl>0</rtl>
+                <version>2.6.0</version>
+            </general>
+            <columns>
+                <count>3</count>
+                <divided_horizontally>0</divided_horizontally>
+                <integrate>1</integrate>
+            </columns>
+            <popup>
+                <width>0</width>
+                <top_offset>0</top_offset>
+                <delay_displaying>150</delay_displaying>
+                <delay_hiding>100</delay_hiding>
+            </popup>
+        </custom_menu>
+    </default>
+</config>

@@ -1,0 +1,60 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Filter
+ * @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+    $bar = Mage::helper('mtfilter')->getConfig('mtfilter/general/bar');
+    $barColor = '#'.Mage::helper('mtfilter')->getConfig('mtfilter/general/bar_color');
+?>
+<div id="<?php echo $this->getHash()?>" class="price-slider">
+    <div id="<?php echo $this->getHash('-min')?>" class="price-slider-handle min"></div>
+    <div id="<?php echo $this->getHash('-max')?>" class="price-slider-handle max"></div>
+    <div id="<?php echo $this->getHash('-span')?>" class="price-slider-span"></div>
+</div>
+<div class="layer-price">
+    Range: <?php echo $this->getCurrencySymbol()?>
+    <span id="layer-price-min"></span>&nbsp;&nbsp;-&nbsp;&nbsp;<?php echo $this->getCurrencySymbol()?><span id="layer-price-max"></span>
+</div>
+<style type="text/css">
+    .price-slider{
+        height: 1px;
+        width: 100%;
+        background: #333;
+        position: relative;
+        margin: 10px auto;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .price-slider .price-slider-handle{
+		height: 15px;
+		position: absolute;
+		top: -7px;
+		width: 15px;
+    }
+    .price-slider-handle.min{
+        background: #333;
+    }
+    .price-slider-handle.max{
+        background: #333;
+    }
+    .layer-price{
+        text-align: left;
+        font-family: "Droid Serif", sans-serif;
+        font-size: 13px;
+        color: #333;
+        margin-top: 32px;
+    }
+</style>
+<script type="text/javascript">
+    window.mtFilter.initPriceFilter(<?php echo $this->getConfig()?>);
+</script>

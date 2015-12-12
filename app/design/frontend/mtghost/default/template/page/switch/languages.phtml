@@ -1,0 +1,72 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Language switcher template
+ *
+ * @see Mage_Page_Block_Switch
+ */
+?>
+<?php if(count($this->getStores())>1): ?>
+
+<?php 
+	$name_store = $this->htmlEscape(Mage::app()->getStore()->getName());
+	$path_img = Mage::getBaseDir('media');
+//echo strtolower($name_store);
+	$link_flag = Mage::getBaseUrl('media').'wysiwyg/magenthemes/languages/'.strtolower($name_store).'.jpeg';
+	$link_flag_default = Mage::getBaseUrl('media').'wysiwyg/magenthemes/languages/unknown.png';
+	$filename = $path_img.'/wysiwyg/magenthemes/languages/'.strtolower($name_store).'.jpeg';
+
+?>
+<div class="language-topbar">
+    <span class="setting-label"><?php echo $this->__("Select Language")?></span>
+
+	<div class="lang-lists">
+
+
+		<?php foreach ($this->getStores() as $_lang): ?>
+          <?php
+          $class = "";
+          if($name_store === $this->htmlEscape($_lang->getName())){
+              $class = "active";
+          }
+          ?>
+			<div class="lang-item <?php echo $class; ?>">
+				<a href="<?php echo $_lang->getCurrentUrl() ?>">
+					<?php if(file_exists(Mage::getBaseDir('media').'/wysiwyg/magenthemes/languages/'.$this->htmlEscape(strtolower($_lang->getName())).'.jpg')) : ?>
+						<span class="img-flag"><img src="<?php echo Mage::getBaseUrl('media').'wysiwyg/magenthemes/languages/'.$this->htmlEscape(strtolower($_lang->getName())).'.jpg' ?>" alt="<?php echo $this->htmlEscape(strtolower($_lang->getName())) ?>"></span>
+					<?php else : ?>
+						<span class="img-flag"><img src="<?php echo Mage::getBaseUrl('media').'wysiwyg/magenthemes/languages/unknown.png' ?>" alt="<?php echo $this->htmlEscape(strtolower($_lang->getName())) ?>"></span>
+					<?php endif; ?>
+<!--					<span class="lang-name">--><?php //echo $this->htmlEscape($_lang->getName()) ?><!--</span>-->
+				</a>
+			</div>
+		<?php endforeach; ?>
+	</div>
+</div>
+
+<?php endif; ?>

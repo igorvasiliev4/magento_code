@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Filter
+@copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author ZooExtension.com
+@email       magento@cleversoft.co
+-->
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mtfilter translate="title">
+                                        <title>MT Filter</title>
+                                    </mtfilter>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,165 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<?php
+$theme = $this->helper('mtghost');
+$cfgrtl = $theme->getThemeLayoutCfg('responsive/rtl_language');
+$class = $cfgrtl ? 'rtl':'';
+$slideshow_position = $theme->getCfg('header/slideshow_position');
+?>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" class="ie ie8"><![endif]-->
+<!--[if IE 9]><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" class="ie ie9"><![endif]-->
+<!--[if !IE]>-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class=" '.$class.' '.$this->getBodyClass().'"':'' ?>>
+<section class="mt-container">
+<div id="overlay">
+<div class="row">
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('newsletter-success')->toHtml(); 
+?> 
+</div> 
+</div>
+<script>
+$j = jQuery.noConflict();
+var message = '<?php echo strip_tags($this->getChildHtml('global_messages')) ?>';
+console.log(message);
+if (message == 'Thank you for your subscription.'){
+document.getElementById("overlay").style.display = 'block';
+}
+</script>
+    <?php echo $this->getChildHtml('mtsidebar') ?>
+    <section class="mt-wrapper">
+        <?php echo $this->getChildHtml('after_body_start') ?>
+        <?php if($slideshow_position == 'above')  echo '<div class="above">'.$this->getChildHtml('header').'</div>'; ?>
+        <?php echo $this->getChildHtml('global_notices') ?>
+        <section class="main-container col1-layout">
+            <div class="mt-widget-slider">
+                <div class="row">
+                    <div class="col-md-12 mt-preface">
+                        <div class="main_slide main_slide_inner">
+                            <?php echo $this->getChildHtml('preface') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php if($slideshow_position == 'below') {  echo '<div class="below">'.$this->getChildHtml('header').'</div>' ; ?>
+                    <style type="text/css">.slider-main-top{margin: 0;padding:0;}</style>
+                    <?php } ?>
+            <div class="clearfix main-breadcrumbs breadcrumb-wrap">
+                <div class="container">
+                    <div class="row main">
+                        <div class="col-md-12 long-box-shadow">
+                            <?php echo $this->getChildHtml('breadcrumbs') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="main-top">
+                <div class="container">
+                    <div class="main">
+                        <div class="main-inner main-top-inner">
+                            <div class="show-grid">
+                                  <?php echo $this->getChildHtml('main_top') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-main">
+                <div class="main-content container">
+                    <div class="main">
+                        <div class="main-inner main-content-inner">
+                            <div class="show-grid">
+                                <div class="col-main">
+                            <?php echo strip_tags($this->getChildHtml('global_messages')) ?>
+                                    <?php echo $this->getChildHtml('content') ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_brands-full">
+                <div class="main">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <?php echo $this->getChildHtml('main_brands') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_brands-full">
+                <div class="main">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php echo $this->getChildHtml('main_bottom') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main_brands-full">
+                <div class="main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <?php echo $this->getChildHtml('main_bottom_1') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <div id="bg_fade" class="apptha_onepage_bg_fade" style="visibility: hidden;"><a  href="javascript:closeLink1()">&nbsp;</a></div>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+    </section>
+</section>
+
+
+
+<script>
+$j = jQuery.noConflict();
+$j(".x").click(function() {
+$j("#overlay").hide();
+});
+</script>
+
+
+</body>
+</html>

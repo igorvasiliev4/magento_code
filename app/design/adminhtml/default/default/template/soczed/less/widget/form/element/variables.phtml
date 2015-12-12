@@ -1,0 +1,100 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Soczed
+ * @package    Soczed_Less
+ * @copyright  Copyright (c) 2012 Soczed <magento@soczed.com> (Benoît Leulliette <benoit@soczed.com>)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+    $_htmlId    = $this->getElement()->getHtmlId();
+    $_htmlClass = $this->getElement()->getClass();
+    $_htmlName  = $this->getElement()->getName();
+?>
+<tr>
+    <td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+    <td colspan="10" class="grid">
+    <table cellspacing="0" class="data border" id="variables_table">
+        <col />
+        <col />
+        <col width="1" />
+        <thead>
+            <tr class="headings">
+                <th><?php echo $this->__('Code') ?></th>
+                <th><?php echo $this->__('Value') ?></th>
+                <th class="last"><?php echo $this->__('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody id="<?php echo $_htmlId ?>_container"></tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+            </tr>
+        </tfoot>
+    </table>
+
+<script type="text/javascript">
+//<![CDATA[
+var variablesRowTemplate = '<tr>'
+    + '<td class="first"><input class="<?php echo $_htmlClass ?> required-entry" type="text" name="<?php echo $_htmlName ?>[{{index}}][code]" value="{{code}}" id="variables_row_{{index}}_code" /></td>'   
+    + '<td><input class="<?php echo $_htmlClass ?> required-entry" type="text" name="<?php echo $_htmlName ?>[{{index}}][value]" value="{{value}}" id="variables_row_{{index}}_value" /></td>'
+    + '<td class="last"><input type="hidden" name="<?php echo $_htmlName ?>[{{index}}][delete]" class="delete" value="" id="variables_row_{{index}}_delete" />'
+    + '<button title="<?php echo $this->jsQuoteEscape($this->__('Delete Option')) ?>" type="button" class="scalable delete icon-btn delete-product-option" id="variables_row_{{index}}_delete_button" onclick="return variablesSourceControl.deleteItem(event);">'
+    + '<span><?php echo $this->jsQuoteEscape($this->__('Delete')) ?></span></button></td>'
+    + '</tr>';
+
+var variablesSourceControl = {
+    template: new Template(variablesRowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', '')),
+    itemsCount: 0,
+    
+    addItem : function ()
+    {
+        var data = {
+            code: '',
+            value: '',
+            index: this.itemsCount++
+        };
+        
+        if(arguments.length >= 1) {
+            data.code     = arguments[0];
+            data.value    = arguments[1];
+        }
+        
+        Element.insert($('<?php echo $_htmlId ?>_container'), {
+            bottom : this.template.evaluate(data)
+        });
+        
+        $('variables_row_' + data.index + '_code').value  = data.code;
+        $('variables_row_' + data.index + '_value').value = data.value;
+        
+        $('<?php echo $_htmlId ?>_container').select('input', 'select').each(function(el){ 
+            Event.observe(el, 'change', el.setHasChanges.bind(el)); 
+        });
+    },
+    
+    deleteItem: function(event)
+    {
+        var tr = Event.findElement(event, 'tr');
+        if (tr) {
+            Element.select(tr, '.delete').each(function(elem){ elem.value='1' });
+            Element.select(tr, ['input', 'select']).each(function(elem){ elem.hide() });
+            Element.hide(tr);
+            Element.addClassName(tr, 'no-display template');
+        }
+        return false;
+    }
+};
+<?php $_i=0; foreach ($this->getValues() as $_item): ?>
+variablesSourceControl.addItem('<?php echo $this->jsQuoteEscape($_item['code']) ?>', '<?php echo $this->jsQuoteEscape($_item['value']) ?>');
+<?php endforeach; ?>
+//]]>
+</script>
+    </td>
+</tr>

@@ -1,0 +1,42 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+/* @var $this MT_Widget_Block_Widget */
+$_id                = $this->getConfig('id');
+$_title             = $this->getConfig('widget_title');
+$t                  = microtime();
+?>
+<?php if ($this->checkCollectionSize('collection', $this->getData('mode'))): ?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $_id ?>">
+    <div class="main-heading">
+        <div class="heading-wrapper-title">
+            <?php if ($_title): ?>
+                <h3><span><?php echo $_title ?></span></h3>
+            <?php endif ?>
+        </div>
+    </div>
+    <?php echo $this->renderCollection('collection', $this->getData('mode'), 'mt/widget/collection_position02.phtml') ?>
+</div>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>mt/widget/frontend.js"></script>
+<script type="text/javascript">
+    new MT.Widget('<?php echo $_id ?>', {
+        animation: <?php echo $this->getConfig('animation') ?>,
+        parallax: <?php echo $this->getConfig('parallax') ?>,
+        carousel: <?php echo $this->getConfig('carousel') ?>,
+        carouselConfig: null,
+        countdown: <?php echo $this->getConfig('countdown') ?>,
+        countdownConfig: null,
+        countdownTemplate: '<div class="day"><span class="no">%d</span><span class="text">days</span></div><div class="hours"><span class="no">%h</span><span class="text">hours</span></div><div class="min"><span class="no">%i</span><span class="text">min</span></div><div class="second"><span class="no">%s</span><span class="text">secs</span></div>',
+        kenburns: <?php echo $this->getConfig('kenburns') ?>
+    });
+</script>
+<?php endif;?>
+<?php //Mage::log(microtime() - $t) ?>

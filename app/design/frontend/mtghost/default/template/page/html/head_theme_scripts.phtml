@@ -1,0 +1,13 @@
+<?php 
+$isResponsive = Mage::helper('mtghost')->getThemeLayoutCfg('responsive/responsive');
+?>
+<script type="text/javascript">
+    var magenThemes = {};
+    magenThemes.responsive = <?php echo ($isResponsive ? 'true' : 'false'); ?>;
+    <?php if($isResponsive):?>
+    magenThemes.maxBreak = 1170;
+    <?php else:?>
+    magenThemes.maxBreak = 970;
+    <?php endif;?>
+	magenThemes.url = '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>';
+</script>

@@ -1,0 +1,348 @@
+.layered-navigation-select {
+    width: 100%;
+}
+.col-main, .category-products {
+    position: relative;
+}
+.products-list-loader {
+    background: #fff;
+    bottom: 0px;
+    cursor: progress;
+    filter: alpha(opacity=80);
+    height: 100%;
+    left: 0px;
+    margin: 0px;
+    moz-opacity: .80;
+    opacity: .80;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+    z-index: 10000;
+}
+.products-list-loader div {
+    background: transparent url("images/loader_32x32.gif") center 80px no-repeat;
+    margin: 0px;
+    padding: 170px 0px 80px;
+    text-align: center;
+}
+.block-layered-nav {
+    position: relative;
+}
+.block-layered-nav .products-list-loader {
+    background: transparent;
+    bottom: 0px;
+    cursor: progress;
+    filter: alpha(opacity=80);
+    height: 100%;
+    left: 0px;
+    margin: 0px;
+    moz-opacity: .80;
+    opacity: .80;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+}
+.block-layered-nav .products-list-loader div {
+    background: #fff url("images/loader_32x32.gif") center no-repeat;
+    bottom: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 100px 0px 80px;
+    position: absolute;
+    right: 0px;
+    text-align: center;
+    top: 0px;
+}
+li.filter.filter-opened.filter-price {
+    background: #efefef;
+}
+#slider_outer {
+    margin-top: 15px;
+}
+.price-slider-values {
+    padding-top: 25px;
+    text-align: center;
+}
+.price-slider-values input[type=text] {
+    border: solid 1px #d8d8d8;
+    color: #211e1f;
+    padding-left: 2px;
+    padding-right: 2px;
+    width: 35px;
+}
+.price-slider-values .filter-currency {
+    color: #aaaaaa;
+    padding-right: 3px;
+}
+#price-filter-button{
+    background-color: #cccccc;
+}
+#price-filter-button:hover{
+    background-color: #333333;
+}
+#price-filter-button img {
+    height: 15px;
+    vertical-align: middle;
+    width: auto;
+}
+.block-layered-nav .currently li {
+    clear: both;
+    display: block;
+    float: none;
+}
+.block-layered-nav .currently li.filter-contents {
+    background: none;
+    clear: none;
+    display: inline;
+    float: left;
+    padding: 3px;
+}
+.block-layered-nav .currently .btn-remove {
+    margin: 5px 5px 0px 3px;
+}
+.block-layered-nav .actions {
+    clear: both;
+    display: block;
+    float: none;
+}
+#narrow-by-list{
+  /*  border-bottom: solid 1px #ccc;*/
+}
+#narrow-by-list .filter-title.filter-title-collapsed,
+#narrow-by-list .filter-title.filter-title-expanded,
+div.filter-title{
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    padding-left:10px;
+    padding-right:30px;
+    cursor:pointer;
+   /* border: solid 1px #ccc;*/
+    font-size:1.1em;
+    padding-top:7px;
+    padding-bottom:7px;
+    /*background-color:#efefef;*/
+}
+#narrow-by-list .filter-title.filter-title-collapsed:hover,
+#narrow-by-list .filter-title.filter-title-expanded:hover{
+    /*background-color: #ececec;*/
+}
+#narrow-by-list .filter-title.filter-title-collapsed:after,
+#narrow-by-list .filter-title.filter-title-expanded:after{
+    display:none;
+}
+#narrow-by-list .filter-title.filter-title-collapsed,
+#horizontal-layered-navigation-container .filter-title{
+    /*background-image: url("images/chevron-down.png");*/
+    background-image: url("images/plusp.png");
+}
+#narrow-by-list .filter-title.filter-title-collapsed:not(:last-of-type){
+    border-bottom:none;
+}
+
+#narrow-by-list .filter-title.filter-title-expanded,
+#horizontal-layered-navigation-container .filter-title.horizontal-filter-title-expanded{
+   /* background-image: url("images/chevron-up.png");  */
+    background-image: url("images/minusp.png");
+}
+#narrow-by-list .filter-content, 
+.filter-content{
+    padding:15px 10px;
+   /* border: solid #ccc;
+    border-width: 0px 1px;*/
+}
+#narrow-by-list .filter-content.filter-content-collapsed{
+    display:none;
+}
+#narrow-by-list .filter-content.filter-content-expanded{
+    display:block;
+    padding-top:12px;
+    background-image: none;
+}
+#narrow-by-list .filter-content:last-of-type{
+    border-bottom-width: 1px;
+}
+#narrow-by-list a.remove-filter, .block-layered-nav p.block-subtitle a.remove-all-filters {
+    background: url("images/btn_remove.gif") no-repeat center;
+    display: inline-block;
+    height: 11px;
+    overflow: hidden;
+    text-indent: -900px;
+    width: 11px;
+}
+ol.layered-links{
+    overflow-y: auto;
+}
+ol.layered-links li,
+ol#category-filters li{
+    padding: 0px;
+    float:none !important;
+}
+ol.layered-links li > a, ol#category-filters li > a {
+    background: url("images/checkbox-off.png") left center no-repeat;
+    display: block;
+    padding: 0px 0px 0px 20px;
+    margin:0px 0px 2px;
+    border:none;
+    text-align: left;
+}
+ol.layered-links li > a span.swatch-label,
+.active-filter-option > a span.swatch-label{
+    display:inline-block;
+    vertical-align: middle;
+}
+ol.layered-links li.no-items {
+    padding: 0px 0px 0px 20px;
+    background: url("images/checkbox-disabled.png") left center no-repeat;    
+}
+ol.layered-links li.active-filter-option > a,
+ol#category-filters li.active-filter-option > a{
+    background: url("images/checkbox-on.png") -4px center no-repeat;
+}
+ol.layered-links li a .item-count,
+ol#category-filters li a .item-count{
+    color: #2F2F2F;
+    text-decoration: none;
+}
+ol#category-filters li.no-items > a {
+    background: #efefef url("images/checkbox-off.png") 0px center no-repeat;
+    color: #aaa;
+    padding: 0px 0px 0px 20px;
+}
+ol#category-filters ul {
+    display: none;
+    margin-left: 10px;
+}
+ol#category-filters li.parent > a.category-expand {
+    background: url("images/category-open.png") left center no-repeat;
+}
+ol#category-filters li.parent > a.category-collapse {
+    background: url("images/category-close.png") left center no-repeat;
+}
+.block-layered-nav .currently li {
+    clear: both;
+    display: block;
+    float: none;
+}
+.block-layered-nav .currently li.filter-contents {
+    background: none;
+    clear: none;
+    display: inline;
+    float: left;
+    padding: 3px;
+}
+
+.block-layered-nav .currently #status-filter{
+    display: inline-block;
+}
+
+.block-layered-nav .currently #status-filter .btn-remove-option {
+    background: url(images/btn_remove.gif) 0 0 no-repeat;
+    display: inline-block;
+    font-size: 0;
+    height: 11px;
+    line-height: 20px;
+    margin-right: 3px;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 11px;
+}
+.block-layered-nav .currently #status-filter .selected-option-label {
+    display: inline-block;
+}
+.block-layered-nav .actions {
+    clear: both;
+    display: block;
+    float: none;
+}
+/* horizontal layered navigation */
+#block-layered-nav-horizontal #status-filter{
+    padding-left: 0px;
+    float: left;
+    width: 100%;
+}
+#block-layered-nav-horizontal #status-filter li{
+    float:left;
+    clear:none;
+}
+#block-layered-nav-horizontal #status-filter li:not(.filter-contents){
+    padding-left:10px;
+}
+#block-layered-nav-horizontal #status-filter li:first-of-type{
+    padding-left:0px;
+}
+#block-layered-nav-horizontal #status-filter li a.btn-remove{
+    float:none;
+}
+#horizontal-layered-navigation-container{
+    width:100%;
+    clear:both;
+    z-index:100;
+    position:relative;
+    margin-bottom:15px;
+}
+#horizontal-layered-navigation-container div.horizontal-filter {
+    /* properties here */
+    display:inline-block;
+    position:relative;
+}
+#horizontal-layered-navigation-container div.horizontal-filter .filter-title{
+    white-space: nowrap;
+    max-width:100%;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    margin:3px 3px 0px 0px;
+}
+/* > 7 filters */
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(n+7),
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(n+7) ~ div.horizontal-filter {
+    width:12%;
+}
+/* = 7 filters */
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+7):first-child,
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+7):first-child ~ div.horizontal-filter {
+    width:13.5%;
+}
+/* = 6 filters */
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+6):first-child,
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+6):first-child ~ div.horizontal-filter {
+    width:16%;
+}
+/* = 5 filters */
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+5):first-child,
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+5):first-child ~ div.horizontal-filter {
+    width:20%;
+}
+/* <= 4 filters */
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+4):first-child,
+#horizontal-layered-navigation-container div.horizontal-filter:nth-last-child(-n+4):first-child ~ div.horizontal-filter {
+    width:25%;
+}
+#horizontal-layered-navigation-container div.horizontal-filter .filter-content{
+    position:absolute;
+    top:100%;
+    margin-top:-1px;
+    left:0px;
+    background:#ffffff;
+    border-width:1px;
+    display:none;
+    width:180%;
+}
+#horizontal-layered-navigation-container div.horizontal-filter .filter-content.horizontal-filter-content-expanded{
+    display:block;
+}
+#horizontal-layered-navigation-status li{
+    display:inline-block;
+    margin-right:5px;
+    margin-bottom: 5px;
+}
+#horizontal-layered-navigation-status li > a{
+    display:inline-block;
+    padding:4px 20px 4px 10px;
+    border: solid 1px #ccc;
+    background:#ffffff url(images/btn_remove.gif) 95% center no-repeat;
+}
+#horizontal-layered-navigation-status li > a span.item-count{
+    display:none;
+}

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category Mato
+ * @package      MT_Newsletter
+ *
+ * @copyright    Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       ZooExtension.com
+ * @email        magento@cleversoft.co
+ **
+ */
+ -->
+<config>
+    <modules>
+        <MT_Newsletter>
+            <version>2.0.0</version>
+        </MT_Newsletter>
+    </modules>
+    <global>
+        <models> 
+            <mtnewsletter>
+                <class>MT_Newsletter_Model</class>
+            </mtnewsletter>
+        </models>
+        <resources>
+            <mtnewsletter_setup>
+                <setup>
+                    <module>MT_Newsletter</module>
+                </setup>
+            </mtnewsletter_setup>
+        </resources>
+        <blocks>
+            <mtnewsletter>
+                <class>MT_Newsletter_Block</class>
+            </mtnewsletter>
+        </blocks>
+        <helpers>
+            <mtnewsletter>
+                <class>MT_Newsletter_Helper</class>
+            </mtnewsletter>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <mtnewsletter>
+                <use>standard</use>
+                <args>
+                    <module>MT_Newsletter</module>
+                    <frontName>mtnewsletter</frontName>
+                </args>
+            </mtnewsletter>
+        </routers>
+        <layout>
+            <updates>
+                <mtnewsletter>
+                    <file>mt_newsletter.xml</file>
+                </mtnewsletter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <mtnewsletter>
+                    <files>
+                        <default>MT_Newsletter.csv</default>
+                    </files>
+                </mtnewsletter>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <mtnewsletter>
+                <use>admin</use>
+                <args>
+                    <module>MT_Newsletter</module>
+                    <frontName>mtnewsletter</frontName>
+                </args>
+            </mtnewsletter>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtnewsletter>
+                    <file>mt_newsletter.xml</file>
+                </mtnewsletter>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <mtnewsletter>
+                    <files>
+                        <default>MT_Newsletter.csv</default>
+                    </files>
+                </mtnewsletter>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <mtnewsletter>
+            <display_options>
+                <enable>1</enable>
+                <background_color>#FFFFFF</background_color>
+                <background_image></background_image>
+                <intro></intro>
+                <width>700</width>
+                <height>300</height>
+            </display_options>
+        </mtnewsletter>
+    </default>
+</config>

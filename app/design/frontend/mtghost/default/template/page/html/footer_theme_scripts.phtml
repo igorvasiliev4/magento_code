@@ -1,0 +1,213 @@
+<?php
+$theme = $this->helper('mtghost');
+$equalHeight = $theme->getCfg('category_grid/equal_height');
+$displayAddtocart = $theme->getCfg('category_grid/display_addtocart');
+$displayAddtolink = $theme->getCfg('category_grid/display_addtolinks');
+$compareHeader = $theme->getCfg('header/compare');
+?>
+<script type="text/javascript">
+    <?php if ($equalHeight): ?>
+    function setGridItemsEqualHeight($)
+    {
+        var winWidth = $(window).width();
+        var SPACING = 0;
+        if (winWidth >= 480)
+        {
+            $('.show-grid').removeClass("auto-height");
+            var gridItemMaxHeight = 0;
+            $('.show-grid > .item').each(function() {
+                $(this).css("height", "auto");
+                <?php if ($displayAddtocart == 2 || $displayAddtolink == 2): ?>
+                var actionsHeight = $(this).find('.actions').height();
+                $(this).css("padding-bottom", (actionsHeight + SPACING) + "px"); //Set new padding
+                <?php endif; ?>
+                gridItemMaxHeight = Math.max(gridItemMaxHeight, $(this).height());
+            });
+            $('.show-grid > .item').css("height", gridItemMaxHeight + "px");
+        }
+        else
+        {
+            $('.show-grid').addClass("auto-height");
+            $('.show-grid > .item').css("height", "auto");
+            $('.show-grid > .item').css("padding-bottom", "20px");
+        }
+    }
+    <?php endif; ?>
+    function setGridItem($){
+        var winWidth = $(window).width();
+        var col = <?php echo $theme->getCfg('category_grid/column_count');?>;
+        if(winWidth > 768){
+            newcol = col;
+        }
+        if(winWidth < 768 && winWidth >=640){
+            newcol = <?php echo $theme->getCfg('category_grid/column_count_768');?>;
+        }
+        if(winWidth >=480 && winWidth <640){
+            newcol = <?php echo $theme->getCfg('category_grid/column_count_640');?>;
+        }
+        if(winWidth < 480){
+            newcol = <?php echo $theme->getCfg('category_grid/column_count_480');?>;
+        }
+        $i = 0;
+        $('.show-grid > .item').each(function() {
+            $i++;
+            $(this).removeClass('first');
+            $(this).removeClass('last');
+            if(($i-1)%newcol==0){
+                $(this).addClass('first');
+            }else if($i%newcol==0){
+                $(this).addClass('last');
+            }
+        });
+    }
+    $mt(function($) {
+        var winWidth = $(window).width();
+        var winHeight = $(window).height();
+        var windowResize_t;
+        $(window).resize(function() {
+            var winNewWidth = $(window).width();
+            var winNewHeight = $(window).height();
+            if (winWidth != winNewWidth || winHeight != winNewHeight)
+            {
+                clearTimeout(windowResize_t);
+                windowResize_t = setTimeout(function() {
+                    $(document).trigger("themeResize");
+                    <?php if ($equalHeight): ?>
+                    setGridItemsEqualHeight($);
+                    <?php endif; ?>
+                    setGridItem($);
+                }, 200);
+            }
+            winWidth = winNewWidth;
+            winHeight = winNewHeight;
+        });
+        <?php if($compareHeader):?>
+        $('.mt-maincompare').hover(
+            function () {
+                $(this).addClass('compare-active').find('.mtajaxcompare').stop(true,true).delay(200).fadeIn();
+            },
+            function () {
+                $(this).removeClass('compare-active').find('.mtajaxcompare').stop(true,true).delay(200).fadeOut();
+            }
+        );
+        <?php endif; ?> 
+        // $("#select-language").selectbox();
+        // $("#select-currency").selectbox();
+        //lazyload
+        $("img.lazy").lazy({
+            effect : "fadeIn",
+            effectTime: 800,
+            threshold: 50, 
+            afterLoad: function(element) {
+                <?php if ($equalHeight): ?>
+                setGridItemsEqualHeight($);
+                <?php endif; ?>
+            }
+        });
+        // var text = $(".form-language a.sbSelector").text().toLowerCase();
+        // $(".form-language a.sbSelector").css({
+        //     "background-image":"url('<?php echo Mage::getBaseUrl();?>media/wysiwyg/magenthemes/languages/"+text+".png')",
+        //     "background-repeat":"no-repeat",
+        //     "background-position":"left center"
+        // });
+        //Back to top
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+        //Cart header
+        $('.mt-maincart').not('.mt-maincart-bar').hover(
+            function () {
+                $(this).addClass('cart-active').find('.ajaxcart').stop(true,true).delay(200).fadeIn();
+            },
+            function () {
+                $(this).removeClass('cart-active').find('.ajaxcart').stop(true,true).delay(200).fadeOut();
+            }
+        );
+        //Quickview
+        $('.product-quickview').live('click', function() {
+            $.colorbox({
+                iframe: true,
+                href:this.href,
+                opacity:    0.5,
+                speed:      300,
+                current:    '{current} / {total}',
+                close:      "close",
+                innerWidth:'765px',
+                innerHeight:'650px',
+                onOpen: function(){
+                    $('#cboxLoadingGraphic').addClass('box-loading');
+                },
+                onComplete: function(){
+                    setTimeout(function(){
+                        $('#cboxLoadingGraphic').removeClass('box-loading');
+                    },1300);
+                }
+            });
+        });
+
+        $('.show-quickview').live('click', function(e){
+            if($('.btn-cart-mobile').length == 0){
+                $(this).next().trigger('click');
+            }else{
+                return window.location.href=$(this).attr('data-submit');
+            }
+        });
+    });
+    $mt(window).load(function(){
+        <?php if ($equalHeight): ?>
+        setGridItemsEqualHeight($mt);
+        <?php endif; ?>
+        setGridItem($mt);
+    });
+    // JavaScript Document
+    $mt(window).load(function(){
+        $mt(".mt-tooltip").tooltip();
+        // var selectToggle = '<i class="fa fa-caret-down"></i>';
+        // var flextPrev = '<i class="fa fa-angle-left"></i>',
+        //     iconMenu = '<i class="fa fa-angle-down"></i>',
+        //     revoNext = '<i class="fa fa-chevron-right"></i>',
+        //     revoPrev = '<i class="fa fa-chevron-left"></i>',
+        //     revoBullet = '<i class="fa fa-circle"></i>',
+        //     flextNext = '<i class="fa fa-angle-right"></i>';
+
+        // $mt(".flex-direction-nav a").empty();
+        // $mt(".flex-direction-nav a.flex-prev").append(flextPrev);
+        // $mt(".flex-direction-nav a.flex-next").append(flextNext);
+        // $mt(".level0.sub-wrapper").prev('.level-top').append(iconMenu);
+        // $mt(".tp-leftarrow.default").append(revoPrev);
+        // $mt(".tp-rightarrow.default").append(revoNext);
+        // $mt(".tp-bullets .bullet").append(revoBullet);
+        // $mt(".sbToggle").append(selectToggle);
+    });
+    // function iconFontAwesome() {
+    //     //add font icon awesome
+
+    //     $mt(".links li a").prepend("<span></span>");
+    //     $mt(".links li.first span").addClass("icon_profile");
+    //     $mt(".links li a.top-link-wishlist span").addClass("icon_heart_alt");
+    //     $mt(".links li a.top-link-checkout span").addClass("icon_box-checked");
+    //     $mt(".links li.last span").addClass("icon_lock-open_alt");
+
+
+    // }
+    
+    $mt(".accordion-footer").addClass("accordion-show");
+        $mt(".accordion-footer").click(function(){
+            if($mt(this).parent().next().is(":visible")){
+                $mt(this).addClass("accordion-show");
+            }else{
+                $mt(this).removeClass("accordion-show");
+            }
+            $mt(this).parent().next().toggle(400);
+        });
+</script>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Attribute
+* @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mtattribute translate="title">
+                                        <title>MT Attribute Settings</title>
+                                    </mtattribute>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

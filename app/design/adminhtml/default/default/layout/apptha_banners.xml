@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Apptha
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://www.apptha.com/LICENSE.txt
+*
+* ==============================================================
+*                 MAGENTO EDITION USAGE NOTICE
+* ==============================================================
+* This package designed for Magento COMMUNITY edition
+* Apptha does not guarantee correct work of this extension
+* on any other Magento edition except Magento COMMUNITY edition.
+* Apptha does not provide extension support in case of
+* incorrect edition usage.
+* ==============================================================
+*
+* @category    Apptha
+* @package     Apptha_Banners
+* @version     0.1.0
+* @author      Apptha Team <developers@contus.in>
+* @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+* @license     http://www.apptha.com/LICENSE.txt
+*
+*/
+-->
+<layout>
+	
+	<banners_default>
+		
+	</banners_default>
+
+	<adminhtml_banners_index>
+		<reference name="content">
+			<block type="core/text" name="banners.dashboard.title">
+				<action method="setText">
+					<text><![CDATA[<div class="content-header"><h3>Apptha Banners</h3></div>]]></text>
+				</action>
+			</block>
+			<block type="banners/adminhtml_dashboard" name="banners.dashboard" />
+			<block type="core/text" name="ibanners.tabs.content">
+				<action method="setText">
+					<text><![CDATA[
+						<div id="apptha_banners_tab_content"></div>
+						<style type="text/css">#apptha_banners_tab_content .content-header { display: none; }</style>
+					]]></text>
+				</action>
+			</block>
+			<reference name="before_body_end">
+				<block type="core/template" name="banners.getCode" template="apptha_banners/getcode.phtml" />
+			</reference>
+		</reference>
+	</adminhtml_banners_index>
+	
+	<adminhtml_banners_slides_bannergrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="banners/adminhtml_slides_edit_tab_banners" name="slides.tab.banners"/>
+        </block>
+    </adminhtml_banners_slides_bannergrid>
+    
+    <adminhtml_banners_slides_getcode>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="banners/adminhtml_slides_getCode" name="slides.getcode" template="apptha_banners/generateCode.phtml"/>
+        </block>
+    </adminhtml_banners_slides_getcode>
+    
+	<adminhtml_banners_slides_edit>
+		<update handle="banners_default" />
+		<reference name="left">
+			<block type="banners/adminhtml_slides_edit_tabs" name="slides.tabs" />
+		</reference>
+		<reference name="content">
+			<block type="banners/adminhtml_slides_edit" name="slides" />
+		</reference>
+	</adminhtml_banners_slides_edit>
+	
+	<adminhtml_banners_banner_edit>
+		<update handle="banners_default" />
+		<reference name="left">
+			<block type="banners/adminhtml_banner_edit_tabs" name="banners.tabs" />
+		</reference>
+		<reference name="content">
+			<block type="banners/adminhtml_banner_edit" name="banners" />
+		</reference>
+	</adminhtml_banners_banner_edit>
+	
+</layout>

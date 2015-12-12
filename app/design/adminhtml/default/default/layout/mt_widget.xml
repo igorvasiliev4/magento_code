@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<layout>
+    <adminhtml_widget_instance_edit>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
+            <action method="addItem"><type>js_css</type><css>prototype/windows/themes/default.css</css></action>
+            <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/owl-carousel/effects.css</css></action>
+            <action method="addItem"><type>skin_css</type><css>lib/prototype/windows/themes/magento.css</css></action>
+            <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
+
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.11.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-ui-1.10.3.min.js</script></action>
+            <action method="addJs"><script>lib/flex.js</script></action>
+            <action method="addJs"><script>lib/FABridge.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+            <action method="addJs"><script>mt/extensions/browser.js</script></action>
+            <action method="addJs"><script>prototype/window.js</script></action>
+
+            <action method="addJs"><script>mt/widget/video.js</script></action>
+            <action method="addJs"><script>mt/widget/widget.js</script></action>
+        </reference>
+    </adminhtml_widget_instance_edit>
+    <adminhtml_cms_page_edit>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
+            <action method="addItem"><type>js_css</type><css>prototype/windows/themes/default.css</css></action>
+            <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/owl-carousel/effects.css</css></action>
+            <action method="addItem"><type>skin_css</type><css>lib/prototype/windows/themes/magento.css</css></action>
+            <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
+
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.11.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-ui-1.10.3.min.js</script></action>
+            <action method="addJs"><script>lib/flex.js</script></action>
+            <action method="addJs"><script>lib/FABridge.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+            <action method="addJs"><script>mt/extensions/browser.js</script></action>
+            <action method="addJs"><script>prototype/window.js</script></action>
+
+            <action method="addJs"><script>mt/widget/video.js</script></action>
+            <action method="addJs"><script>mt/widget/widget.js</script></action>
+        </reference>
+    </adminhtml_cms_page_edit>
+    <adminhtml_cms_block_edit>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
+            <action method="addItem"><type>js_css</type><css>prototype/windows/themes/default.css</css></action>
+            <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/owl-carousel/effects.css</css></action>
+            <action method="addItem"><type>skin_css</type><css>lib/prototype/windows/themes/magento.css</css></action>
+            <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
+
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.11.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-ui-1.10.3.min.js</script></action>
+            <action method="addJs"><script>lib/flex.js</script></action>
+            <action method="addJs"><script>lib/FABridge.js</script></action>
+            <action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action>
+            <action method="addJs"><script>mt/extensions/browser.js</script></action>
+            <action method="addJs"><script>prototype/window.js</script></action>
+
+            <action method="addJs"><script>mt/widget/video.js</script></action>
+            <action method="addJs"><script>mt/widget/widget.js</script></action>
+        </reference>
+    </adminhtml_cms_block_edit>
+</layout>

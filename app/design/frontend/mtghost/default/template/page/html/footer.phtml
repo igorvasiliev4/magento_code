@@ -1,0 +1,200 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$theme = $this->helper('mtghost');
+?>
+<footer class="footer-container">
+    <style>
+        .footer-container .footer-copyright .footer {
+            border-top: none !important;
+        }
+        .item .price-box{
+            float: none !important;
+        }
+        div#moreViews .owl-item{
+            display: block !important;
+        }
+        .category-products.clearfix .product-newin h3.product-name a{
+            float: none !important;
+            font-size: 14px !important;
+            letter-spacing:2px;
+        }
+    </style>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-top-inner">
+                    <div class="row footer">
+                        <div class="section-space">
+
+                            <div class="col-md-9 col-xs-12 col-sm-12">
+                                <?php echo $this->getChildHtml('footer_top') ?>
+                                <?php echo $this->getLayout()
+                                    ->createBlock('cms/block')
+                                    ->setBlockId('social')
+                                    ->toHtml();?>
+                            </div>
+                            <div class="col-md-3 col-xs-12 col-sm-12">
+                                <?php echo $this->getLayout()
+                                    ->createBlock('newsletter/subscribe')
+                                    ->setTemplate('newsletter/subscribe.phtml')
+                                    ->toHtml(); ?>
+
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="round-logo"><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA). 'wysiwyg/GROT.png'; ?>"/></div>
+            <div class="footer-bottom">
+                <div class="footer-top-inner">
+                    <div class="footer">
+                        <div class="section-space">
+                            <?php echo $this->getChildHtml('footer_bottom') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                            <address><?php echo $this->getCopyright() ?></address>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right">
+                            <div class="text-right ection-space">
+                                <?php echo $this->getChildHtml('footer_bottom_logo') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div id="back-top" class="hidden-phone">
+		<a href="#top">
+		<div class="sticker-wrapper">
+			<div class="sticker" title="<?php echo $this->__('Back to Top') ?>">
+			<i class="arrow_carrot-up"></i>
+			</div>
+		</div>
+		</a>
+	</div>
+</footer>
+<script>
+    $mt(function(){
+       $mt('.footer-item .footer-item-head').click(function(){
+           if($mt(this).parent('.footer-item').hasClass('active')){
+               $mt(this).parent('.footer-item').removeClass('active');
+           }
+           else{
+               $mt('.footer-item').removeClass('active');
+               $mt(this).parent('.footer-item').addClass('active');
+           }
+       });
+    });
+</script>
+<script type="text/javascript" src="http://148.251.126.204/~grotto/skin/frontend/mtghost/default/js/jquery.mb.YTPlayer.js"></script>
+<script type="text/javascript" src="http://148.251.126.204/~grotto/skin/frontend/mtghost/default/js/jquery.bxslider.min.js"></script>
+<script>
+    $j(document).ready(function($) {
+       $("#mtnav li.mega_align_left a.level-top").each(function(){
+           var href_li=$(this).attr("href");
+           $(this).attr("href",href_li+"#cat");
+       });
+
+        $(document).on("click" ,  ".product-options .attribute-item dt i", function(){
+            console.log("fkfkfkfkf");
+            $(this).parent().next().slideToggle();
+        })
+        var bg_link = $(".bg-link");
+
+        bg_link.each(function(indx){
+
+            if ($(this).attr("data-bg-link")){
+                $(this).css("background-image", "url(" + $(this).data("bg-link") + ")");
+            }
+
+        });
+        $j('.video-section').addClass('bg-yt-video');
+
+        $j(".bg-yt-video").YTPlayer({
+
+            autoPlay: false,
+            mute: true,
+            opacity: 1,
+            showControls: false,
+            optimizeDisplay: true,
+            startAt: 4,
+            showYTLogo: false,
+            stopMovieOnBlur: true,
+            quality: 'hd720',
+            gaTrack: false
+
+        });
+        if($j('#shipping-cont')[0]) {
+            var scrl_to=$j("#shipping-cont").offset().top;
+            if($j(window).scrollTop()>= scrl_to) {
+                $j(".bg-yt-video").playYTP();
+            }else if($j(window).scrollTop()>= scrl_to-100){
+                $j(".bg-yt-video").pauseYTP()
+            }
+            $j(window).scroll(function(){
+                scrl_to=$j("#shipping-cont").offset().top;
+
+                if($j(window).scrollTop()>= scrl_to) {
+                    $j(".bg-yt-video").playYTP();
+                }else{
+                    $j(".bg-yt-video").pauseYTP()
+                }
+            })
+        }
+       // product listing page //
+//  $j("#narrow-by-list dt").append("<i class='dt_span fa fa-plus'></i>");
+
+
+        $j(".block-layered-nav dd").slideToggle('fast');
+        $j(document).on('click','#narrow-by-list dt',function(){
+            $j(this).toggleClass("ic-minus");
+            $j(this).next().slideToggle();
+        })
+        var req_uri = window.location;
+        $j("#mtnav").children("li").children("a").each(function(){
+            if(req_uri==$j(this).attr("href")){
+                $j(this).addClass("active_link");
+            };
+        })
+        $j(".product-tabs li a").click(function(e){
+
+            $('.product-tabs li a i').not($(this).children('i')).addClass("fa-plus").removeClass("fa-minus");
+            $('.product-tabs .product-tabs-content').not($(this).next()).slideUp();
+            $(this).children('i').toggleClass("fa-plus fa-minus");
+            $(this).next().slideToggle();
+        })
+    });
+</script>

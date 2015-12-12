@@ -1,0 +1,62 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<tr>
+    <td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+    <td class="grid">
+        <table cellspacing="0" class="data border" id="<?php echo $this->getElement()->getHtmlId() ?>" style="width: 285px">
+            <colgroup>
+                <col width="200"/>
+                <col width="1"/>
+                <col width="1"/>
+            </colgroup>
+            <thead>
+                <tr class="headings">
+                    <th><?php echo Mage::helper('mtwidget')->__('Image Url') ?></th>
+                    <th><?php echo Mage::helper('mtwidget')->__('Browse') ?></th>
+                    <th><?php echo Mage::helper('mtwidget')->__('Delete') ?></th>
+                </tr>
+            </thead>
+            <tbody id="<?php echo $this->getElement()->getHtmlId() ?>_container"></tbody>
+            <tfoot>
+                <td colspan="3" class="a-right"><?php echo $this->getChildHtml('addBtn') ?></td>
+            </tfoot>
+        </table>
+    </td>
+</tr>
+<script type="text/javascript">
+    var rowTemplate = '<tr id="kbRow_{{id}}">'+
+        '<td><input type="text" class="input-text" name="<?php echo $this->getElement()->getName() ?>[]" style="width:98%;" id="kbImage_{{id}}" value="{{value}}"/></td>'+
+        '<td class="a-center"><button class="button" type="button" onclick="MT.MediabrowserUtility.openDialog(\'<?php echo Mage::getSingleton('adminhtml/url')->getUrl('adminhtml/cms_wysiwyg_images/index') ?>static_urls_allowed/1/target_element_id/kbImage_{{id}}\')"><span><?php echo Mage::helper('mtwidget')->__('Select') ?></span></button></td>'+
+        '<td class="a-center"><?php echo $this->getChildHtml('delBtn') ?></td>'+
+        '</tr>';
+
+    window.kenburnsImages = {
+        baseUrl: '<?php echo Mage::getBaseUrl('media') ?>',
+        template: new Template(rowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', "")),
+        itemsCount: 0,
+        container: $('<?php echo $this->getElement()->getHtmlId() ?>_container'),
+        add: function(image){
+            var data = {
+                value: image || '',
+                id: ++this.itemsCount
+            };
+            this.container.insert({bottom: this.template.evaluate(data)});
+        },
+        remove: function(id){
+            var tr = this.container.down('tr#kbRow_' + id);
+            if (tr) tr.remove();
+        }
+    };
+
+    <?php foreach ($this->getImages() as $item): ?>
+    window.kenburnsImages.add('<?php echo $item ?>');
+    <?php endforeach ?>
+</script>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mango_Ajaxlist>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Mango_Ajaxlist>
+    </modules>
+</config>

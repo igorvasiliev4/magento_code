@@ -1,0 +1,162 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_modern
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ */
+?>
+<?php
+$theme = $this->helper('mtghost');
+$section = array();
+$replaceUpsell = $theme->getCfg('product_page/replace_upsell');
+if ($replaceUpsell == 1) //don't replace with static block
+{
+    if ($tmpHtml = trim($this->getChildHtml('upsell_products')))
+        $section['upsell'] = $tmpHtml;
+    //$section['upsell'] = $this->getChildHtml('upsell_products');
+}
+elseif ($replaceUpsell == 2) //if upsell is empty, replace with static block
+{
+    if ($tmpHtml = trim($this->getChildHtml('upsell_products')))
+        $section['upsell'] = $tmpHtml;
+    else //upsell empty
+    if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
+        $section['upsell'] = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
+}
+elseif ($replaceUpsell == 3) //replace with static block
+{
+    if ($tmpHtml = $this->getChildHtml('block_product_replace_upsell'))
+        $section['upsell'] = '<div class="block_product_replace_upsell">'. $tmpHtml .'</div>';
+}
+//Add extra tabs: static blocks as tabs
+$_extraTabs = '';
+$_extraPanes = '';
+if ($tmpBlock = $this->getChildHtml('block_product_tab1'))
+{
+    $title = Mage::getModel('cms/block')->setStoreId(Mage::app()->getStore()->getId())->load('block_product_tab1')->getTitle();
+    $_extraTabs .= '<li id="product_tabs_block_product_tab1"><a href="#">'.$title.'</a></li>';
+    $_extraPanes .= '<div class="product-tabs-content" id="product_tabs_block_product_tab1_contents"><div class="product-tabs-content-inner clearfix"><div class="std">'.$tmpBlock.'</div></div></div>';
+}
+
+if ($tmpBlock = $this->getChildHtml('block_product_tab2'))
+{
+    $title = Mage::getModel('cms/block')->setStoreId(Mage::app()->getStore()->getId())->load('block_product_tab2')->getTitle();
+    $_extraTabs .= '<li id="product_tabs_block_product_tab2"><a href="#">'.$title.'</a></li>';
+    $_extraPanes .= '<div class="product-tabs-content" id="product_tabs_block_product_tab2_contents"><div class="product-tabs-content-inner clearfix"><div class="std">'.$tmpBlock.'</div></div></div>';
+}
+?>
+<ul class="product-tabs clearfix">
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+        <?php if($this->getChildHtml($_tab['alias'])): ?>
+            <li id="product_tabs_<?php echo $_tab['alias'] ?>" class="<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)?' last':'')?>  clearfix"><a href="javascript:void(0)"><?php echo $_tab['title']?><i class="fa fa-plus"></i></a>
+                <?php if($_tab['alias']=='upsell_products'):?>
+                        <div class="product-tabs-content" id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
+                            <div class="product-tabs-content-inner clearfix">
+                                <?php
+                                if (isset($section['upsell']))
+                                {
+                                    echo $section['upsell'];
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    <?php else:?>
+                        <div class="product-tabs-content" id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
+                            <div class="product-tabs-content-inner clearfix">
+                                <?php echo $this->getChildHtml($_tab['alias']) ?>
+                            </div>
+                        </div>
+                    <?php endif;?>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php echo $_extraTabs;?>
+</ul>
+<div class="title-divider">&nbsp;</div>
+<?php /*foreach ($this->getTabs() as $_index => $_tab): */?><!--
+    <?php /*if($this->getChildHtml($_tab['alias'])): */?>
+        <?php /*if($_tab['alias']=='upsell_products'):*/?>
+            <div class="product-tabs-content" id="product_tabs_<?php /*echo $_tab['alias'] */?>_contents">
+                <div class="product-tabs-content-inner clearfix">
+                    <?php
+/*                    if (isset($section['upsell']))
+                    {
+                        echo $section['upsell'];
+                    }
+                    */?>
+                </div>
+            </div>
+        <?php /*else:*/?>
+            <div class="product-tabs-content" id="product_tabs_<?php /*echo $_tab['alias'] */?>_contents">
+                <div class="product-tabs-content-inner clearfix">
+                    <?php /*echo $this->getChildHtml($_tab['alias']) */?>
+                </div>
+            </div>
+        <?php /*endif;*/?>
+    <?php /*endif; */?>
+--><?php /*endforeach; */?>
+    <?php echo $_extraPanes;?>
+<script type="text/javascript">
+//<![CDATA[
+Varien.Tabs = Class.create();
+Varien.Tabs.prototype = {
+  initialize: function(selector) {
+    var self=this;
+    $$(selector+' a').each(this.initTab.bind(this));
+  },
+
+  initTab: function(el) {
+      el.href = 'javascript:void(0)';
+      if ($(el.parentNode).hasClassName('active')) {
+        this.showContent(el);
+      }
+     /* el.observe('click', this.showContent.bind(this, el));*/
+  }/*,
+
+  showContent: function(a) {
+    var li = $(a.parentNode), ul = $(li.parentNode);
+    ul.select('li').each(function(el){
+      var contents = $(el.id+'_contents');
+      if (el==li) {
+        el.addClassName('active');
+        contents.show();
+      } else {
+        el.removeClassName('active');
+        contents.hide();
+      }
+    });
+  }*/
+}
+new Varien.Tabs('.product-tabs');
+//]]>
+</script>
+<script type="text/javascript">
+    $mt(function($){
+		$("#product_tabs_product_additional_data_contents,#product_tabs_product_additional_data").addClass('mobile')
+	});
+</script>		

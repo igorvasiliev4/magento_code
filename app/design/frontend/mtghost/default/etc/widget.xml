@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<widgets>
+     <mtwidget>
+     	<parameters>
+     		<template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <values> 
+					<position01 translate="label">
+                        <value>mt/widget/position01.phtml</value>
+                        <label>position01</label>
+                    </position01>
+					
+					<position02 translate="label">
+                        <value>mt/widget/position02.phtml</value>
+                        <label>position02</label>
+                    </position02>
+					
+					<position03 translate="label">
+                        <value>mt/widget/position03.phtml</value>
+                        <label>position03</label>
+                    </position03>
+					
+					<tab translate="label">
+                        <value>mt/widget/tab.phtml</value>
+                        <label>tab</label>
+                    </tab>
+					
+					<attribute translate="label">
+                        <value>mt/widget/attribute.phtml</value>
+                        <label>attribute</label>
+                    </attribute>
+					
+					<product-upsell translate="label">
+                        <value>mt/widget/product-upsell.phtml</value>
+                        <label>Product upsell</label>
+                    </product-upsell>
+					
+					<related translate="label">
+                        <value>mt/widget/related.phtml</value>
+                        <label>Related Products</label>
+                    </related>
+
+                    <positionrightdetail translate="label">
+                        <value>mt/widget/positionrightdetail.phtml</value>
+                        <label>positionrightdetail</label>
+                    </positionrightdetail> 
+					
+					<block translate="label">
+                        <value>mt/widget/block.phtml</value>
+                        <label>Block</label>
+                    </block>
+
+					<blog translate="label">
+                        <value>mt/widget/blog.phtml</value>
+                        <label>Blog</label>
+                    </blog>
+					
+                </values>
+            </template>
+     	</parameters>
+     </mtwidget>
+</widgets>

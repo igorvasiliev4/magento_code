@@ -1,0 +1,56 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category Mato
+ * @package Mato Framework
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       ZooExtension.com
+ * @email        magento@cleversoft.co
+ * ------------------------------------------------------------------------------
+ *
+ */
+?> 
+<script type="text/javascript">
+	(function($){
+		<?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxwishlist')) : ?>
+
+		$('.block-wishlist #wishlist-sidebar a').live('click', function(){ 
+			if (confirm($(this).attr('data-confirm'))) {
+				removetowishlist($(this));
+			} 
+			return false;
+		});
+		$('.add-to-links a.link-wishlist').live('click', function(){ 
+			addtowishlist($(this));
+			return false;
+		});   
+		if($('.product-view').length>0){
+			productAddToCartForm.submitLight = function(button, url){
+				return false; 
+			}.bind(productAddToCartForm);
+		}
+		<?php endif;?>
+		<?php if (Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcompare')) : ?>
+
+		$('.add-to-links a.link-compare').live('click', function(){ 
+			addtocompare($(this)); 
+			return false;
+		});
+		$('.block-compare #compare-items a, .block-top-compare a.btn-remove').live('click', function(){ 
+			if (confirm($(this).attr('data-confirm'))) {
+				removecompare($(this));
+			} 
+			return false;
+		});
+        $('.block-compare .clearall a, .block-compare .actions a, .block-top-compare .clearall a').live('click', function(){
+			if (confirm($(this).attr('data-confirm'))) {
+				clearallcompare($(this));
+			} 
+			return false;
+		}); 
+		<?php endif;?>
+	})($mt);
+</script>

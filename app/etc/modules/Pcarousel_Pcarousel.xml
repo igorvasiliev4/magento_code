@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Pcarousel_Pcarousel>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Pcarousel_Pcarousel>
+    </modules>
+</config> 

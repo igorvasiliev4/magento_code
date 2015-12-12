@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.7
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ * 
+ */
+ -->
+<config>
+	<tabs>
+		<Apptha translate="label" module="marketplace">
+			<label>Apptha</label>
+			<sort_order>100</sort_order>
+		</Apptha>
+	</tabs>
+	<sections>
+		<marketplace translate="label" module="marketplace">
+			<label>Marketplace</label>
+			<sort_order>130</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<tab>Apptha</tab>
+			<groups>
+				<marketplace translate="label">
+					<label>General Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<activate translate="label">
+							<label>Activate Marketplace</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</activate>
+						<apply_apptha_licensekey translate="label">
+							<label>Enter License Key</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<validate>required-entry</validate>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</apply_apptha_licensekey>
+						<admin_email_id translate="label">
+							<label>Email ID</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_identity
+							</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Go to System -> Configuration ->Store Email Addresses
+							</comment>
+						</admin_email_id>
+						<facebook_page translate="label">
+							<label>Enter Facebook page</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>(Please provide only the page name not full url)
+							</comment>
+						</facebook_page>
+						<twitter_page translate="label">
+							<label>Enter Twitter page</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>(Please provide only the page name not full url)
+							</comment>
+						</twitter_page>
+						<footer_content translate="label">
+							<label>Footer Copyright </label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>(Text to be displayed in footer copyright)</comment>
+						</footer_content>
+					</fields>
+				</marketplace>
+			</groups>
+
+			<groups>
+				<admin_approval_seller_registration
+					translate="label">
+					<label>Seller Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<need_approval translate="label">
+							<label>Need Admin Approval for Seller Registration</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</need_approval>
+						<new_seller_template translate="label">
+							<label>New Seller Registration Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</new_seller_template>
+						<email_template_selection translate="label">
+							<label>Select Seller Registration Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</email_template_selection>
+						<seller_email_template_selection
+							translate="label">
+							<label>Select Admin Approval Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</seller_email_template_selection>
+						<seller_email_template_disapprove
+							translate="label">
+							<label>Select Admin Disapproval Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</seller_email_template_disapprove>
+						<contact_admin translate="label">
+							<label>Contact Admin</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</contact_admin>
+						<vacation_mode translate="label">
+							<label>Enable Seller Vacation Mode</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</vacation_mode>
+						<contact_email_template_selection
+							translate="label">
+							<label>Select Contact Admin Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</contact_email_template_selection>
+						<sales_notification translate="label">
+							<label>Sales Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sales_notification>
+						<sales_notification_template_selection
+							translate="label">
+							<label>Select Sales Notification Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>9</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</sales_notification_template_selection>
+						<cancel_order_notification translate="label">
+							<label>Cancel Order Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cancel_order_notification>
+						<cancel_notification_template_selection
+							translate="label">
+							<label>Select Cancel Order Notification Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cancel_notification_template_selection>
+						<invoiced_order_notification
+							translate="label">
+							<label>Order Invoiced Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</invoiced_order_notification>
+						<invoiced_notification_template_selection
+							translate="label">
+							<label>Select Order Invoiced Notification Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</invoiced_notification_template_selection>
+						<displayproductpage translate="label">
+							<label>Display Seller Profile Link in Product Detail Page</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>14</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</displayproductpage>
+						<display_contact_seller translate="label">
+							<label>Display Seller Contact Information in Profile Page</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</display_contact_seller>
+						<contact_seller translate="label">
+							<label>Select Contact Seller Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>16</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</contact_seller>
+						<order_manage translate="label">
+							<label>Enable Manage Order for Seller</label>
+							<frontend_type>select</frontend_type>
+							Add a comment to this line
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_manage>
+						<order_cancel_request translate="label">
+							<label>Enable Cancel/Return Items Request Option for Buyers
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>18</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_cancel_request>
+						<order_cancel_request_notification_template_selection
+							translate="label">
+							<label>Select Order Cancel Request Email Template</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>19</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_cancel_request_notification_template_selection>
+					</fields>
+				</admin_approval_seller_registration>
+			</groups>
+			<groups>
+				<seller_review translate="label">
+					<label>Seller Review</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>4</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable_review translate="label">
+							<label>Enable Seller Review</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Enable Seller Review in seller profile page</comment>
+						</enable_review>
+						<need_approval translate="label">
+							<label>Need Admin Approval</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</need_approval>
+						<admin_notify_review translate="label">
+							<label>Select Email Template for New Review for Approval
+								Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</admin_notify_review>
+						<notify_new_review translate="label">
+							<label>Select Email Template for New Review Received Notification
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>91</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</notify_new_review>
+						<approve_review translate="label">
+							<label>Select Email Template for Review Approval Notification
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>95</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</approve_review>
+					</fields>
+				</seller_review>
+			</groups>
+			<groups>
+				<product translate="label">
+					<label>Product Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<productapproval translate="label">
+							<label>Product Auto Approval</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productapproval>
+						<producttype translate="label">
+							<label>Select Product Type(s)</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>marketplace/system_config_source_types
+							</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>(Press Ctrl+Select to select multiple product types)
+							</comment>
+						</producttype>
+						<productcustomoptions translate="label">
+							<label>Product Custom Option</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productcustomoptions>
+						<addproductemailnotification
+							translate="label">
+							<label>New Product Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</addproductemailnotification>
+
+						<addproductemailnotificationtemplate
+							translate="label">
+							<label>Select Email Template for New Product Added Notification
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</addproductemailnotificationtemplate>
+
+						<addproductapprovalemailnotificationtemplate
+							translate="label">
+							<label>Select Email Template for New Product Approval
+								Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</addproductapprovalemailnotificationtemplate>
+
+						<productmodificationnotification
+							translate="label">
+							<label>Product Enabled/Disabled Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</productmodificationnotification>
+
+						<addproductenabledemailnotificationtemplate
+							translate="label">
+							<label>Select Email Template for Product Enabled Notification
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</addproductenabledemailnotificationtemplate>
+						<addproductdisabledemailnotificationtemplate
+							translate="label">
+							<label>Select Email Template for Product Disabled Notification
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</addproductdisabledemailnotificationtemplate>
+						<product_sold_count translate="label">
+							<label>Enable Product Sold Count</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>71</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_sold_count>
+						<bulk_upload translate="label">
+							<label>Enable Bulk Product Upload Option for seller</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bulk_upload>
+						<bulkproductemailnotification
+							translate="label">
+							<label>Bulk Product Upload Email Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>110</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bulkproductemailnotification>
+						<bulkproductemailnotificationtemplate
+							translate="label">
+							<label>Select Email Template for New Product Added Notification
+							</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bulkproductemailnotificationtemplate>
+						<bulkproductapprovalemailnotificationtemplate
+							translate="label">
+							<label>Select Email Template for New Product Approval
+								Notification</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_email_template
+							</source_model>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</bulkproductapprovalemailnotificationtemplate>
+						<save_uploadfiles translate="label">
+							<label>Save Upload Files(csv and images)</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>140</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</save_uploadfiles>
+						<assign_product translate="label">
+							<label>Assign Product Option for Seller</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</assign_product>
+					</fields>
+				</product>
+			</groups>
+		</marketplace>
+	</sections>
+</config>

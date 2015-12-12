@@ -1,0 +1,35 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+/* @var $this MT_Widget_Block_Widget */
+$_id                = $this->getConfig('id');
+$_title             = $this->getConfig('widget_title');
+$t                  = microtime();
+?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $_id ?>">
+    <?php if ($_title): ?>
+        <h2><?php echo $_title ?></h2>
+    <?php endif ?>
+    <?php echo $this->renderCollection('collection', $this->getData('mode'), 'mt/widget/collection-upsell.phtml') ?>
+</div>
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>mt/widget/frontend.js"></script>
+<script type="text/javascript">
+    new MT.Widget('<?php echo $_id ?>', {
+        animation: <?php echo $this->getConfig('animation') ?>,
+        parallax: <?php echo $this->getConfig('parallax') ?>,
+        carousel: <?php echo $this->getConfig('carousel') ?>,
+        carouselConfig: null,
+        countdown: <?php echo $this->getConfig('countdown') ?>,
+        countdownConfig: null,
+        kenburns: <?php echo $this->getConfig('kenburns') ?>
+    });
+</script>
+<?php //Mage::log(microtime() - $t) ?>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author ZooExtension.com
+* @email       magento@cleversoft.co
+*/
+-->
+<config>
+    <modules>
+        <MT_Widget>
+            <version>2.0</version>
+        </MT_Widget>
+    </modules>
+
+    <frontend>
+        <routers>
+            <mtwidget>
+                <use>standard</use>
+                <args>
+                    <module>MT_Widget</module>
+                    <frontName>mtwidget</frontName>
+                </args>
+            </mtwidget>
+        </routers>
+        <layout>
+            <updates>
+                <mtwidget>
+                    <file>mt_widget.xml</file>
+                </mtwidget>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <models>
+            <mtwidget>
+                <class>MT_Widget_Model</class>
+            </mtwidget>
+        </models>
+        <blocks>
+            <mtwidget>
+                <class>MT_Widget_Block</class>
+            </mtwidget>
+        </blocks>
+        <helpers>
+            <mtwidget>
+                <class>MT_Widget_Helper</class>
+            </mtwidget>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <mtwidget>
+                <use>admin</use>
+                <args>
+                    <module>MT_Widget</module>
+                    <frontName>mtwidget</frontName>
+                </args>
+            </mtwidget>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtwidget>
+                    <file>mt_widget.xml</file>
+                </mtwidget>
+            </updates>
+        </layout>
+        <cms>
+            <browser>
+                <extensions>
+                    <media_allowed>
+                        <mp4>1</mp4>
+                        <webm>1</webm>
+                    </media_allowed>
+                </extensions>
+            </browser>
+        </cms>
+    </adminhtml>
+</config>

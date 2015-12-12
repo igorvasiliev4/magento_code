@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magehit_Faq>
+            <version>1.0.1</version>
+        </Magehit_Faq>
+    </modules>
+    <frontend>
+        <routers>
+            <faq>
+                <use>standard</use>
+                <args>
+                    <module>Magehit_Faq</module>
+                    <frontName>faq</frontName>
+                </args>
+            </faq>
+        </routers>
+        <translate>
+            <modules>
+                <Magehit_Faq>
+                    <files>
+                        <default>Magehit_Faq.csv</default>
+                    </files>
+                </Magehit_Faq>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <faq>
+                    <file>faq.xml</file>
+                </faq>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<faq_admin>
+				<use>admin</use>
+				<args>
+					<module>Magehit_Faq</module>
+					<frontName>faq_admin</frontName>
+				</args>
+			</faq_admin>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<faq module="faq">
+				<title>Easy FAQ</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<faqitem module="faq">
+						<title>Manage FAQ Item</title>
+						<sort_order>0</sort_order>
+						<action>faq_admin/adminhtml_faqitem</action>
+					</faqitem>
+				</children>
+				<children>
+					<items module="faq">
+						<title>Manage FAQ Categories</title>
+						<sort_order>0</sort_order>
+						<action>faq_admin/adminhtml_faq</action>
+					</items>
+				</children>
+			</faq>
+		</menu>
+		
+		<acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <faq module="faq">
+                            <title>Easy FAQ</title>
+                            <sort_order>71</sort_order>               
+                            <children>
+                                <items module="faq">
+                                    <title>Manage FAQ Categories</title>
+                                    <sort_order>0</sort_order>
+                                </items>
+                            </children>
+                            <children>
+                                <faqitem module="faq">
+                                    <title>Manage FAQ Item</title>
+                                    <sort_order>10</sort_order>
+                                </faqitem>
+                            </children>
+                        </faq>
+                        <system>
+                        	<children>
+                        		<config>
+                        			<children>
+	                        			<magehit_faq module="faq" translate="title">
+	                        				<title>Faq Settings</title>
+	                        			</magehit_faq>
+                        			</children>
+                        		</config>
+                        	</children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+		
+		
+		<layout>
+			<updates>
+				<faq>
+					<file>faq.xml</file>
+				</faq>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+        	<sitemap>
+        		<rewrite>
+        			<sitemap>Magehit_Faq_Model_Sitemap</sitemap>
+        		</rewrite>
+        	</sitemap>
+            <faq>
+                <class>Magehit_Faq_Model</class>
+                <resourceModel>faq_mysql4</resourceModel>
+            </faq>
+            <faq_mysql4>
+                <class>Magehit_Faq_Model_Mysql4</class>
+                <entities>
+                    <faq><table>faq</table></faq>
+                    <faqitem><table>faqitem</table></faqitem>
+                    <faq_store><table>faq_store</table></faq_store>
+                    <faqitem_store><table>faqitem_store</table></faqitem_store>            
+                </entities>
+            </faq_mysql4>
+        </models>
+        <resources>
+            <faq_setup>
+                <setup>
+                    <module>Magehit_Faq</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </faq_setup>
+            <faq_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </faq_write>
+            <faq_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </faq_read>
+        </resources>
+        <blocks>
+            <faq>
+                <class>Magehit_Faq_Block</class>
+            </faq>        
+        </blocks>
+        <helpers>
+            <faq>
+                <class>Magehit_Faq_Helper</class>
+            </faq>
+        </helpers>
+		<events>
+			
+		</events>
+    </global>
+</config>

@@ -1,0 +1,63 @@
+<?php
+$enable = Mage::getStoreConfig('ajaxcart/ajaxcart_config/enable_ajaxcart');
+?>
+<?php $_cartQty = $this->getSummaryCount() ?>
+<span class="mt-cart-loading">Loading...</span>
+<div class="mt-cart">
+    <div class="mt-icon-ajaxcart">
+        <div class="mt-icon icon-cart dropdown-icon">
+            <i class="icon-bag">&nbsp;</i>
+        </div>
+        <?php /*
+            <a class="mt-cart-label" href="<?php echo $this->getUrl('checkout/cart') ?>">
+                <span class="print" style="clear:both;display: block;">
+                   <!--<span class="items"><?php echo $this->__('item(s)') ?></span>-->
+                    <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                </span>
+            </a>
+        */ ?>
+    </div>
+    <div class="ajaxcart">
+        <div class="search-form-border"></div>
+        <div class="mt-ajax-container">
+            <?php
+            $_items = $this->getRecentItems($_cartQty);
+            if (count($_items)):
+                ?>
+                <ul class="clearfix">
+                    <?php foreach ($_items as $_item): ?>
+                        <?php echo $this->getItemHtml($_item) ?>
+                    <?php endforeach; ?>
+                </ul>
+                <p class="subtotal">
+                    <?php if ($this->canApplyMsrp()): ?>
+                        <span
+                            class="map-cart-sidebar-total"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+                    <?php else: ?>
+                        <span
+                            class="label"><?php echo $this->__('Total:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                        <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                            <br/>(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </p>
+                <div class="mt-ajax-checkout">
+                    <a href="<?php echo $this->getUrl('checkout/cart') ?>" class="view-cart">
+                        <span><?php echo $this->__('View cart') ?></span>
+                    </a>
+                    <?php if (Mage::getStoreConfig('opc/global/status')) { ?>
+                        <a href="<?php echo $this->getUrl('onepage') ?>"><span><?php echo $this->__('Checkout') ?></span></a>
+                    <?php } else { ?>
+                        <a href="<?php echo $this->getCheckoutUrl() ?>"><span><?php echo $this->__('Checkout') ?></span></a>
+                    <?php }?>
+                </div>
+            <?php else: ?>
+                <p class="no-items-in-cart"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+            <?php endif ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var datatext = {};
+    datatext.load = '<?php echo $this->__('processing');?>';
+</script>

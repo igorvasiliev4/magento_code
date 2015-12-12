@@ -1,0 +1,30 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Filter
+ * @copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php $barColor = Mage::helper('mtfilter')->getConfig('mtfilter/general/bar_color') ?>
+<style type="text/css">
+    #nprogress .bar {
+        background: #<?php echo $barColor?>;
+    }
+    #nprogress .spinner-icon {
+        border-top-color: #<?php echo $barColor?>;
+        border-left-color: #<?php echo $barColor?>;
+    }
+    #nprogress .peg {
+        -webkit-box-shadow: 0 0 15px #<?php echo $barColor?>, 0 0 10px #<?php echo $barColor?>;
+        -moz-box-shadow: 0 0 15px #<?php echo $barColor?>, 0 0 10px #<?php echo $barColor?>;
+        -ms-box-shadow: 0 0 15px #<?php echo $barColor?>, 0 0 10px #<?php echo $barColor?>;
+        -o-box-shadow: 0 0 15px #<?php echo $barColor?>, 0 0 10px #<?php echo $barColor?>;
+        box-shadow: 0 0 15px #<?php echo $barColor?>, 0 0 10px #<?php echo $barColor?>;
+    }
+</style>
+<script type="text/javascript">
+    window.mtFilter = new MTFilter('mtFilter', <?php echo Mage::helper('mtfilter')->getConfig()?>);
+</script>

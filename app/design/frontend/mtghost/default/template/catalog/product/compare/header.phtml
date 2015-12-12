@@ -1,0 +1,46 @@
+<?php
+$_helper = $this->helper('catalog/product_compare');
+$_items = $_helper->getItemCount() > 0 ? $_helper->getItemCollection() : null;
+?>
+<div class="mtajaxcompare mt-ajax-container">
+    <div class="maincompare">
+        <?php if($_helper->getItemCount() > 0): ?>
+            <ol id="compare-items">
+                <?php foreach($_items as $_index => $_item): ?>
+                    <li class="item">
+                        <input type="hidden" class="compare-item-id" value="<?php echo $_item->getId() ?>" />
+                        <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_item, 'small_image'), null, true) ?>" class="product-image">
+                            <?php $product = Mage::getModel('catalog/product')->load($_item->getId()); ?>
+                            <img src="<?php echo Mage::helper('catalog/image')->init($product, 'small_image')->resize(50, 50); ?>" alt="<?php echo $this->stripTags($product->getName(), null, true) ?>" />
+                        </a>
+                        <div class="product-details">
+                            <p class="product-name clearfix"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName(), 'name') ?></a></p>
+                            <div class="items clearfix">
+                                <?php echo $this->getPriceHtml($_item, true) ?>
+                            </div>
+                            <div class="access clearfix">
+                                <a data-id="<?php echo $_item->getId() ?>" href="<?php echo $_helper->getRemoveUrl($_item) ?>" title="<?php echo $this->__('Remove') ?>" class="btn-remove" data-confirm="<?php echo $this->__('Are you sure you would like to remove this item from the compare products?') ?>"><span class="icon"></span><?php echo $this->__('Remove') ?></a>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <script type="text/javascript">decorateList('compare-items')</script>
+            <div class="actions">
+                <div class="view-compare">
+                    <button type="button" title="<?php echo $this->__('Compare') ?>" class="button" onclick="popWin('<?php echo $_helper->getListUrl() ?>','compare','top:0,left:0,width=820,height=600,resizable=yes,scrollbars=yes')">
+                        <span><span><?php echo $this->__('Compare') ?></span></span>
+                    </button>
+                    <div class="clearall">
+                        <a class="btn-remove-all" href="<?php echo $_helper->getClearListUrl() ?>" data-confirm="<?php echo $this->__('Are you sure you would like to remove all products from your comparison?') ?>">
+                            <?php echo $this->__('Clear All') ?>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        <?php else: ?>
+            <p class="empty"><?php echo $this->__('You have no items to compare.') ?></p>
+        <?php endif; ?>
+    </div>
+</div>

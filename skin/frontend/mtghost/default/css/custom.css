@@ -1,0 +1,54 @@
+/**Retina log**/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .mt-wrapper .header .logo img {
+        min-height: 1px;
+    }
+}
+
+#overlay {
+    position: fixed;
+    height: auto;
+    z-index: 9999;
+    left: 28%;
+    top: 12%;
+    display: none;
+    width: 40%;
+    border: 1px solid;
+    box-shadow: 10px 10px 5px #888;
+    background-color: #FFF;
+    padding: 30px 20px 20px;
+    font-family: "Droid Serif";
+	max-width: 760px;
+}
+#overlay p{
+ font-family: "Droid Serif";
+}
+.x {
+    float: right;
+    position: absolute;
+    width: auto;
+    height: auto;
+    font-weight: bold;
+    padding: 2px;
+    right: 10px;
+    cursor: pointer;
+    top: 0;
+
+}
+.messages{
+float: left;
+}
+#overlay .col-md-6 img {
+    width: 100%;
+    height: auto;
+}
+.keep-shopping-button {
+    cursor: pointer;
+    position: initial;
+    padding: 5px;
+background: #000;
+color: #fff;
+}

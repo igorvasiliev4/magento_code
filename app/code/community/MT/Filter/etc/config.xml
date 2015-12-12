@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Filter
+@copyright   Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author ZooExtension.com
+@email       magento@cleversoft.co
+-->
+<config>
+    <modules>
+        <MT_Filter>
+            <version>1.1.0</version>
+        </MT_Filter>
+    </modules>
+
+    <frontend>
+        <routers>
+            <catalog>
+                <args>
+                    <modules>
+                        <MT_Filter before="Mage_Catalog">MT_Filter_Catalog</MT_Filter>
+                    </modules>
+                </args>
+            </catalog>
+            <catalogsearch>
+                <args>
+                    <modules>
+                        <MT_Filter before="Mage_CatalogSearch">MT_Filter_CatalogSearch</MT_Filter>
+                    </modules>
+                </args>
+            </catalogsearch>
+        </routers>
+        <layout>
+            <updates>
+                <mtfilter>
+                    <file>mt_filter.xml</file>
+                </mtfilter>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <blocks>
+            <mtfilter>
+                <class>MT_Filter_Block</class>
+            </mtfilter>
+            <catalog>
+                <rewrite>
+                    <layer_filter_price>MT_Filter_Block_Catalog_Layer_Filter_Price</layer_filter_price>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <helpers>
+            <mtfilter>
+                <class>MT_Filter_Helper</class>
+            </mtfilter>
+        </helpers>
+        <models>
+            <mtfilter>
+                <class>MT_Filter_Model</class>
+                <resourceModel>mtfilter_resource</resourceModel>
+            </mtfilter>
+            <mtfilter_resource>
+                <class>MT_Filter_Model_Resource</class>
+            </mtfilter_resource>
+            <catalog_resource>
+                <rewrite>
+                    <product_collection>MT_Filter_Model_Resource_Product_Collection</product_collection>
+                </rewrite>
+            </catalog_resource>
+            <catalogsearch_resource>
+                <rewrite>
+                    <fulltext_collection>MT_Filter_Model_Resource_Fulltext_Collection</fulltext_collection>
+                </rewrite>
+            </catalogsearch_resource>
+        </models>
+        <events>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <mtfilter>
+                        <type>singleton</type>
+                        <class>mtfilter/observer</class>
+                        <method>coreBlockAbstractPrepareLayoutAfter</method>
+                    </mtfilter>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+        </events>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtfilter>
+                    <file>mt_filter.xml</file>
+                </mtfilter>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+		<mtfilter>
+            <general>
+                <bar>1</bar>
+                <bar_color>CC181E</bar_color>
+            </general>
+		    <catalog>
+		    	<price>1</price>
+                <enable>1</enable>
+                <main_selector>.col-main</main_selector>
+                <layer_selector>.block-layered-nav</layer_selector>
+		    </catalog>
+            <catalogsearch>
+                <price>1</price>
+                <enable>1</enable>
+                <main_selector>.col-main</main_selector>
+                <layer_selector>.block-layered-nav</layer_selector>
+            </catalogsearch>
+		</mtfilter>
+    </default>
+</config>

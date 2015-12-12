@@ -1,0 +1,79 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<?php
+$blog = $this->getBlog();
+$id         = $this->getConfig('id');
+$scroll     = $this->getConfig('scroll');
+$title      = $this->getConfig('widget_title');
+$helper = Mage::helper('mtwidget');
+$date = Mage::getModel('core/date');
+$showtitle  = $this->getConfig('showtitle');
+?>
+<div class="<?php echo $this->getConfig('classes') ?>" id="<?php echo $id ?>">
+    <?php if ($title && $showtitle): ?>
+        <h3 class="title-widget"><?php echo $title ?></h3>
+    <?php endif ?>
+    <div class="row">
+        <div class="<?php echo $scroll == 1 ? 'owl-carousel ' : '' ?>">
+            <?php foreach ($blog as $_item): ?>
+                <div class="blog item">
+                    <?php $img = $helper->getImgBlog($_item->getShortContent()); ?>
+                    <?php if ($img): ?>
+                        <a href="<?php echo $_item->getAddress(); ?>" title="<?php echo $_item->getTitle(); ?>">
+                            <?php if ($scroll): ?>
+                                <img class="img-responsive lazyOwl"
+                                     data-src="<?php echo $img; ?>"
+                                     data-srcX2="<?php echo $img; ?>"
+                                     src="<?php echo $this->getSkinUrl('images/loader.gif') ?>"/>
+                            <?php else: ?>
+                                <img class="img-responsive lazy" data-src="<?php echo $img; ?>"
+                                     src="<?php echo $this->getSkinUrl('images/loader.gif') ?>"/>
+                            <?php endif; ?>
+                        </a>
+                    <?php endif; ?>
+                    <div class="main_content">
+                    <span class="midle_content">
+                        <?php if($this->getConfig('showauthor')): ?>
+                            <span class="user"><i class="icon_profile"></i> <?php echo substr($_item->getUser(), 0, 10); ?></span>
+                        <?php endif; ?>
+                        <?php if($this->getConfig('showdate')): ?>
+                            <span class="date"><i class="icon_table"></i> <?php echo $date->date('Y/M/d', $_item->getCreatedTime()); ?></span>
+                        <?php endif; ?>
+                        <?php if($this->getConfig('showcomment')): ?>
+                            <span class="comment"><i class="icon_comment_alt"></i> <?php echo (int)$_item->getCommentCount() > 0 ? $_item->getCommentCount() : '0'; ?> <?php echo $this->__('Comments'); ?></span>
+                        <?php endif; ?>
+                    </span>
+                        <h3><a href="<?php echo $_item->getAddress(); ?>"><?php echo $_item->getTitle(); ?></a></h3>
+                        <?php if($this->getConfig('showintro')): ?>
+                            <span class="content">
+                        <?php echo $_item->getPostContent(); ?>
+                    </span>
+                        <?php endif; ?>
+                        <?php if($this->getConfig('showreadmore')): ?>
+                            <span class="readmore"><a href="<?php echo $_item->getAddress(); ?>"><?php echo $this->__('Read More'); ?></a> </span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="<?php echo Mage::getBaseUrl('js') ?>mt/widget/frontend.js"></script>
+    <script type="text/javascript">
+        new MT.Widget('<?php echo $id ?>', {
+            animation: <?php echo $this->getConfig('animation') ?>,
+            parallax: <?php echo $this->getConfig('parallax') ?>,
+            carousel: <?php echo $this->getConfig('carousel') ?>,
+            carouselConfig: null,
+            kenburns: <?php echo $this->getConfig('kenburns') ?>
+        });
+    </script>
+</div>

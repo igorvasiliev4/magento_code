@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+       <reference name="head">
+                
+          
+                     <action method="addItem"><type>skin_js</type><name>pcarousel/js/jquery.js</name><params/></action>
+                      <action method="addItem"><type>skin_js</type><name>pcarousel/js/noconflict.js</name><params/></action>  
+             <action method="addItem"><type>skin_js</type><name>pcarousel/js/jcarousel.responsive.js</name><params/></action>   
+             
+   <action method="addItem"><type>skin_js</type><name>pcarousel/js/noconflict.js</name><params/></action>  
+     
+             <action method="addItem"><type>skin_js</type><name>pcarousel/js/jquery.jcarousel.min.js</name><params/></action>
+              <action method="addItem"><type>skin_js</type><name>pcarousel/js/noconflict.js</name><params/></action>  
+                <action method="addItem"><type>skin_css</type><name>pcarousel/css/jcarousel.responsive.css</name><params/></action>
+               
+             </reference>
+    </default>
+    <pcarousel_index_index>
+        <reference name="content">
+            <block type="pcarousel/pcarousel" name="pcarousel" template="pcarousel/pcarousel.phtml" />
+        </reference>
+    </pcarousel_index_index>
+</layout> 

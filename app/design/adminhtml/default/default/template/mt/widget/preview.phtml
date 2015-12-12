@@ -1,0 +1,19 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * Copyright (C) 2008-2015 ZooExtension.com. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author ZooExtension.com
+ * @email       magento@cleversoft.co
+ */
+?>
+<tr>
+    <td class="label">
+        <?php echo $this->getElement()->getLabel()?>
+    </td>
+    <td class="value">
+        <input type="hidden" id="<?php echo $this->getElement()->getHtmlId()?>"/>
+        <?php echo $this->getElement()->getData('after_element_html')?>
+    </td>
+</tr>

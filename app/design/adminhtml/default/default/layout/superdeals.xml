@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @name            :  Super Deals
+ * @version         :  1.1
+ * @author          :  Apptha - http://www.apptha.com
+ * @copyright       :  Copyright (C) 2013 Powered by Apptha
+ * @license         :  http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @Creation Month  :  April 2013
+ *
+ * */
+ -->
+<layout version="0.1.0">
+    <adminhtml_system_config_edit>
+  <reference name="head">
+   <action method="addJs"><file>jscolor/jscolor.js</file></action>
+  </reference>
+ </adminhtml_system_config_edit>
+    <superdeals_adminhtml_superdeals_index>
+        <reference name="content">
+            <block type="superdeals/adminhtml_timer" name="timer" />
+        </reference>
+    </superdeals_adminhtml_superdeals_index>
+    <superdeals_adminhtml_dealz_index>
+        <reference name="content">
+            <block type="superdeals/adminhtml_dealz" name="dealz" />
+        </reference>
+    </superdeals_adminhtml_dealz_index>
+
+    <superdeals_adminhtml_dealstatistics_index>
+        <reference name="content">
+            <block type="superdeals/adminhtml_dealstatistics" name="dealstatistics" />
+        </reference>
+    </superdeals_adminhtml_dealstatistics_index>
+</layout>  
